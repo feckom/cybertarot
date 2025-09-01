@@ -1,80 +1,57 @@
 @echo off
-setlocal EnableExtensions EnableDelayedExpansion
+setlocal EnableExtensions
 
-REM === Publish project to GitHub (account: feckom) ===
-set REPO_NAME=cybertarot
-set GITHUB_USER=feckom
-set REMOTE_HTTPS=https://github.com/%GITHUB_USER%/%REPO_NAME%.git
+REM ==== CONFIG ====
+set "REPO_NAME=cybertarot"
+set "GITHUB_USER=feckom"
+set "REMOTE=https://github.com/%GITHUB_USER%/%REPO_NAME%.git"
 
-echo:
-echo === Checking prerequisites ===
-where git >nul 2>nul || (echo [ERROR] Git not found. Install from https://git-scm.com/download/win & exit /b 1)
+echo.
+echo === Checking Git ===
+where git >nul 2>nul || (echo [ERROR] Git not found & exit /b 1)
 
-echo:
-echo === Trusting this working directory (safe.directory) ===
-REM Add current path
-git config --global --add safe.directory "%CD%"
+echo.
+echo === Trust current directory (safe.directory) ===
+git config --global --add safe.directory "%CD%" >nul 2>nul
 
-REM Try to resolve UNC path via PowerShell; ignore errors
-for /f "usebackq delims=" %%I in (`powershell -NoProfile -Command ^
-  "try { (Resolve-Path .).ProviderPath } catch { '' }"`) do set UNC_PATH=%%I
-if defined UNC_PATH (
-  git config --global --add safe.directory "%UNC_PATH%"
-  echo [OK] Added safe.directory: %UNC_PATH%
-) else (
-  echo [INFO] UNC path not resolved; continuing with %CD%.
-)
+echo.
+echo === Ensure identity ===
+for /f "usebackq delims=" %%A in (`git config user.email 2^>nul`) do set "CFG_EMAIL=%%A"
+for /f "usebackq delims=" %%A in (`git config user.name  2^>nul`) do set "CFG_NAME=%%A"
+if "%CFG_EMAIL%"=="" echo [ERROR] Missing user.email. Run: git config --global user.email "tvoj.email@example.com" & exit /b 1
+if "%CFG_NAME%"==""  echo [ERROR] Missing user.name.  Run: git config --global user.name  "Michal Fecko"       & exit /b 1
+echo [OK] user.name=%CFG_NAME%, user.email=%CFG_EMAIL%
 
-echo:
-echo === Initializing local repository ===
-if not exist ".git" (
-  echo [INFO] Initializing new repo...
-  git init || (echo [ERROR] git init failed & exit /b 1)
-) else (
-  echo [OK] Git repo already initialized.
-)
+echo.
+echo === Init repo / main branch ===
+if not exist ".git" git init
+git rev-parse --abbrev-ref HEAD >nul 2>nul || git checkout -b main
+git branch -M main
 
-REM Ensure main branch
-git rev-parse --abbrev-ref HEAD >nul 2>nul
-if errorlevel 1 (
-  echo [INFO] Creating main branch...
-  git checkout -b main || (echo [ERROR] Cannot create main branch & exit /b 1)
-) else (
-  git branch -M main || (echo [ERROR] Cannot rename branch to main & exit /b 1)
-)
-
-echo:
-echo === Staging and committing ===
+echo.
+echo === Stage + commit ===
 git add -A
-git diff --cached --quiet
-if errorlevel 1 (
-  git commit -m "Initial commit"
-) else (
-  git commit --allow-empty -m "Bootstrap commit"
-)
+git diff --cached --quiet && git commit --allow-empty -m "Bootstrap commit" || git commit -m "Initial commit"
 
-echo:
-echo === Configuring remote 'origin' ===
-git remote get-url origin >nul 2>nul
-if errorlevel 1 (
-  git remote add origin %REMOTE_HTTPS% || (echo [ERROR] Cannot add origin & exit /b 1)
-  echo [OK] origin -> %REMOTE_HTTPS%
-) else (
-  git remote set-url origin %REMOTE_HTTPS% || (echo [ERROR] Cannot set origin URL & exit /b 1)
-  echo [OK] origin updated -> %REMOTE_HTTPS%
-)
+echo.
+echo === Set remote 'origin' ===
+echo [INFO] origin URL: %REMOTE%
+git remote remove origin 2>nul
+git remote add origin "%REMOTE%"
 
-echo:
-echo === Pushing to GitHub ===
-git push -u origin main || (
+echo.
+echo === Push ===
+git push -u origin main
+if errorlevel 1 (
   echo.
   echo [ERROR] Push failed.
-  echo   - Over HTTPS + 2FA použi Personal Access Token ako heslo (scope: repo).
-  echo   - Alebo prihlas GitHub CLI: ^gh auth login^ a pouzi SSH/HTTPS credential manager.
+  echo   - Pri HTTPS + 2FA pouzi Personal Access Token ako heslo (scope: repo).
+  echo   - Skontroluj opravnenia k repo: https://github.com/%GITHUB_USER%/%REPO_NAME%
+  echo   - Alebo pouzi: gh auth login  (ak mas GitHub CLI)
   exit /b 1
 )
 
-echo:
+echo.
 echo =====================================================
 echo Pushed to: https://github.com/%GITHUB_USER%/%REPO_NAME%
 echo =====================================================
