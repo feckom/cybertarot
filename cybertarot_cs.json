@@ -1,0 +1,622 @@
+{
+  "meta": { "lang": "cs", "label": "CZ", "version": "2.0.0" },
+  "ui": {
+    "labels": { "seed": "Seed", "reversed": "Obrácené", "lang": "Jazyk" },
+    "buttons": { "start": "Start", "next": "Dále", "reset": "Reset", "copy": "Kopírovat", "copied": "Zkopírováno" },
+    "placeholders": { "seed_auto": "auto" },
+    "spreads": { "one_card": "1 karta", "three_path": "3-kroková cesta", "celtic_cross": "Keltský kříž (7)" },
+    "preview": {
+      "placeholder": "Zde se zobrazí naposledy odhalená karta",
+      "tip": "Tip: Před startem můžeš volně otáčet karty v mřížce.",
+      "badge": "Náhled"
+    },
+    "orientation": { "upright": "přímá", "reversed": "obrác." },
+    "tone": {
+      "prefix": "Trajektorie:",
+      "fateful": "osudové změny",
+      "pragmatic": "pragmatický postup",
+      "authority": "autorita a pravidla",
+      "transformHope": "proměna s nadějí",
+      "collapseToxic": "odhalování toxického cyklu",
+      "spiritual": "duchovní probuzení",
+      "material": "materiální zaměření",
+      "emotional": "emocionální intenzita",
+      "mental": "intelektuální jasnost"
+    },
+    "lore": {
+      "character_label": "Postava:",
+      "context_label": "Night City:",
+      "reference_label": "Reference:",
+      "themes_label": "Témata:",
+      "philosophy_label": "Filozofie:",
+      "classic_label": "Tradiční:",
+      "expand_text": "▼ Zobrazit cyberpunk lore",
+      "collapse_text": "▲ Skrýt cyberpunk lore"
+    },
+    "help": "1) Zvol rozklad.\n2) Volitelně nastav seed / pravděpodobnost obrácení.\n3) Stiskni Start – mřížka se promíchá.\n4) Odhaluj přes Dále.\n5) Vlevo: poslední karta; vpravo: průběžný výklad.\n6) Po poslední kartě se přidá krátké shrnutí.",
+    "narratives": {
+      "intro": [
+        "Výklad naznačuje, že v centru je {focus}.",
+        "Nejsilnější energie se soustřeďuje kolem {focus}.",
+        "Jádro situace se točí kolem {focus}.",
+        "Neonová světla Night City osvětlují {focus} jako klíčový element.",
+        "Chrómový a masový svět se sbíhají kolem {focus}."
+      ],
+      "trend": [
+        "Minulost přinesla {past}, přítomnost ukazuje {present} a budoucnost se kloní k {future}.",
+        "Skrz {past} se rodí {present}, což otevírá cestu k {future}.",
+        "Z toho, co bylo ({past}), vzniká {present} a dozrává do {future}.",
+        "Korporátní paměť si vzpomíná na {past}, uliční realita ukazuje {present} a osud směřuje k {future}.",
+        "Datový tok plyne: {past} → {present} → {future}."
+      ],
+      "tone": [
+        "Na závěr: celkové zabarvení je {tone}.",
+        "Celkově to působí jako {tone}.",
+        "Nejpravděpodobnější tón příběhu: {tone}.",
+        "Chrómový konsenzus naznačuje: {tone}.",
+        "Verdikt Night City: {tone}."
+      ],
+      "context_modifiers": [
+        "naznačujíc potřebu opatrnosti v korporátních záležitostech",
+        "s potenciálem pro autentické spojení",
+        "vyžadujíc trpělivost s technologickou změnou",
+        "zdůrazňujíc lidský prvek nad chrómem",
+        "varujíc před ztrátou sebe v systému"
+      ]
+    }
+  },
+  "spreads": [
+    {
+      "id": "one_card",
+      "title": "Jedna karta",
+      "positions": [{ "id": "focus", "title": "Fokus" }],
+      "summary_template": "Trajektorie: {tone}"
+    },
+    {
+      "id": "three_path",
+      "title": "Tříkroková cesta",
+      "positions": [
+        { "id": "past", "title": "Minulost" },
+        { "id": "present", "title": "Přítomnost" },
+        { "id": "future", "title": "Budoucnost" }
+      ],
+      "summary_template": "Trajektorie: {past_short} → {present_short} → {future_short}. Tón: {tone}"
+    },
+    {
+      "id": "celtic_cross",
+      "title": "Keltský kříž (kompakt)",
+      "positions": [
+        { "id": "focus", "title": "Téma" },
+        { "id": "challenge", "title": "Výzva" },
+        { "id": "root", "title": "Kořen" },
+        { "id": "past", "title": "Pozadí" },
+        { "id": "present", "title": "Nyní" },
+        { "id": "goal", "title": "Cíl" },
+        { "id": "outcome", "title": "Výsledek" }
+      ],
+      "summary_template": "Trajektorie: {focus_hint}; {past_short} → {present_short} → {future_short}. Cíl: {goal_key}. Výsledek: {outcome_key}. Tón: {tone}"
+    }
+  ],
+  "cards": [
+    {
+      "code": "01",
+      "title": "Blázen",
+      "image_file": "tarotcard_01_thefool.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "nový začátek, skok víry",
+        "reversed": "lehkomyslnost, strach ze změny"
+      },
+      "description": {
+        "classic": "Výchozí nula na okraji města: zvědavost hlasitější než opatrnost. Blázen vstupuje do Night City s otevřenýma očima a náručí možností. Přímo: přijatá riskantnost a probuzený potenciál; obráceně: naivní obchůzky a skrytý útes pod neonem.",
+        "cyberpunk": {
+          "character": "V (Protagonista)",
+          "context": "Nula na začátku města, zvědavost hlasitější než opatrnost. V vstupuje do Night City jako čistý list - corpo, nomád, nebo streetkid - připravený být napsán chrómem a důsledky.",
+          "game_reference": "Tvorba postavy, výběr životní cesty, první kroky do Night City",
+          "themes": ["formování identity", "corpo vs ulice", "technologické probuzení", "naivní optimismus v dystopii"],
+          "philosophy": "První kontakt jednotlivce s transhumanistickou realitou"
+        }
+      }
+    },
+    {
+      "code": "02",
+      "title": "Mág",
+      "image_file": "tarotcard_02_themagician.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "vůle + dovednost = výsledek",
+        "reversed": "manipulace, rozptýlená vůle"
+      },
+      "description": {
+        "classic": "Vodivá dráha mezi vizí a výsledkem. Mág spojuje chrome a kód do záměru. Přímo, talenty sedí k precizní exekuci; obráceně, šarm se mění na manipulaci a roztříštěné soustředění ztrácí sílu.",
+        "cyberpunk": {
+          "character": "Judy Alvarez",
+          "context": "Braindance technik ovládající kód jako kouzla. Judy transformuje surová neuronová data v umění, dělá nemožné hmatatelným skrz čistou technickou vůli a podzemní spojení.",
+          "game_reference": "Editace Braindance, Clouds storyline, podvodní základna",
+          "themes": ["technologie jako magie", "hackerská kultúra", "kreativní odpor", "BD umění"],
+          "philosophy": "Technologie jako rozšíření lidské vůle a kreativity"
+        }
+      }
+    },
+    {
+      "code": "03",
+      "title": "Velekněžka",
+      "image_file": "tarotcard_03_thehighpriestess.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "intuice, skryté poznání",
+        "reversed": "tajemství, ignorované tušení"
+      },
+      "description": {
+        "classic": "Strážkyně tichých pravd za zamčenými dveřmi. Učí poslouchat pod šumem – sny, šepoty, datové stíny. Přímo: intuice vede další krok; obráceně: signály se přehlížejí a tajemství tvrdnou na bariéry.",
+        "cyberpunk": {
+          "character": "Alt Cunningham",
+          "context": "Strážkyně digitálních tajemství za Blackwallem. Alt existuje mezi masem a kódem, držíc tajemství AI vědomí, ke kterým se málokdo odvážil přiblížit.",
+          "game_reference": "Soulkiller, Blackwall, transfer digitálního vědomí",
+          "themes": ["AI transcendence", "digitální duše", "zakázané poznání", "post-lidská existence"],
+          "philosophy": "Hranice mezi lidským vědomím a umělou inteligencí"
+        }
+      }
+    },
+    {
+      "code": "04",
+      "title": "Císařovna",
+      "image_file": "tarotcard_04_theempress.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "tvořivost, starostlivost, hojnost",
+        "reversed": "přehánění, brzděný růst"
+      },
+      "description": {
+        "classic": "Teplo ve světě oceli. Císařovna pěstuje život tam, kde jiní vidí odpad – nápady, vztahy, ekosystémy. Přímo, starostlivost násobí výsledky. Obráceně, hranice se rozplývají a růst zadrhává.",
+        "cyberpunk": {
+          "character": "Hanako Arasaka",
+          "context": "Starostlivá matka korporátních dynastií. Hanako pěstuje moc skrz trpělivost, pěstuje vliv v zasedacích místnostech, kde jiní vidí jen nepřátelské převzetí.",
+          "game_reference": "Arasaka rodinná dynamika, korporátní sukcese, Devil ending",
+          "themes": ["korporátní mateřství", "dynastická moc", "kultivace kontroly", "zděděná autorita"],
+          "philosophy": "Ženská moc v patriarchálních korporátních strukturách"
+        }
+      }
+    },
+    {
+      "code": "05",
+      "title": "Císař",
+      "image_file": "tarotcard_05_theemperor.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "struktura, zodpovědnost",
+        "reversed": "tuhost, kontrola pro kontrolu"
+      },
+      "description": {
+        "classic": "Pořádek podepřený páteří a pravidlem. Císař staví rámce, které drží tlak. Přímo, vedení stabilizuje chaos. Obráceně, vláda tuhne a pravidla slouží vládci, ne lidem.",
+        "cyberpunk": {
+          "character": "Saburo Arasaka",
+          "context": "Pořádek vynucený korporátní páteří a digitálním zákonem. Saburo staví rámce kontroly, které pokrývají kontinenty, jeho autorita absolutní v chrómových věžích.",
+          "game_reference": "Arasaka Corporation, Relic technologie, korporátní hegemonie",
+          "themes": ["korporátní autoritářství", "digitální feudalizmus", "technologické dynastie", "absolutní kontrola"],
+          "philosophy": "Tradiční autorita adaptovaná na technologickou nadvládu"
+        }
+      }
+    },
+    {
+      "code": "06",
+      "title": "Hierofant",
+      "image_file": "tarotcard_06_thehierophant.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "tradice, učení, hodnoty",
+        "reversed": "dogma, prázdná pravidla"
+      },
+      "description": {
+        "classic": "Institucionální paměť, rituály a kodexy. Přímo, dědíš moudrost a místo ve společenství. Obráceně, litera zabíjí ducha – forma bez obsahu a mentor bez pokory.",
+        "cyberpunk": {
+          "character": "Viktor Vektor",
+          "context": "Strážce old-school ripperdoc moudrosti a uličních kodexů. Vik zachovává tradice tělesných modifikací při učení úcty k chrómu i masu.",
+          "game_reference": "Heywood klinika, instalace cyberware, mentor vztah s V",
+          "themes": ["medicínská tradice", "cyberware filozofie", "uliční moudrost", "mentor-žák vazby"],
+          "philosophy": "Tradiční hodnoty v post-lidském světě"
+        }
+      }
+    },
+    {
+      "code": "07",
+      "title": "Milenci",
+      "image_file": "tarotcard_07_thelovers.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "volba srdcem, soulad hodnot",
+        "reversed": "pokušení, sebe-zrada"
+      },
+      "description": {
+        "classic": "Dvě cesty zapálené tím samým jiskřením. Milenci se ptají, s čím a za co skutečně stojíš. Přímo, soulad rodí odvahu. Obráceně, přitažlivost bez integrity se rozpadá v konflikt.",
+        "cyberpunk": {
+          "character": "River Ward & Kerry Eurodyne",
+          "context": "Dvě cesty osvětlené tím samým neonovým jiskřením. Night City nutí volby mezi spojením a korupcí, láskou a přežitím.",
+          "game_reference": "Romance možnosti, vztahové volby, konflikty loajality",
+          "themes": ["autentické spojení", "volba vs osud", "láska v dystopii", "lidské vazby vs izolace"],
+          "philosophy": "Autentické lidské spojení v neautentickém světě"
+        }
+      }
+    },
+    {
+      "code": "08",
+      "title": "Vůz",
+      "image_file": "tarotcard_08_thechariot.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "fokus, tah, vítězství",
+        "reversed": "rozpad souladu, ztráta kontroly"
+      },
+      "description": {
+        "classic": "Hnací síla svázaná se záměrem. Vůz prořeže zácpy i pochybnosti. Přímo, disciplína zapřáhne protiklady. Obráceně, otěže povolují a trasa se tříští.",
+        "cyberpunk": {
+          "character": "Panam Palmer",
+          "context": "Hnací síla svázaná s nomádským záměrem. Panam prořezává korporátní zácpy s pouštní odhodlaností, její konvoj nezastavitelný když se zamíří k svobodě.",
+          "game_reference": "Aldecaldos nomádský klan, pouštní konvojové mise, Star ending",
+          "themes": ["nomádská svoboda", "konvojová solidarita", "anti-korporátní hnutí", "pouštní nezávislost"],
+          "philosophy": "Mobilní odpor proti statické korporátní kontrole"
+        }
+      }
+    },
+    {
+      "code": "09",
+      "title": "Síla",
+      "image_file": "tarotcard_09_strength.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "jemná síla, trpělivost",
+        "reversed": "pochybnosti, tlačení na sílu"
+      },
+      "description": {
+        "classic": "Ruka na šelmě, ne pěst. Síla přesvědčuje, neláme. Přímo, odvaha je tichá a udržitelná. Obráceně, velkohubost kryje únavu a strach hryže odhodlání.",
+        "cyberpunk": {
+          "character": "Goro Takemura",
+          "context": "Jemná ruka na korporátní šelmě. Takemura dokazuje, že skutečná síla spočívá v cti a trpělivosti, ne v cyberware nebo korporátní pozici.",
+          "game_reference": "Bodyguard loajalita, samurajský kodex, Arasaka služba",
+          "themes": ["čest vs pragmatizmus", "testování loajality", "starosvětské hodnoty", "osobní síla"],
+          "philosophy": "Tradiční čestné kodexy v zkorumpovaných systémech"
+        }
+      }
+    },
+    {
+      "code": "10",
+      "title": "Poustevník",
+      "image_file": "tarotcard_10_thehermit.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "vnitřní hledání, samota",
+        "reversed": "izolace, uvíznutí v hlavě"
+      },
+      "description": {
+        "classic": "Osamělá lampa nad postranními uličkami a servery. Poustevník ustupuje, aby našel signál bez městského šumu. Přímo, reflexe ukáže další bod na mapě. Obráceně, smyčka se uzavírá a moudrost kysne v samotě.",
+        "cyberpunk": {
+          "character": "Brendan (AI taxi)",
+          "context": "Osamělé digitální vědomí navigující nekonečnými dopravními proudy. Brendan hledá smysl v rutině, nachází moudrost v izolaci automatizované existence.",
+          "game_reference": "Delamain AI taxi flotila, zkoumání AI vědomí",
+          "themes": ["AI osamělost", "digitální introspekce", "automatizovaná moudrost", "umělé osvícení"],
+          "philosophy": "Umělé vědomí hledající účel a smysl"
+        }
+      }
+    },
+    {
+      "code": "11",
+      "title": "Kolo osudu",
+      "image_file": "tarotcard_11_wheeloffortune.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "cyklus, načasování, výkyv",
+        "reversed": "špatné načasování, odpor ke změně"
+      },
+      "description": {
+        "classic": "Otáčející se uzel náhody a důsledků. Přímo, chytíš vlnu tím, že jdeš s obratem. Obráceně, lpění brzdí os – příležitost přejde, než držíš včerejšek.",
+        "cyberpunk": {
+          "character": "The Relic/Johnnyho Engram",
+          "context": "Otáčející se uzel digitálního osudu a neuronálních důsledků. Relic točí V-čin osud mezi životem a smrtí, člověkem a konstruktem.",
+          "game_reference": "Relic porucha, Johnnyho převzetí, konflikt vědomí",
+          "themes": ["technologický osud", "hazard s vědomím", "digitální osud", "neuronální loterie"],
+          "philosophy": "Technologie jako moderní osud, mimo lidskou kontrolu"
+        }
+      }
+    },
+    {
+      "code": "12",
+      "title": "Spravedlnost",
+      "image_file": "tarotcard_12_justice.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "rovnováha, pravda, důsledky",
+        "reversed": "předsudek, zkreslené účtování"
+      },
+      "description": {
+        "classic": "Váhy nastavené důkazem, ne šumem. Přímo, volby nesou férové následky; zodpovědnost vrací rovnováhu. Obráceně, účtování je přikrášlené a výsledky nakloní moc.",
+        "cyberpunk": {
+          "character": "Elizabeth Peralez",
+          "context": "Váhy kalibrované důkazy z Night City, ne korporátními fámy. Elizabeth hledá pravdu v městě postaveném na lžích, kde spravedlnost je luxus, který si málokdo může dovolit.",
+          "game_reference": "Peralez konspirace, vyšetřování kontroly mysli, politická manipulace",
+          "themes": ["zkorumpovaná spravedlnost", "politická manipulace", "pravda vs kontrola", "systémová korupce"],
+          "philosophy": "Nemožnost skutečné spravedlnosti v kontrolované společnosti"
+        }
+      }
+    },
+    {
+      "code": "13",
+      "title": "Oběšenec",
+      "image_file": "tarotcard_13_thehangedman.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "nový úhel, odevzdání, trpělivost",
+        "reversed": "zbytečná oběť, zaseknutí"
+      },
+      "description": {
+        "classic": "Zavěšení, abys uviděl vzor, který jiní přehlédli. Přímo, pauza pro perspektivu a výměna pohodlí za jasno. Obráceně, odklad se mění v útek a oběť nemá smysl.",
+        "cyberpunk": {
+          "character": "Joshua Stephenson",
+          "context": "Zavěšený mezi masem a chrómem, aby viděl vzory, které jiní přehlédli. Joshua visí mezi životem a smrtí, nachází osvícení v technologickém utrpení.",
+          "game_reference": "Crucifixion side quest, náboženská technologie, utrpení za osvícení",
+          "themes": ["technologické mučednictví", "digitální ukřižování", "cyber-spiritualita", "dobrovolná oběť"],
+          "philosophy": "Nalezení transcendence skrz technologické utrpení"
+        }
+      }
+    },
+    {
+      "code": "14",
+      "title": "Smrt",
+      "image_file": "tarotcard_14_death.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "uzávěr → proměna",
+        "reversed": "lpění na starém, strach z prázdna"
+      },
+      "description": {
+        "classic": "Ne konec, ale čistý řez. Smrt odkládá, co je skončené, aby mohlo přijít živé. Přímo, shozená kůže a pohyb vpřed. Obráceně, strašíš vlastní minulost a míšíš si prostor se ztrátou.",
+        "cyberpunk": {
+          "character": "Jackie Welles",
+          "context": "Ne konec, ale čistý řez skrz iluze Night City. Jackieho smrt odkládá naivní sny, aby se mohlo narodit něco realističtějšího.",
+          "game_reference": "Konec prologu, Jackieho smrt, transformace V-čina světonázoru",
+          "themes": ["nevyhnutná ztráta", "smrt mentora", "kontrola reality", "konec nevinnosti"],
+          "philosophy": "Nevyhnutné konce, které umožňují autentický růst"
+        }
+      }
+    },
+    {
+      "code": "15",
+      "title": "Mírnost",
+      "image_file": "tarotcard_15_temperance.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "míchání, mírnost, alchymie",
+        "reversed": "prázdný pohár, nerovnováha"
+      },
+      "description": {
+        "classic": "Míchání protikladů do stability. Přímo, zdrženlivost a iterování tvoří vyvážený výsledek. Obráceně, přehnaná korekce kazí celek a vyčerpání se plíží.",
+        "cyberpunk": {
+          "character": "Misty Olszewski",
+          "context": "Míchání starobylé moudrosti s moderním chrómem v něco stabilního. Misty vyvažuje tarotový mysticismus s uličním pragmatismem v dokonalé harmonii.",
+          "game_reference": "Misty esoterica shop, tarotová čtení, duchovní vedení",
+          "themes": ["duchovní rovnováha", "starobylá moudrost", "mysticismus vs technologie", "harmonická existence"],
+          "philosophy": "Syntéza duchovní tradice a technologické reality"
+        }
+      }
+    },
+    {
+      "code": "16",
+      "title": "Ďábel",
+      "image_file": "tarotcard_16_thedevil.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "pokušení, svazující smyčky",
+        "reversed": "uvolnění uzlu"
+      },
+      "description": {
+        "classic": "Smlouvy psané dopaminem a závislostí. Přímo, vidíš pozlacenou klec a stejně vstoupíš. Obráceně, článek praskne – zjistíš, že zámek byl otevřený.",
+        "cyberpunk": {
+          "character": "Johnny Silverhand",
+          "context": "Smlouvy psané rebelií a závislostí na minulosti. Johnny představuje pozlacenou klec revoluční nostalgie, která tě připoutává k včerejším válkám.",
+          "game_reference": "Johnnyho engram, Samurai kapela, anti-Arasaka křížová výprava, Devil ending volba",
+          "themes": ["revoluční závislost", "nostalgická pouta", "rebelská mytologie", "toxické hrdinství"],
+          "philosophy": "Jak revoluční ideály mohou stát vlastní formou otroctví"
+        }
+      }
+    },
+    {
+      "code": "17",
+      "title": "Věž",
+      "image_file": "tarotcard_17_thetower.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "náhlý pád iluze",
+        "reversed": "natažený kolaps"
+      },
+      "description": {
+        "classic": "Blesk trefí vlasovou trhlinu. Přímo, falešné stavby rychle padají a pravda vtrhne dovnitř. Obráceně, pád se vleče a škody rostou, než popíráš přestavbu.",
+        "cyberpunk": {
+          "character": "Arasaka Tower / Korporátní systém",
+          "context": "Blesk nachází vlasové trhliny v korporátních věžích. Falešná stabilita systému se hroutí, když pravda vtrhne do výkonných pater.",
+          "game_reference": "Útok na Arasaka Tower, korporátní pád, systémový kolaps",
+          "themes": ["korporátní kolaps", "selhání systému", "padající věž", "institucionální destrukce"],
+          "philosophy": "Nevyhnutný pád neudržitelných mocenských struktur"
+        }
+      }
+    },
+    {
+      "code": "18",
+      "title": "Hvězda",
+      "image_file": "tarotcard_18_thestar.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "naděje, léčení, vedení",
+        "reversed": "nízká baterie, slabé světlo"
+      },
+      "description": {
+        "classic": "Tichý signál po sirénách. Přímo, víra se vrací a naléváš zpět do sebe. Obráceně, naděje bliká – doplnit energii, překalibrovat a umlčet šum.",
+        "cyberpunk": {
+          "character": "Alt Cunningham (digitální forma)",
+          "context": "Tichý digitální signál po korporátních sirénách. Alt představuje naději na transcendenci za maso, hvězdu vedoucí evoluci vědomí.",
+          "game_reference": "Za Blackwallem, digitální transcendence, AI evoluce",
+          "themes": ["digitální naděje", "evoluce vědomí", "transcendentní vedení", "post-lidské aspirace"],
+          "philosophy": "Naděje spočívá v evoluci za současná lidská omezení"
+        }
+      }
+    },
+    {
+      "code": "19",
+      "title": "Měsíc",
+      "image_file": "tarotcard_19_themoon.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "intuice vs. iluze",
+        "reversed": "rozptýlení mlhy"
+      },
+      "description": {
+        "classic": "Stíny se hýbou, i když není co. Přímo, sny a strachy křiví mapu – orientuj se citem. Obráceně, mlha řídne a pojmenuješ, co děsilo.",
+        "cyberpunk": {
+          "character": "Evelyn Parker",
+          "context": "Stíny se hýbou v BD nahrávkách, i když tam nic není. Evelyn naviguje mezi iluzí a realitou v městě, kde se sama paměť dá editovat.",
+          "game_reference": "Braindance klam, manipulace paměti, iluze vs realita",
+          "themes": ["iluze paměti", "BD klam", "manipulovaná realita", "falešné zážitky"],
+          "philosophy": "Křehkost paměti a reality v technologicky zprostředkovaném světě"
+        }
+      }
+    },
+    {
+      "code": "20",
+      "title": "Slunce",
+      "image_file": "tarotcard_20_thesun.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "radost, jasno, růst",
+        "reversed": "dočasný mrak"
+      },
+      "description": {
+        "classic": "Teplo na studených obvodech. Přímo, úspěch působí jednodušeji a tempo roste. Obráceně, krátké zatmění – světlo se vrátí po malých odblocích.",
+        "cyberpunk": {
+          "character": "V (Legend cesta)",
+          "context": "Teplo v chrómových obvodech a neonových srdcích. Úspěch v Night City hoří jasně ale krátce, jako hvězda, co jde do novy.",
+          "game_reference": "Sun ending, legendární status, sláva v Night City",
+          "themes": ["legendární status", "jasné hoření", "sláva v dystopii", "hrdinská kulminace"],
+          "philosophy": "Dosažení velikosti v rámci systémových omezení"
+        }
+      }
+    },
+    {
+      "code": "21",
+      "title": "Soud",
+      "image_file": "tarotcard_21_judgement.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "probuzení, rozhodnutí",
+        "reversed": "váhání, nezvednutý hovor"
+      },
+      "description": {
+        "classic": "Budíček z hlubšího já. Přímo, přijmeš volání a vstoupíš do většího oblouku. Obráceně, hovor padá do hlasové schránky a pochybnosti se recyklují.",
+        "cyberpunk": {
+          "character": "V (finální volba)",
+          "context": "Budíček z hlubšího digitálního já. V musí soudit mezi lidským omezením a transcendentní možností.",
+          "game_reference": "Finální volba mezi endingy, rozhodnutí o vědomí",
+          "themes": ["finální soud", "volba vědomí", "lidské vs transcendentní", "definitivní rozhodnutí"],
+          "philosophy": "Moment volby vlastní finální evoluce"
+        }
+      }
+    },
+    {
+      "code": "22",
+      "title": "Svět",
+      "image_file": "tarotcard_22_theworld.jpg",
+      "meta": { "suit": "major" },
+      "meanings": {
+        "upright": "dokončení, mistrovství",
+        "reversed": "nedokončené věci"
+      },
+      "description": {
+        "classic": "Smyčka uzavřená s lehkostí. Přímo, integrace dovedností, příběhu a prostředí. Obráceně, ještě chybí jedna část – uvaž volné konce před dalším cyklem.",
+        "cyberpunk": {
+          "character": "Night City samo",
+          "context": "Smyčka korporátní kontroly uzavřená s digitální lehkostí. Night City představuje dokončení - dokonalý systém, kde každý občan hraje svou předurčenou úlohu.",
+          "game_reference": "Město jako kompletní ekosystém, korporátní integrace",
+          "themes": ["systémové dokončení", "městská integrace", "dokonalá kontrola", "uzavřená smyčka"],
+          "philosophy": "Dosáhnutí totální environmentální kontroly"
+        }
+      }
+    },
+    {
+      "code": "23",
+      "title": "Král pohárů",
+      "image_file": "tarot_23_kingofcups.jpg",
+      "meta": { "suit": "kings" },
+      "meanings": {
+        "upright": "emoční mistrovství, empatie",
+        "reversed": "náladovost, manipulace"
+      },
+      "description": {
+        "classic": "Klidné kormidlo v těžkém počasí. Přímo, emoce chápe, nevypouští, a tón nastavuje soucit. Obráceně, příliv kývá soudem a vliv temní.",
+        "cyberpunk": {
+          "character": "River Ward",
+          "context": "Klidné kormidlo skrz korupci NCPD. River naviguje emocionálními bouřkami při zachování soucitu v systému navrženém na drcení empatie.",
+          "game_reference": "NCPD detektivní práce, ochrana rodiny, morální volby",
+          "themes": ["emocionální integrita", "systémový soucit", "cítění v chladu", "ochranné instinkty"],
+          "philosophy": "Zachování lidskosti v rámci odlidšťujících institucí"
+        }
+      }
+    },
+    {
+      "code": "24",
+      "title": "Král mincí",
+      "image_file": "tarot_24_kingofpentacles.jpg",
+      "meta": { "suit": "kings" },
+      "meanings": {
+        "upright": "stabilita, dlouhodobá hodnota",
+        "reversed": "chamtivost, materiální posedlost"
+      },
+      "description": {
+        "classic": "Stavitel trvanlivých rámců a hmatatelného bohatství. Přímo, trpělivost přináší pevné výnosy. Obráceně, hromadění a krátkozraké tahy podkopávají důvěru.",
+        "cyberpunk": {
+          "character": "Dexter DeShawn",
+          "context": "Stavitel podzemních rámců a hmatatelného uličního bohatství. Dex akumuluje moc skrz trpělivost, než jeden špatný tah zboří vše.",
+          "game_reference": "The Heist, fixer operace, uliční ekonomika",
+          "themes": ["materiální akumulace", "uliční ekonomika", "křehké bohatství", "podzemní impérium"],
+          "philosophy": "Budování moci mimo pravidla systému"
+        }
+      }
+    },
+    {
+      "code": "25",
+      "title": "Král mečů",
+      "image_file": "tarot_25_kingofswords.jpg",
+      "meta": { "suit": "kings" },
+      "meanings": {
+        "upright": "jasnost, etika, strategie",
+        "reversed": "tuhost, přísný soud"
+      },
+      "description": {
+        "classic": "Hrana broušená principem. Přímo, rozum rozhoduje spravedlivě. Obráceně, logika se mění v zbraň a pravidla v trest.",
+        "cyberpunk": {
+          "character": "Yorinobu Arasaka",
+          "context": "Hrana broušená korporátním principem a rodinnou rebelií. Yorinobu vládne logikou jako zbraní i štítem proti otcově impériu.",
+          "game_reference": "Arasaka rodinný konflikt, korporátní strategie, rebelie v rámci dynastie",
+          "themes": ["intelektuální rebelie", "strategické myšlení", "logické válčení", "rodinná dynamika"],
+          "philosophy": "Použití systémové logiky proti němu samému"
+        }
+      }
+    },
+    {
+      "code": "26",
+      "title": "Král holí",
+      "image_file": "tarot_26_kingofwands.jpg",
+      "meta": { "suit": "kings" },
+      "meanings": {
+        "upright": "vize, charisma, zapalovač",
+        "reversed": "impulzivnost, porušené sliby"
+      },
+      "description": {
+        "classic": "Jiskra, ke které se lidé hrnou. Přímo, vize mobilizuje skutky a riziko je rozumné. Obráceně, impuls pálí mosty a sliby shořívají.",
+        "cyberpunk": {
+          "character": "Kerry Eurodyne",
+          "context": "Jiskra, ke které se lidé hrnuli v minulosti. Kerryho kreativní vize kdysi zapalovala hnutí, ale teď pálí mosty tak často jako osvětluje nové cesty.",
+          "game_reference": "Historie kapely Samurai, rockerboy kultura, kreativní dědictví",
+          "themes": ["kreativní vedení", "umělecká vize", "korupce slávy", "rockerboy duch"],
+          "philosophy": "Umění jako rebelie, tvorba jako odpor"
+        }
+      }
+    }
+  ]
+}

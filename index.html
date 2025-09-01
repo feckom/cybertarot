@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CyberTarot</title>
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<style>
+:root{
+  --sidebar:280px;
+  --reader:360px;
+  --red:#b30000;
+  --cyan:#40E0D0;
+  --sidepad:min(2vw, 20px);
+  --border:2px solid var(--red);
+  --radius:10px;
+  --flip:500ms;
+  --gap:6px;
+  --card-w:78px;
+  --lore-height:300px;
+  --chrome-height:0px;
+
+  --glass-alpha:.46;
+  --glass-alpha-strong:.52;
+  --glass-blur:8px;
+
+  --card-alpha:.34;7
+  --card-alpha-hover:.48;
+  --card-blur:6px;
+  --card-border-rgba:rgba(179,0,0,.6);
+}
+@media (max-width:1400px){ :root{ --sidebar:260px; --reader:340px; --card-w:48px; --lore-height:180px; } }
+@media (max-width:1200px){ :root{ --sidebar:240px; --reader:320px; --card-w:46px; --lore-height:160px; } }
+@media (max-width:900px){ :root{ --sidebar:220px; --reader:300px; --card-w:70px; --lore-height:140px; } }
+
+*{ box-sizing:border-box }
+html,body{ height:100%; overflow:hidden; }
+
+body{
+  margin:0; color:#eee;
+  font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  min-height:100vh; display:flex; flex-direction:column;
+  overflow:hidden;
+  background:#000 url('background.jpg') no-repeat center center fixed;
+  background-size:cover;
+}
+body::before{
+  content:""; position:fixed; inset:0;
+  background:radial-gradient(ellipse at center, rgba(0,0,0,.22), rgba(0,0,0,.55));
+  pointer-events:none; z-index:0;
+}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Hide all scrollbars */
+*::-webkit-scrollbar{ width:0px; background:transparent; }
+* { scrollbar-width:none; -ms-overflow-style:none; }
+
+header{
+  padding:8px var(--sidepad) 6px var(--sidepad);
+  display:flex; flex-direction:column; gap:8px; align-items:center;
+  position:relative; z-index:1;
+}
+h1{margin:0}
+.brand{
+  width:min(90vw, 680px); height:60px;
+  background:url('headlogo.png') no-repeat center / contain;
+  text-indent:-9999px; overflow:hidden; display:block; margin:0 auto;
+}
+.controls{
+  width:100%; display:flex; gap:6px; align-items:center; flex-wrap:wrap;
+  justify-content:center; visibility:hidden
+}
+.sep{ width:1px; height:22px; background:#161616 }
+button,select,input[type="text"]{
+  border:var(--border); background:rgba(0,0,0,.60); color:#fff; padding:5px 8px;
+  border-radius:6px; font-weight:700; cursor:pointer; backdrop-filter:blur(2px);
+}
+.controls button, .controls select, .controls input[type="text"]{ min-height:30px; font-size:12px; letter-spacing:.02em; border-radius:6px }
+button:hover{ background:rgba(26,0,0,.75); color:#fff; border-color:#e00000 }
+button[disabled]{ opacity:.55; cursor:not-allowed }
+input[type="text"]{ min-width:90px; cursor:text; outline:none }
+.range-wrap{ display:flex; align-items:center; gap:4px }
+.range-wrap input[type="range"]{ accent-color:#b30000 }
+
+.shell{
+  padding:8px var(--sidepad) 12px var(--sidepad);
+  height:calc(100dvh - var(--chrome-height));
+  max-width:1700px; margin:0 auto;
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; gap:8px;
+  overflow:hidden;
+}
+
+.main-row{
+  display:grid; gap:8px;
+  grid-template-columns:var(--sidebar) 1fr var(--reader);
+  height:100%; flex:1; min-height:0;
+  overflow:hidden;
+}
+.main-row > *{ min-width:0; min-height:0; overflow:hidden; }
+
+.center-column{
+  display:flex; flex-direction:column; gap:8px; 
+  height:100%; overflow:hidden;
+}
+
+.grid{
+  display:grid; gap:var(--gap);
+  grid-template-columns:repeat(auto-fill, var(--card-w)); /* auto-fill namiesto auto-fit */
+  justify-content:center; align-content:start;
+  overflow:hidden; 
+  height:calc(100% - var(--lore-height) - 8px);
+  flex-shrink:0;
+  max-width:calc(12 * (var(--card-w) + var(--gap)) - var(--gap)); /* PRIDANÉ */
+  margin:0 auto; /* PRIDANÉ */
+}
+
+.lore-panel{
+  border:var(--border); border-radius:8px; padding:12px;
+  background:rgba(6,6,6,var(--glass-alpha-strong));
+  backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  height:var(--lore-height); 
+  overflow:hidden;
+  opacity:1; transform:translateY(0);
+  transition:opacity 0.3s ease;
+  flex-shrink:0;
+}
+
+.lore-panel.hidden{
+  opacity:0.4;
+}
+
+.lore-panel h4{
+  margin:0 0 10px 0; font-size:14px; color:#ffffff; font-weight:700;
+  flex-shrink:0;
+}
+
+.lore-content{
+  font-size:14px; line-height:1.5; 
+  height:calc(100% - 24px); 
+  overflow-y:auto; overflow-x:hidden;
+}
+
+.lore-compact{
+  margin:0 0 10px 0;
+}
+
+.lore-line{
+  margin:0 0 5px 0; display:flex; flex-wrap:wrap; gap:8px;
+}
+
+.lore-label{
+  font-weight:700; color:#ffd400; font-size:14px;
+  flex-shrink:0;
+}
+
+.lore-value{
+  color:#ffffff; font-weight:600; font-size:14px;
+}
+
+.lore-value.context{
+  color:#cccccc; font-style:italic;
+}
+
+.lore-value.game{
+  color:#888888;
+}
+
+.lore-value.themes{
+  color:#ffd400;
+}
+
+.philosophy{
+  color:#cccccc; font-style:italic; margin-top:14px; padding:6px 8px;
+  background:rgba(255,212,0,0.12); border-radius:4px; font-size:12px;
+  border-left:3px solid #ffd400;
+}
+
+.preview{
+  border:var(--border); border-radius:10px; padding:8px;
+  background:rgba(6,6,6,var(--glass-alpha-strong));
+  backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  display:flex; flex-direction:column; gap:6px;
+  height:100%; overflow:hidden;
+}
+.preview-frame{
+  width:100%; aspect-ratio:7/12; border:var(--border); border-radius:8px;
+  overflow:hidden; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.preview-frame img{ width:100%; height:100%; object-fit:cover; display:block }
+.preview .placeholder{ display:none; color:#bbb; font-weight:700; letter-spacing:.02em; text-align:center; padding:6px; font-size:12px; }
+.preview.empty .placeholder{ display:block }
+.preview-meta{ display:flex; flex-direction:column; gap:3px; overflow:hidden; flex:1; }
+.preview-title{ font-weight:900; font-size:12px; color:#fff }
+.preview-meaning{ font-size:12px; color:var(--cyan); line-height:1.3; font-weight:bold; text-shadow:none; text-align:center; margin-top:0.5em; overflow:hidden; }
+.preview-meaning .lore{
+  display:block; margin-top:.5em; color:#e6eeee; font-weight:600; line-height:1.3;
+  background:rgba(0,0,0,.28); padding:4px 6px; border-radius:6px; font-size:11px;
+}
+
+.badge-pos{
+  display:inline-block; border:1px solid var(--red); border-radius:6px;
+  padding:1px 4px; font-size:12px; font-weight:800; margin-right:4px;
+  background:rgba(0,0,0,.55); backdrop-filter:blur(3px)
+}
+.hr{ height:1px; background:#161616; border:0; margin:4px 0; flex-shrink:0; }
+
+.card{ width:var(--card-w); aspect-ratio:7/12; perspective:1000px; border:0; background:none; padding:0; position:relative }
+.card-inner{ position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform var(--flip) ease; border-radius:var(--radius) }
+.card.flipped .card-inner{ transform:rotateY(180deg) }
+
+.face{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius);
+  border:2px solid var(--card-border-rgba);
+  overflow:hidden; background:rgba(0,0,0,var(--card-alpha));
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(var(--card-blur));
+  -webkit-backdrop-filter:blur(var(--card-blur));
+}
+.card-inner:hover .face{ background:rgba(0,0,0,var(--card-alpha-hover)) }
+.face img{ width:100%; height:100%; object-fit:cover; display:block; opacity:.95 }
+.face.back{ transform:rotateY(180deg) }
+.badge{
+  position:absolute; left:3px; top:3px; background:rgba(0,0,0,.45); color:#fff;
+  border:1px solid var(--card-border-rgba); padding:1px 2px; border-radius:3px; font-size:9px; font-weight:800; pointer-events:none; backdrop-filter:blur(3px)
+}
+.pos-badge{
+  position:absolute; right:3px; bottom:3px; background:rgba(0,0,0,.45); color:#fff;
+  border:1px solid var(--card-border-rgba); padding:1px 3px; border-radius:3px; font-size:9px; font-weight:900; pointer-events:none; backdrop-filter:blur(3px)
+}
+@media (hover:hover){ .card-inner:hover{ box-shadow:0 8px 20px rgba(0,0,0,.34) } }
+
+.card.filler{ border:0; pointer-events:none }
+.card.filler .card-inner, .card.filler .face{ border:0; background:transparent }
+
+.reader{
+  display:flex; flex-direction:column; gap:6px; 
+  height:100%; overflow:hidden;
+}
+.audio-ctl{ display:flex; gap:4px; align-items:center; margin-bottom:2px; justify-content:flex-end; flex-shrink:0; }
+.audio-ctl button{
+  border:var(--border); background:rgba(0,0,0,.6); color:#fff; padding:4px 6px; border-radius:6px; font-weight:700; cursor:pointer;
+  backdrop-filter:blur(2px); font-size:12px;
+}
+.audio-ctl button:hover{ background:var(--red) }
+.audio-ctl #bgmMute{ min-width:30px; text-align:center }
+.audio-ctl #bgmVol{ min-width:3ch; text-align:right; font-weight:800 }
+
+#copy{ align-self:flex-end; margin-bottom:4px; font-size:11px; padding:4px 8px; flex-shrink:0; }
+#reading.rtf{
+  width:100%; flex:1;
+  background:rgba(11,11,11,var(--glass-alpha));
+  backdrop-filter:blur(var(--glass-blur));
+  -webkit-backdrop-filter:blur(var(--glass-blur));
+  color:#eaeaea;
+  border:var(--border); border-radius:8px; padding:8px;
+  font-family:system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  font-size:13px; line-height:1.4; overflow:hidden;
+}
+.rtf h3{ margin:.2rem 0 .3rem; font-size:12px; color:#fff; letter-spacing:.02em }
+.rtf .hr{ height:1px; background:#2a2a2a; margin:.4rem 0 }
+.rtf .line{ margin:.3rem 0 }
+.rtf .pos{ display:inline-block; border:1px solid var(--red); border-radius:6px; padding:1px 4px; font-size:9px; font-weight:800; background:rgba(0,0,0,.55); margin-right:.3rem }
+.rtf .card{ font-weight:800; color:#fff }
+.rtf .ori{ font-variant:all-small-caps; opacity:.95; margin-left:.2rem }
+.rtf .ori.upright{ color:#ffd400 }
+.rtf .ori.reversed{ color:#ff2a2a }
+.rtf .meaning{ color:var(--cyan); font-weight:bold; text-shadow:none }
+.rtf .tone{ display:inline-block; border:1px solid var(--red); border-radius:4px; padding:2px 6px; font-size:9px; font-weight:800; margin-top:.2rem; background:rgba(0,0,0,.55) }
+.rtf .muted{ color:#c8c8c8 }
+.rtf .narrative{
+  margin-top:0.8em; color:#ff2a2a; font-weight:900; text-shadow:none;
+  padding:6px 8px; border-radius:6px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);
+}
+
+/* Color palette */
+:root{
+  --white:#ffffff;
+  --g-100:#f2f2f2;
+  --g-300:#cfcfcf;
+  --g-500:#9a9a9a;
+  --g-900:#1a1a1a;
+  --yellow:#ffd400;
+  --yellow-soft:rgba(255,212,0,.14);
+  --red:#b30000;
+  --red-strong:#ff2a2a;
+  --cyan:var(--yellow);
+  --card-border-rgba:rgba(179,0,0,.65);
+}
+body{ color:var(--g-100); text-shadow:0 1px 0 rgba(0,0,0,.35) }
+button, select, input[type="text"]{ color:var(--g-100); border-color:var(--red); background:rgba(0,0,0,.60) }
+button:hover{ background:rgba(30,0,0,.75); border-color:var(--red-strong) }
+button[disabled]{ color:var(--g-500) }
+.range-wrap input[type="range"]{ accent-color:var(--red) }
+.badge, .pos-badge{ border-color:var(--red); background:rgba(0,0,0,.45); color:var(--g-100) }
+.face{ border:2px solid var(--card-border-rgba); background:rgba(0,0,0,.32) }
+.card-inner:hover .face{ background:rgba(0,0,0,.46) }
+.preview-title{ color:var(--g-100) }
+.preview-meaning{ color:var(--yellow) }
+.preview-meaning .lore{ color:var(--g-300); background:var(--yellow-soft); text-shadow:none }
+.badge-pos{ border-color:var(--red); color:var(--g-100) }
+#reading.rtf{ color:var(--g-100) }
+.rtf h3{ color:var(--white) }
+.rtf .pos{ color:var(--g-100); border-color:var(--red); background:rgba(0,0,0,.55) }
+.rtf .card{ color:var(--white) }
+.rtf .muted{ color:var(--g-300) }
+.rtf .tone{ color:var(--g-100); border-color:var(--red); background:rgba(0,0,0,.55) }
+.preview .placeholder, #previewNote{ color:var(--g-500) }
+button.spread{ color:var(--g-100) }
+button.spread[style*="background: var(--red)"], button.spread.active{ background:var(--red); border-color:var(--red-strong) }
+#copy{ color:var(--g-100) }
+.audio-ctl button{ color:var(--g-100) }
+.audio-ctl button:hover{ background:var(--red) }
+.rtf .hr{ background:#2a2a2a }
+.muted strong{ color:var(--yellow) }
+
+/* Responsive */
+@media (max-width:1400px){
+  .main-row{ grid-template-columns:260px 1fr 340px; }
+}
+
+@media (max-width:1200px){
+  .main-row{ grid-template-columns:240px 1fr 320px; }
+}
+
+@media (max-width:900px){
+  .shell{ flex-direction:column; }
+  .main-row{ 
+    grid-template-columns:1fr;
+    grid-template-rows:auto 1fr auto;
+    gap:6px; height:auto;
+  }
+  .preview{ order:1; height:auto; }
+  .center-column{ order:2; height:auto; }
+  .reader{ order:3; height:auto; }
+  .grid{ height:auto; }
+}
+
+/* === JEDNOTNÝ 14px TEXT === */
+.preview-title,
+.preview-meaning,
+.preview-meaning .lore,
+.lore-panel h4,
+.lore-content,
+.lore-label,
+.lore-value,
+.philosophy,
+#reading.rtf,
+.rtf h3,
+.rtf .pos,
+.rtf .tone,
+.rtf .meaning,
+.rtf .card,
+.rtf .ori,
+.rtf .muted,
+.rtf .narrative,
+.rtf .line,
+.preview .placeholder,
+#previewNote {
+  font-size: 14px !important;
+}
+
+/* Predné strany s ghost efektom */
+.face.front {
+  opacity: 0.7;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.face.front img {
+  opacity: 0.8;
+  filter: brightness(0.8) contrast(1.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="brand"><span class="visually-hidden">CyberTarot</span></h1>
+  <div class="controls">
+    <button type="button" class="spread" data-spread="one_card">1 card</button>
+    <button type="button" class="spread" data-spread="three_path">3-step path</button>
+    <button type="button" class="spread" data-spread="celtic_cross">Celtic cross</button>
+    <div class="sep"></div>
+    <label for="seed" id="lbl-seed">Seed</label>
+    <input id="seed" type="text" placeholder="auto" />
+    <button id="seedRnd" type="button" title="Random seed">🎲</button>
+    <div class="sep"></div>
+    <div class="range-wrap" title="Reversed probability">
+      <label for="revProb" id="lbl-rev">Reversed</label>
+      <input id="revProb" type="range" min="0" max="100" value="45">
+      <span id="revProbVal" style="width:3ch; text-align:right">45</span>%
+    </div>
+    <div class="sep"></div>
+    <button id="start" type="button">Start</button>
+    <button id="next" type="button" disabled>Next</button>
+    <button id="reset" type="button">Reset</button>
+    <label for="lang" id="lbl-lang">Lang</label>
+    <select id="lang"></select>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="main-row">
+    <aside class="preview empty" id="preview">
+      <div class="preview-frame">
+        <div class="placeholder">Last revealed card will appear here</div>
+        <img id="previewImg" alt="" style="display:none;">
+      </div>
+      <div class="preview-meta">
+        <div class="preview-title" id="previewTitle"></div>
+        <div class="preview-meaning" id="previewMeaning"></div>
+      </div>
+      <div class="hr"></div>
+      <div class="note small" id="previewNote">Tip: Before starting you can freely flip cards in the grid.</div>
+    </aside>
+
+    <div class="center-column">
+      <main class="grid" id="grid" aria-label="cards grid"></main>
+      
+      <div class="lore-panel" id="lorePanel">
+        <h4 id="loreTitle">Cyberpunk Lore</h4>
+        <div class="lore-content" id="loreContent">
+          <div style="color:#cccccc; font-style:italic; text-align:center; padding-top:40px;">
+            Click on a card with cyberpunk lore to view details...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="reader">
+      <div class="audio-ctl">
+        <button id="bgmDown" type="button" title="Volume −">−</button>
+        <span id="bgmVol">20%</span>
+        <button id="bgmUp" type="button" title="Volume +">+</button>
+        <button id="bgmMute" type="button" aria-label="Mute/Unmute" title="Mute/Unmute">🔊</button>
+      </div>
+      <button id="copy" type="button" title="Copy to clipboard">Copy</button>
+      <div id="reading" class="rtf" aria-live="polite"></div>
+    </aside>
+  </div>
+</div>
+
+<script>
+// === GLOBAL STATE ===
+const DEFAULT_LANG_FILES = ["cybertarot_sk.json","cybertarot_en.json","cybertarot_pl.json"];
+window.FRONT_IMAGE = "tarotcard_back.jpg";
+
+let langs = [];
+let cur = null;
+let cards = [];
+let state = null;
+let spread = null;
+let prestartFlipped = [];
+let tipShown = true;
+
+// Easter egg state - funguje aj pri prestart
+let easterEggSequence = [];
+const EASTER_EGG_CODES = ["07", "14"]; // Lovers, Death
+
+// === UTILITY FUNCTIONS ===
+function xmur3(str) { 
+  let h=1779033703^str.length; 
+  for(let i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353); h=h<<13|h>>>19;} 
+  return ()=>{ h=Math.imul(h^h>>>16,2246822507); h=Math.imul(h^h>>>13,3266489909); return (h^h>>>16)>>>0; } 
+}
+
+function mulberry32(a) { 
+  return function(){ let t=a+=0x6D2B79F5; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; } 
+}
+
+function makeRng(seedStr) { 
+  const seed = xmur3(seedStr)(); 
+  return mulberry32(seed); 
+}
+
+function shuffle(arr, rnd=Math.random) { 
+  for(let i=arr.length-1;i>0;i--){ const j = Math.floor(rnd()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } 
+  return arr; 
+}
+
+function byCodeAsc(a,b) { 
+  return parseInt(a.code,10) - parseInt(b.code,10); 
+}
+
+function esc(s="") { 
+  return String(s).replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); 
+}
+
+function pick(arr) { 
+  return arr[Math.floor(Math.random()*arr.length)] 
+}
+
+// === EASTER EGG FUNCTIONS ===
+function checkEasterEgg(cardCode) {
+  // Reset if wrong card
+  if (easterEggSequence.length === 0 && cardCode !== EASTER_EGG_CODES[0]) {
+    return false;
+  }
+  if (easterEggSequence.length === 1 && cardCode !== EASTER_EGG_CODES[1]) {
+    easterEggSequence = [];
+    return false;
+  }
+  
+  // Add to sequence
+  easterEggSequence.push(cardCode);
+  
+  // Check if complete
+  if (easterEggSequence.length === 2 && 
+      easterEggSequence[0] === EASTER_EGG_CODES[0] && 
+      easterEggSequence[1] === EASTER_EGG_CODES[1]) {
+    return true;
+  }
+  
+  return false;
+}
+
+function resetEasterEgg() {
+  easterEggSequence = [];
+}
+
+function showEasterEgg() {
+  const preview = document.getElementById("preview");
+  const pImg = document.getElementById("previewImg");
+  const pTitle = document.getElementById("previewTitle");
+  const pMeaning = document.getElementById("previewMeaning");
+  
+  pImg.src = "ee.jpg";
+  pImg.alt = "Easter Egg";
+  pImg.style.display = "block";
+  preview.classList.remove("empty");
+  
+  pTitle.innerHTML = `<span class="badge-pos">💀💕</span> [EE] Secret Discovered`;
+  pMeaning.innerHTML = `<span class="meaningline" style="color:#ff6b6b;">Love and Death - the eternal cycle of NC</span>`;
+  
+  // Hide lore panel for easter egg
+  document.getElementById('lorePanel').classList.add('hidden');
+}
+
+// === HTTP & LOADING ===
+async function safeFetchJSON(url, timeout=4000){
+  const ctrl = new AbortController(); 
+  const tid = setTimeout(()=>ctrl.abort(), timeout);
+  try{
+    const r = await fetch(url, {signal: ctrl.signal});
+    clearTimeout(tid);
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    return await r.json();
+  }catch(e){ 
+    clearTimeout(tid); 
+    return null; 
+  }
+}
+
+async function loadLangsHttp(){
+  let files = [];
+  const mf = await safeFetchJSON("cybertarot_manifest.json");
+  files = (mf && Array.isArray(mf) && mf.length) ? mf : DEFAULT_LANG_FILES;
+
+  const loaded = [];
+  for(const f of files){
+    const json = await safeFetchJSON(f);
+    if(!json) continue;
+    const code = (json?.meta?.lang || "").toLowerCase();
+    const label = json?.meta?.label || (code ? code.toUpperCase() : f);
+    if(!code) continue;
+    loaded.push({ code, label, data: json });
+  }
+  return loaded;
+}
+
+// === CARD NORMALIZATION ===
+function normalizeCard(c, idx){
+  const code = (c.code ?? String(idx+1).padStart(2,'0')).toString();
+  const title = c.title ?? c.name ?? c.card_title ?? '';
+  const image_file = c.image_file ?? c.image ?? c.img ?? '';
+  const meanings = c.meanings ?? {
+    upright: c.meaning_upright ?? c.upright ?? '',
+    reversed: c.meaning_reversed ?? c.reversed ?? ''
+  };
+  const meta = c.meta ?? { suit: 'major' };
+  const desc = c.description ?? c.lore ?? c.desc ?? "";
+  return { code, title, image_file, meanings, meta, description: desc };
+}
+
+function normalizeCards(arr) { 
+  return (arr||[]).map((c,i)=>normalizeCard(c,i)); 
+}
+
+// === LORE PANEL FUNCTIONS - ZHUSTENÝ FORMÁT ===
+function updateLorePanel(meta) {
+  const panel = document.getElementById('lorePanel');
+  const title = document.getElementById('loreTitle');
+  const content = document.getElementById('loreContent');
+  const U = cur.data.ui;
+  
+  if (!meta || !meta.description?.cyberpunk || !U.lore) {
+    // NESKRÝVAME panel, len ho dimujeme
+    panel.classList.add('hidden');
+    content.innerHTML = `<div style="color:#cccccc; font-style:italic; text-align:center; padding-top:40px;">
+      Click on a card with cyberpunk lore to view details...
+    </div>`;
+    title.textContent = 'Cyberpunk Lore';
+    return;
+  }
+  
+  const cyber = meta.description.cyberpunk;
+  
+  title.textContent = `${meta.title} - Cyberpunk Lore`;
+  
+  let html = '<div class="lore-compact">';
+  
+  // Zhustený formát - všetko na menej riadkov
+  if (cyber.character) {
+    html += `<div class="lore-line">
+      <span class="lore-label">${esc(U.lore.character_label)}</span>
+      <span class="lore-value">${esc(cyber.character)}</span>
+    </div>`;
+  }
+  
+  if (cyber.context) {
+    html += `<div class="lore-line">
+      <span class="lore-label">${esc(U.lore.context_label)}</span>
+      <span class="lore-value context">${esc(cyber.context)}</span>
+    </div>`;
+  }
+  
+  if (cyber.game_reference) {
+    html += `<div class="lore-line">
+      <span class="lore-label">${esc(U.lore.reference_label)}</span>
+      <span class="lore-value game">${esc(cyber.game_reference)}</span>
+    </div>`;
+  }
+  
+  if (cyber.themes && cyber.themes.length) {
+    html += `<div class="lore-line">
+      <span class="lore-label">${esc(U.lore.themes_label)}</span>
+      <span class="lore-value themes">${cyber.themes.map(t => esc(t)).join(', ')}</span>
+    </div>`;
+  }
+  
+  html += '</div>';
+  
+  if (cyber.philosophy) {
+    html += `<div class="philosophy">${esc(cyber.philosophy)}</div>`;
+  }
+  
+  content.innerHTML = html;
+  panel.classList.remove('hidden');
+}
+
+// === PREVIEW FUNCTIONS ===
+function setPreview(meta, posTitle, isReversed, posIndex){
+  // Check easter egg first - funguje aj pri prestart
+  if (checkEasterEgg(meta.code)) {
+    showEasterEgg();
+    return;
+  }
+  
+  // Reset easter egg if different card clicked
+  if (!EASTER_EGG_CODES.includes(meta.code)) {
+    resetEasterEgg();
+  }
+  
+  const U = cur.data.ui;
+  const preview = document.getElementById("preview");
+  const pImg = document.getElementById("previewImg");
+  const pTitle = document.getElementById("previewTitle");
+  const pMeaning = document.getElementById("previewMeaning");
+  
+  pImg.src = meta.image_file; 
+  pImg.alt = meta.title; 
+  pImg.style.display = "block";
+  preview.classList.remove("empty");
+  
+  const oriTxt = isReversed ? U.orientation.reversed : U.orientation.upright;
+  const badgeText = (posTitle && (posIndex!==undefined))
+      ? `<span class="badge-pos">${(posIndex+1).toString().padStart(2,"0")} — ${esc(posTitle)}</span>`
+      : `<span class="badge-pos">${esc(U?.preview?.badge || 'Preview')}</span>`;
+  pTitle.innerHTML = `${badgeText} [${esc(meta.code)}] ${esc(meta.title)}${posTitle ? ` (${esc(oriTxt)})` : ""}`;
+
+  const meaning = isReversed ? meta.meanings.reversed : meta.meanings.upright;
+  let meaningHtml = `<span class="meaningline">${esc(meaning)}</span>`;
+  
+  // Classic description
+  if (typeof meta.description === 'object' && meta.description.classic) {
+    meaningHtml += `<span class="lore">${esc(meta.description.classic)}</span>`;
+  } else if (meta.description && typeof meta.description === 'string') {
+    meaningHtml += `<span class="lore">${esc(meta.description)}</span>`;
+  }
+  
+  pMeaning.innerHTML = meaningHtml;
+  
+  // Automatically update lore panel
+  updateLorePanel(meta);
+}
+
+function clearPreview(){
+  const preview = document.getElementById("preview");
+  const pImg = document.getElementById("previewImg");
+  const pTitle = document.getElementById("previewTitle");
+  const pMeaning = document.getElementById("previewMeaning");
+  
+  pImg.removeAttribute("src"); 
+  pImg.style.display = "none";
+  preview.classList.add("empty"); 
+  pTitle.textContent=""; 
+  pMeaning.textContent="";
+  
+  // Reset lore panel to default state
+  updateLorePanel(null);
+  
+  // Reset easter egg
+  resetEasterEgg();
+}
+
+// === CARD ELEMENT CREATION ===
+function waitFlipEnd(cardBtn, timeout=700){
+  return new Promise(resolve=>{
+    const inner = cardBtn.querySelector('.card-inner');
+    let done=false;
+    const t = setTimeout(()=>{ if(!done){ done=true; inner.removeEventListener('transitionend', onEnd); resolve(); } }, timeout);
+    function onEnd(e){
+      if(e.propertyName!=='transform') return;
+      if(done) return;
+      done=true;
+      clearTimeout(t);
+      inner.removeEventListener('transitionend', onEnd);
+      resolve();
+    }
+    inner.addEventListener('transitionend', onEnd);
+  });
+}
+
+function cardEl(meta){
+  const btn = document.createElement("button");
+  btn.className = "card"; 
+  btn.type = "button"; 
+  btn.dataset.code = meta.code; 
+  btn.dataset.revealed = "0";
+  btn.setAttribute('aria-pressed','false');
+  btn.setAttribute('aria-label', meta.title);
+
+  const inner = document.createElement("div"); 
+  inner.className = "card-inner";
+
+  const front = document.createElement("div"); 
+  front.className = "face front";
+  const frontImg = document.createElement("img"); 
+  frontImg.src = window.FRONT_IMAGE; 
+  frontImg.alt = "front";
+  front.appendChild(frontImg);
+
+  const back = document.createElement("div"); 
+  back.className = "face back";
+  const badge = document.createElement("div"); 
+  badge.className = "badge"; 
+  badge.textContent = meta.code.padStart(2, "0");
+  const img = document.createElement("img"); 
+  img.src = meta.image_file; 
+  img.alt = meta.title; 
+  img.loading="lazy";
+  back.append(badge, img);
+
+  inner.append(front, back); 
+  btn.append(inner);
+
+  btn.addEventListener("keydown", e=>{
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); btn.click(); }
+  });
+
+  btn.addEventListener("click", async () => {
+    if (!state) {
+      // Pre-start flipping - EASTER EGG FUNGUJE AJ TU
+      btn.classList.toggle("flipped");
+      btn.setAttribute('aria-pressed', btn.classList.contains('flipped') ? 'true' : 'false');
+      hideTipOnce();
+      const code = meta.code;
+      const i = prestartFlipped.indexOf(code);
+      if (btn.classList.contains("flipped")) {
+        if (i === -1) prestartFlipped.push(code);
+        await waitFlipEnd(btn);
+        setPreview(meta, "", false, 0); // Easter egg sa checkuje tu
+      } else {
+        if (i !== -1) prestartFlipped.splice(i,1);
+        await waitFlipEnd(btn);
+        if (prestartFlipped.length) {
+          const last = prestartFlipped[prestartFlipped.length-1];
+          const m = cards.find(c=>c.code===last);
+          if (m) setPreview(m, "", false, 0);
+        } else {
+          clearPreview();
+        }
+      }
+      return;
+    }
+    
+    // During reading - easter egg funguje aj tu
+    if (state && btn.dataset.revealed === "0" && state.nextIndex < spread.positions.length) {
+      revealCard(btn);
+    }
+  });
+
+  return btn;
+}
+
+// === GRID MANAGEMENT ===
+function renderGrid(cardsArr=cards){
+  const grid = document.getElementById("grid");
+  const frag = document.createDocumentFragment();
+  cardsArr.forEach(m => frag.appendChild(cardEl(m)));
+  grid.replaceChildren(frag);
+  padGridToFullRows();
+}
+
+function padGridToFullRows(){
+  const grid = document.getElementById("grid");
+  
+  // Nepotrebujeme padding - auto-fit sa postará o layout
+  grid.querySelectorAll('.card.filler').forEach(n => n.remove());
+}
+
+function hideTipOnce(){
+  if(!tipShown) return;
+  const tip = document.getElementById("previewNote");
+  if(tip){ tip.style.display = "none"; }
+  tipShown = false;
+}
+
+// === READING ENGINE ===
+function countMajors(cards) { 
+  return cards.filter(c => c.meta.suit === "major").length; 
+}
+
+function suitDominance(cards) { 
+  const map=new Map(); 
+  cards.forEach(c=>map.set(c.meta.suit,(map.get(c.meta.suit)||0)+1)); 
+  let best=null,max=0; 
+  for(const [k,v] of map.entries()){ 
+    if(v>max){max=v; best=k;} 
+  } 
+  return {suit:best,count:max}; 
+}
+
+function hasCodes(cards,codes) { 
+  const set=new Set(cards.map(c=>c.code)); 
+  return codes.every(x=>set.has(x)); 
+}
+
+function toneFor(cards){
+  const T = cur.data.ui.tone;
+  const total = cards.length || 1;
+  const majors = countMajors(cards);
+  const dom = suitDominance(cards);
+  
+  let lines = [];
+  
+  // Basic tone
+  lines.push(majors/total >= 0.5 ? T.fateful : T.pragmatic);
+  
+  // Suit modifiers
+  if(dom.suit === "kings") lines.push(T.authority);
+  
+  // Enhanced card combinations
+  if(hasCodes(cards,["13","17"])) lines.push(T.transformHope);
+  if(hasCodes(cards,["16","15"])) lines.push(T.collapseToxic);
+  
+  // Additional tone options if available
+  if(T.spiritual && dom.suit === "major" && majors >= 3) lines.push(T.spiritual);
+  if(T.material && hasCodes(cards,["24","25"])) lines.push(T.material);
+  if(T.emotional && hasCodes(cards,["23","03"])) lines.push(T.emotional);
+  if(T.mental && hasCodes(cards,["02","25"])) lines.push(T.mental);
+  
+  return T.prefix + " " + lines.join(", ") + ".";
+}
+
+function shortHint(card, reversed=false){
+  const txt = reversed ? card.meanings.reversed : card.meanings.upright;
+  const one = (txt||"").split(/[.!?]/)[0];
+  return one || (reversed ? cur.data.ui.orientation.reversed : cur.data.ui.orientation.upright);
+}
+
+function buildNarrative(S, spread){
+  const U = cur.data.ui;
+  const N = U.narratives;
+  
+  // Fallback if no narratives defined
+  if(!N || !N.intro) {
+    return "Reading complete.";
+  }
+  
+  const f=(idx)=>S.drawn[idx]||null;
+  const byId=(id)=>{const i=spread.positions.findIndex(p=>p.id===id); return i>=0?S.drawn[i]:null;};
+  
+  const focus = byId("focus")? shortHint(byId("focus").meta, byId("focus").reversed)
+               : f(0)? shortHint(f(0).meta, f(0).reversed) : U.orientation.upright;
+  const past  = f(0)? shortHint(f(0).meta, f(0).reversed) : "";
+  const present = f(1)? shortHint(f(1).meta, f(1).reversed) : "";
+  const future  = f(2)? shortHint(f(2).meta, f(2).reversed) : "";
+  const tone    = toneFor(S.drawn.map(d=>d.meta)).replace(/^.*?:\s*/,"");
+  
+  const intro = pick(N.intro || ["Energy centers around {focus}."]).replace("{focus}", focus);
+  const trend = pick(N.trend || ["Flow: {past} → {present} → {future}."]).replace("{past}", past).replace("{present}", present).replace("{future}", future);
+  const tline = pick(N.tone || ["Overall: {tone}."]).replace("{tone}", tone);
+  
+  // Optional context modifier
+  let modifier = "";
+  if(N.context_modifiers && Math.random() < 0.3) {
+    modifier = " " + pick(N.context_modifiers);
+  }
+  
+  return `${intro} ${trend} ${tline}${modifier}`;
+}
+
+function renderReading(){
+  const reading = document.getElementById("reading");
+  const U = cur.data.ui;
+  
+  if(!state){
+    const helpHtml = esc(U.help).replace(/\n{2,}/g, "</p><p>").replace(/\n/g, "<br>");
+    reading.innerHTML = `<p class="muted">${helpHtml}</p>`;
+    return;
+  }
+  
+  const S = state;
+  const header = `
+    <h3>${esc(spread.title)}</h3>
+    <div class="muted">${esc(U.labels.seed)}: <strong>${esc(S.seed)}</strong>,
+      ${esc(U.labels.reversed)}: <strong>${Math.round(S.revP*100)}%</strong></div>
+    <div class="hr"></div>`;
+  
+  const lines = S.drawn.map((d, i) => {
+    const pos = spread.positions[i];
+    const oriClass = d.reversed ? "reversed" : "upright";
+    const oriTxt = d.reversed ? U.orientation.reversed : U.orientation.upright;
+    const meaning = d.reversed ? d.meta.meanings.reversed : d.meta.meanings.upright;
+    return `<div class="line">
+      <span class="pos">${String(i+1).padStart(2,"0")} — ${esc(pos.title)}</span> 
+      <span class="card">${esc(d.meta.title)}</span> 
+      <span class="ori ${oriClass}">(${esc(oriTxt)})</span>
+      <div class="meaning">${esc(meaning)}</div>
+    </div>`;
+  }).join("");
+  
+  let summary = "";
+  if(S.drawn.length>0){
+    const f=(idx)=>S.drawn[idx]||null, byId=(id)=>{const i=spread.positions.findIndex(p=>p.id===id); return i>=0?S.drawn[i]:null;};
+    const summaryTxt = spread.summary_template
+      .replaceAll("{focus_hint}", f(0)? shortHint(f(0).meta, f(0).reversed):"")
+      .replaceAll("{past_short}", f(0)? shortHint(f(0).meta, f(0).reversed):"")
+      .replaceAll("{present_short}", f(1)? shortHint(f(1).meta, f(1).reversed):"")
+      .replaceAll("{future_short}", f(2)? shortHint(f(2).meta, f(2).reversed):"")
+      .replaceAll("{root_key}", byId("root")? shortHint(byId("root").meta, byId("root").reversed):"")
+      .replaceAll("{goal_key}", byId("goal")? shortHint(byId("goal").meta, byId("goal").reversed):"")
+      .replaceAll("{outcome_key}", byId("outcome")? shortHint(byId("outcome").meta, byId("outcome").reversed):"")
+      .replaceAll("{tone}", toneFor(S.drawn.map(d=>d.meta)));
+    summary = `<div class="hr"></div><div><span class="tone">${esc(summaryTxt)}</span></div>`;
+  }
+  
+  let narrative = "";
+  if (S.nextIndex >= spread.positions.length) {
+    narrative = `<div class="narrative">${esc(buildNarrative(S, spread))}</div>`;
+  }
+  
+  reading.innerHTML = header + lines + summary + narrative;
+}
+
+function setSpread(id){
+  const S = cur.data.spreads.find(s=>s.id===id) || cur.data.spreads[0];
+  spread = S;
+  document.querySelectorAll("button.spread").forEach(b => b.style.background = (b.dataset.spread===S.id ? "var(--red)" : "#000"));
+  localStorage.setItem('ct_spread', S.id);
+  resetReadingState(false);
+  renderReading();
+}
+
+function resetReadingState(full=true){
+  state = null; 
+  document.getElementById("next").disabled = true; 
+  prestartFlipped = [];
+  clearPreview();
+  
+  if(full){ 
+    renderGrid(cards); 
+  } else {
+    document.getElementById("grid").querySelectorAll(".card").forEach(c=>{
+      c.classList.remove("flipped"); 
+      c.dataset.revealed="0"; 
+      c.setAttribute('aria-pressed','false');
+      const pb=c.querySelector(".pos-badge"); 
+      if(pb) pb.remove();
+    });
+    padGridToFullRows();
+  }
+  
+  const tip = document.getElementById("previewNote");
+  if(tip){ tip.style.display = ""; }
+  tipShown = true;
+  renderReading();
+}
+
+function reorderGridByCodes(codeOrder){
+  const grid = document.getElementById("grid");
+  const map=new Map(); 
+  grid.querySelectorAll(".card").forEach(el=>map.set(el.dataset.code,el));
+  const frag=document.createDocumentFragment();
+  codeOrder.forEach(code=>{ 
+    const el=map.get(code); 
+    if(el) frag.appendChild(el); 
+  });
+  grid.innerHTML=""; 
+  grid.appendChild(frag);
+  padGridToFullRows();
+}
+
+async function revealCard(cardEl){
+  hideTipOnce();
+  const code = cardEl.dataset.code;
+  if(cardEl.dataset.revealed === "1" || !state) return;
+  const idx = state.nextIndex;
+  if(idx >= spread.positions.length) return;
+
+  cardEl.dataset.revealed = "1";
+  cardEl.classList.add("flipped");
+  cardEl.setAttribute('aria-pressed','true');
+
+  let pb = cardEl.querySelector(".pos-badge");
+  if(!pb){ pb = document.createElement("div"); pb.className = "pos-badge"; cardEl.appendChild(pb); }
+  pb.textContent = (idx+1).toString().padStart(2,"0");
+
+  const meta = cards.find(m => m.code === code);
+  const reversed = !!state.revByCode[code];
+
+  state.drawn.push({ meta, reversed });
+  state.nextIndex++;
+
+  const posTitle = spread.positions[idx].title;
+
+  await waitFlipEnd(cardEl);
+  setPreview(meta, posTitle, reversed, idx);
+
+  if(state.nextIndex >= spread.positions.length){ 
+    document.getElementById("next").disabled = true; 
+  }
+  renderReading();
+}
+
+// === LANGUAGE SYSTEM ===
+function setLanguage(code){
+  cur = langs.find(x=>x.code===code) || langs[0];
+  if(!cur){ alert("No language loaded."); return; }
+  const U = cur.data.ui;
+
+  // OPRAVA: Správne nastavenie textov pre spread buttony
+  const oneCardBtn = document.querySelector('button.spread[data-spread="one_card"]');
+  const threePathBtn = document.querySelector('button.spread[data-spread="three_path"]');
+  const celticCrossBtn = document.querySelector('button.spread[data-spread="celtic_cross"]');
+  
+  if (oneCardBtn) oneCardBtn.textContent = (cur.data.spreads.find(s=>s.id==='one_card')?.title) || U.spreads.one_card || '1 card';
+  if (threePathBtn) threePathBtn.textContent = (cur.data.spreads.find(s=>s.id==='three_path')?.title) || U.spreads.three_path || 'Three-Step Path';
+  if (celticCrossBtn) celticCrossBtn.textContent = (cur.data.spreads.find(s=>s.id==='celtic_cross')?.title) || U.spreads.celtic_cross || 'Celtic cross';
+
+  document.getElementById("lbl-seed").textContent = U.labels.seed;
+  document.getElementById("seed").placeholder = U.placeholders.seed_auto;
+  document.getElementById("lbl-rev").textContent = U.labels.reversed;
+  document.getElementById("start").textContent = U.buttons.start;
+  document.getElementById("next").textContent  = U.buttons.next;
+  document.getElementById("reset").textContent = U.buttons.reset;
+  document.getElementById("lbl-lang").textContent = U.labels.lang;
+
+  document.querySelector(".placeholder").textContent = U.preview.placeholder || "Last revealed card will appear here";
+  document.getElementById("previewNote").textContent = U.preview.tip || "Tip: Before starting you can freely flip cards in the grid.";
+
+  const copyBtn = document.getElementById("copy");
+  copyBtn.textContent = U.buttons.copy;
+  copyBtn.title = U.buttons.copy;
+
+  cards = normalizeCards(cur.data.cards || []).sort(byCodeAsc);
+  renderGrid(cards);
+
+  const helpHtml = esc(U.help).replace(/\n{2,}/g,"</p><p>").replace(/\n/g,"<br>");
+  document.getElementById("reading").innerHTML = `<p class="muted">${helpHtml}</p>`;
+
+  document.getElementById("lang").value = code;
+  localStorage.setItem('ct_lang', code);
+  
+  // Reset lore panel po zmene jazyka
+  updateLorePanel(null);
+
+  // === FIX: po zmene jazyka previaž aktuálny spread z nového JSONu,
+  // aby <h3>${esc(spread.title)}</h3> používal preložený title ===
+  const currentSpreadId =
+    (spread && spread.id) ||
+    localStorage.getItem('ct_spread') ||
+    (cur.data.spreads && cur.data.spreads[0] && cur.data.spreads[0].id);
+
+  if (currentSpreadId) {
+    setSpread(currentSpreadId); // znovu načíta spread z cur.data.spreads a prerenderuje header
+  } else {
+    renderReading();            // bezpečný fallback
+  }
+}
+
+function initAfterLangs(){
+  const langSelect = document.getElementById("lang");
+  langSelect.innerHTML = "";
+  langs.forEach(l=>{
+    const opt=document.createElement("option");
+    opt.value=l.code; opt.textContent=l.label;
+    langSelect.appendChild(opt);
+  });
+
+  const storedLang = localStorage.getItem('ct_lang');
+  const preferred = langs.find(x=>x.code===storedLang)
+                  || langs.find(x=>x.code==="en")
+                  || langs.find(x=>x.code==="sk")
+                  || langs.find(x=>x.code==="cs")
+                  || langs.find(x=>x.code==="pl")
+                  || langs[0];
+
+  setLanguage(preferred.code);
+
+  const savedRev = localStorage.getItem('ct_rev');
+  if(savedRev!==null){
+    const v = String(parseInt(savedRev,10));
+    const revProb = document.getElementById("revProb");
+    const revProbVal = document.getElementById("revProbVal");
+    if(revProb && revProbVal && !isNaN(v)){ 
+      revProb.value=v; 
+      revProbVal.textContent=v; 
+    }
+  }
+
+  const savedSpread = localStorage.getItem('ct_spread');
+  if(savedSpread && cur?.data?.spreads?.some(s=>s.id===savedSpread)){
+    setSpread(savedSpread);
+  }else{
+    setSpread("three_path");
+  }
+
+  document.querySelector('header .controls').style.visibility = 'visible';
+}
+
+// === AUDIO SYSTEM ===
+const bgm = new Audio('song.mp3');
+
+function initAudio() {
+  bgm.loop = true;
+  bgm.preload = 'auto';
+  bgm.muted = true;
+
+  const savedVol = parseFloat(localStorage.getItem('bgmVol') || '0.20');
+  bgm.volume = Math.max(0, Math.min(1, isNaN(savedVol) ? 0.20 : savedVol));
+
+  const volLbl = document.getElementById('bgmVol');
+  const btnUp  = document.getElementById('bgmUp');
+  const btnDn  = document.getElementById('bgmDown');
+  const btnMute= document.getElementById('bgmMute');
+
+  const updateVolLabel = () => { volLbl.textContent = Math.round(bgm.volume * 100) + '%'; };
+  const updateMuteIcon = () => {
+    btnMute.textContent = bgm.muted ? '🔇' : '🔊';
+    btnMute.title = bgm.muted ? 'Unmute' : 'Mute';
+    btnMute.setAttribute('aria-label', bgm.muted ? 'Unmute' : 'Mute');
+  };
+
+  const setVol = (v) => {
+    bgm.volume = Math.max(0, Math.min(1, v));
+    localStorage.setItem('bgmVol', String(bgm.volume));
+    updateVolLabel();
+  };
+
+  updateVolLabel(); 
+  updateMuteIcon();
+
+  btnUp.addEventListener('click',  ()=> { setVol(bgm.volume + 0.10); if (bgm.paused && !bgm.muted) bgm.play().catch(()=>{}); });
+  btnDn.addEventListener('click',  ()=> { setVol(bgm.volume - 0.10); if (bgm.paused && !bgm.muted) bgm.play().catch(()=>{}); });
+  btnMute.addEventListener('click',()=>{
+    bgm.muted = !bgm.muted;
+    updateMuteIcon();
+    if (!bgm.muted && bgm.paused) { bgm.play().catch(()=>{}); }
+  });
+}
+
+// === EVENT HANDLERS ===
+function setupEvents() {
+  document.querySelectorAll("button.spread").forEach(b => 
+    b.addEventListener("click", ()=> setSpread(b.dataset.spread))
+  );
+  
+  document.getElementById("seedRnd").addEventListener("click", ()=> { 
+    document.getElementById("seed").value = Math.random().toString(36).slice(2,10); 
+  });
+  
+  document.getElementById("revProb").addEventListener("input", (e)=> { 
+    document.getElementById("revProbVal").textContent = e.target.value; 
+    localStorage.setItem('ct_rev', e.target.value); 
+  });
+
+  document.getElementById("start").addEventListener("click", ()=>{
+    if(!cur) return;
+    const grid = document.getElementById("grid");
+    grid.querySelectorAll(".card").forEach(c=>{
+      c.classList.remove("flipped"); 
+      c.dataset.revealed="0"; 
+      c.setAttribute('aria-pressed','false');
+      const pb=c.querySelector(".pos-badge"); 
+      if(pb) pb.remove();
+    });
+    prestartFlipped = [];
+
+    const seedInput = document.getElementById("seed");
+    const revProb = document.getElementById("revProb");
+    const seed = seedInput.value.trim() || Math.random().toString(36).slice(2,10);
+    const rng = makeRng(seed);
+    const revP = Math.max(0, Math.min(1, parseInt(revProb.value,10)/100));
+
+    const codes = cards.map(c=>c.code);
+    const order = shuffle([...codes], rng);
+    const revByCode = Object.fromEntries(codes.map(c => [c, rng() < revP]));
+
+    reorderGridByCodes(order);
+    state = { rng, seed, revP, order, revByCode, nextIndex: 0, drawn: [] };
+    document.getElementById("next").disabled = false;
+    renderReading();
+
+    try { bgm.play(); } catch(e){}
+  });
+
+  document.getElementById("next").addEventListener("click", ()=>{
+    if(!state || !spread) return;
+    if(state.nextIndex >= spread.positions.length){ 
+      document.getElementById("next").disabled = true; 
+      return; 
+    }
+    const nextCode = state.order.find(c=>{
+      const el = document.getElementById("grid").querySelector(`.card[data-code="${c}"]`);
+      return el && el.dataset.revealed==="0";
+    });
+    if(!nextCode) { 
+      document.getElementById("next").disabled = true; 
+      return; 
+    }
+    const el = document.getElementById("grid").querySelector(`.card[data-code="${nextCode}"]`);
+    if(el) revealCard(el);
+  });
+
+  document.getElementById("reset").addEventListener("click", ()=> resetReadingState(true));
+
+  document.getElementById("copy").addEventListener("click", async ()=>{
+    const U = cur?.data?.ui;
+    const txt = document.getElementById("reading").innerText || "";
+    try{
+      await navigator.clipboard.writeText(txt);
+    }catch{
+      const ta = document.createElement("textarea");
+      ta.value = txt; 
+      document.body.appendChild(ta); 
+      ta.select();
+      document.execCommand("copy"); 
+      ta.remove();
+    }
+    const copyBtn = document.getElementById("copy");
+    if(U){ 
+      copyBtn.textContent = U.buttons.copied; 
+      setTimeout(()=> copyBtn.textContent = U.buttons.copy, 900); 
+    }
+  });
+
+  document.getElementById("lang").addEventListener("change", (e)=> setLanguage(e.target.value));
+}
+
+// === INITIALIZATION ===
+(async function boot(){
+  langs = await loadLangsHttp();
+  if(langs.length){ 
+    initAfterLangs(); 
+    setupEvents();
+    initAudio();
+  } else { 
+    alert("Language files not found."); 
+  }
+})();
+
+// Tune chrome height
+(function tuneChromeHeight(){
+  const header = document.querySelector('header');
+  const footer = document.querySelector('footer');
+  const headerH = header ? header.offsetHeight : 0;
+  const footerH = footer ? footer.offsetHeight : 0;
+  const cssValue = `${headerH + footerH}px`;
+  document.documentElement.style.setProperty('--chrome-height', cssValue);
+})();
+
+// Preload front image
+(new Image()).src = window.FRONT_IMAGE;
+</script>
+
+</body>
+</html>
