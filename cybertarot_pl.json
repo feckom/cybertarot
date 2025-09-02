@@ -1,67 +1,67 @@
 {
   "meta": { "lang": "pl", "label": "PL", "version": "2.0.0" },
   "ui": {
-    "labels": { "seed": "Ziarno", "reversed": "Odwrócone", "lang": "Język" },
-    "buttons": { "start": "Start", "next": "Dalej", "reset": "Reset", "copy": "Kopiuj", "copied": "Skopiowane" },
+    "labels": { "seed": "Ziarno", "reversed": "Odwrócona", "lang": "Język" },
+    "buttons": { "start": "Start", "next": "Dalej", "reset": "Resetuj", "copy": "Kopiuj", "copied": "Skopiowano" },
     "placeholders": { "seed_auto": "auto" },
-    "spreads": { "one_card": "1 karta", "three_path": "3-krokowa ścieżka", "celtic_cross": "Krzyż celtycki (7)" },
+    "spreads": { "one_card": "1 karta", "three_path": "Ścieżka 3-krokowa", "celtic_cross": "Krzyż celtycki (7)" },
     "preview": {
-      "placeholder": "Ostatnia odkryta karta pojawi się tutaj",
-      "tip": "Wskazówka: Przed startem możesz swobodnie odwracać karty w siatce.",
+      "placeholder": "Ostatnia odsłonięta karta pojawi się tutaj",
+      "tip": "Wskazówka: zanim naciśniesz Start, możesz dowolnie odwracać karty w siatce.",
       "badge": "Podgląd"
     },
     "orientation": { "upright": "prosta", "reversed": "odwrócona" },
     "tone": {
       "prefix": "Trajektoria:",
-      "fateful": "fatalne zmiany",
+      "fateful": "przełomowe zmiany",
       "pragmatic": "pragmatyczny postęp",
       "authority": "autorytet i zasady",
       "transformHope": "transformacja z nadzieją",
-      "collapseToxic": "odsłanianie toksycznego cyklu",
+      "collapseToxic": "ujawnienie toksycznego cyklu",
       "spiritual": "duchowe przebudzenie",
-      "material": "fokus materialny",
-      "emotional": "intensywność emocjonalna",
-      "mental": "jasność intelektualna"
+      "material": "skupienie na materii",
+      "emotional": "emocjonalna intensywność",
+      "mental": "intelektualna klarowność"
     },
     "lore": {
       "character_label": "Postać:",
       "context_label": "Night City:",
       "reference_label": "Odniesienie:",
-      "themes_label": "Tematy:",
+      "themes_label": "Motywy:",
       "philosophy_label": "Filozofia:",
-      "classic_label": "Tradycyjny:",
-      "expand_text": "▼ Pokaż cyberpunk lore",
-      "collapse_text": "▲ Ukryj cyberpunk lore"
+      "classic_label": "Tradycyjnie:",
+      "expand_text": "▼ Pokaż lore cyberpunkowe",
+      "collapse_text": "▲ Ukryj lore cyberpunkowe"
     },
-    "help": "1) Wybierz rozkład.\n2) Opcjonalnie ustaw ziarno / prawdopodobieństwo odwrócenia.\n3) Naciśnij Start – siatka się przemieszuje.\n4) Odkrywaj klikając Dalej.\n5) Lewa: ostatnia karta; Prawa: bieżący wykład.\n6) Po ostatniej karcie dodaje się podsumowanie.",
+    "help": "1) Wybierz rozkład.\n2) Opcjonalnie ustaw ziarno / prawdopodobieństwo odwróconych kart.\n3) Naciśnij Start – siatka zostanie przetasowana.\n4) Odsłaniaj, klikając Dalej.\n5) Lewo: ostatnia karta; Prawo: bieżący odczyt.\n6) Po ostatniej karcie dodane zostanie podsumowanie w ludzkim stylu.",
     "narratives": {
       "intro": [
-        "Twój wykład sugeruje, że {focus} jest w centrum.",
+        "Twój odczyt sugeruje, że w centrum znajduje się {focus}.",
         "Najsilniejsza energia koncentruje się wokół {focus}.",
-        "Sedno sytuacji obraca się wokół {focus}.",
-        "Neony Night City oświetlają {focus} jako kluczowy element.",
-        "Chrom i ciało zbiegają się wokół {focus}."
+        "Sedno sytuacji krąży wokół {focus}.",
+        "Neony Night City podkreślają {focus} jako kluczowy element.",
+        "Chrom i ciało spotykają się w {focus}."
       ],
       "trend": [
         "Przeszłość przyniosła {past}, teraźniejszość pokazuje {present}, a przyszłość skłania się ku {future}.",
         "Poprzez {past} wyłania się {present}, torując drogę do {future}.",
-        "Z tego, co było ({past}), rodzi się {present} i dojrzewa do {future}.",
-        "Korporacyjna pamięć przypomina {past}, uliczna rzeczywistość pokazuje {present}, a przeznaczenie wskazuje na {future}.",
+        "Z tego, co było ({past}), powstaje {present} i dojrzewa w {future}.",
+        "Pamięć korporacji wspomina {past}, ulica pokazuje {present}, a los wskazuje na {future}.",
         "Strumień danych płynie: {past} → {present} → {future}."
       ],
       "tone": [
-        "Na zakończenie: ogólny klimat to {tone}.",
-        "Ogólnie, to brzmi jak {tone}.",
-        "Najbardziej prawdopodobny ton historii: {tone}.",
-        "Chromowy konsensus sugeruje: {tone}.",
+        "Na koniec: ogólny klimat to {tone}.",
+        "Ogólnie rzecz biorąc, to odczytuje się jako {tone}.",
+        "Najbardziej prawdopodobny ton opowieści: {tone}.",
+        "Chromowany konsensus sugeruje: {tone}.",
         "Werdykt Night City: {tone}."
       ],
       "context_modifiers": [
-        "sugerując ostrożność w sprawach korporacyjnych",
-        "z potencjałem autentycznego połączenia",
+        "sugerując ostrożność w kontaktach korporacyjnych",
+        "z potencjałem na autentyczne połączenie",
         "wymagając cierpliwości wobec zmian technologicznych",
-        "podkreślając element ludzki nad chromem",
-        "ostrzegając przed zgubieniem się w systemie"
+        "podkreślając człowieka ponad chromem",
+        "ostrzegając przed zagubieniem się w systemie"
       ]
     }
   },
@@ -74,7 +74,7 @@
     },
     {
       "id": "three_path",
-      "title": "Trzykrokowa ścieżka",
+      "title": "Ścieżka trzech kroków",
       "positions": [
         { "id": "past", "title": "Przeszłość" },
         { "id": "present", "title": "Teraźniejszość" },
@@ -84,37 +84,75 @@
     },
     {
       "id": "celtic_cross",
-      "title": "Krzyż celtycki (kompakt)",
+      "title": "Krzyż celtycki (kompaktowy)",
       "positions": [
-        { "id": "focus", "title": "Temat" },
+        { "id": "focus", "title": "Motyw" },
         { "id": "challenge", "title": "Wyzwanie" },
         { "id": "root", "title": "Korzeń" },
         { "id": "past", "title": "Tło" },
         { "id": "present", "title": "Teraz" },
         { "id": "goal", "title": "Cel" },
-        { "id": "outcome", "title": "Wynik" }
+        { "id": "outcome", "title": "Rezultat" }
       ],
-      "summary_template": "Trajektoria: {focus_hint}; {past_short} → {present_short} → {future_short}. Cel: {goal_key}. Wynik: {outcome_key}. Ton: {tone}"
+      "summary_template": "Trajektoria: {focus_hint}; {past_short} → {present_short} → {future_short}. Cel: {goal_key}. Rezultat: {outcome_key}. Ton: {tone}"
+    }
+  ],
+  "easter_eggs": [
+    {
+      "id": "br",
+      "name": "Łowca androidów",
+      "pair": ["19", "14"],
+      "image": "br.jpg",
+      "badge": "🌙💀",
+      "title_fmt": "[EE] {name}",
+      "caption": "Sny, tożsamość i deszczowa krawędź człowieczeństwa."
+    },
+    {
+      "id": "stb",
+      "name": "Żeglowanie do Bizancjum",
+      "pair": ["10", "22"],
+      "image": "stb.jpg",
+      "badge": "🕯️🌐",
+      "title_fmt": "[EE] {name}",
+      "caption": "Od śmiertelnej powłoki do stworzonej wieczności — pozłacana przystań sztuki."
+    },
+    {
+      "id": "mo",
+      "name": "Misty Olszewski",
+      "pair": ["07", "16"],
+      "image": "mo.jpg",
+      "badge": "💘😈",
+      "title_fmt": "[EE] {name}",
+      "caption": "Wybór i pokusa splątane w neonach Night City."
+    },
+    {
+      "id": "ld",
+      "name": "Odkryty sekret",
+      "pair": ["07", "14"],
+      "image": "ee.jpg",
+      "badge": "💀💕",
+      "title_fmt": "[EE] {name}",
+      "caption": "Miłość i Śmierć — wieczny cykl Night City."
     }
   ],
   "cards": [
     {
       "code": "01",
-      "title": "Błazen",
+      "title": "Głupiec",
       "image_file": "tarotcard_01_thefool.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "nowy początek, skok wiary",
-        "reversed": "lekkomyślność, strach przed zmianą"
+        "upright": "nowy start, skok wiary",
+        "reversed": "brawura, lęk przed zmianą"
       },
       "description": {
-        "classic": "Wyzerowana tablica na skraju miasta: ciekawość głośniejsza niż ostrożność. Błazen wkracza do Night City z otwartymi oczami i kieszeniami pełnymi możliwości, ufając, że droga nauczy. Prosto, to ryzyko przyjęte i potencjał przebudzenia; odwrócone, ostrzega przed naiwną objazdem, urwiskiem ukrytym przez neonowy blask.",
+        "classic": "Wyzerowana tablica na skraju miasta: ciekawość głośniejsza niż ostrożność. Głupiec wchodzi do Night City z otwartymi oczami i kieszeniami pełnymi „może”, ufając, że droga nauczy. Prosto: przyjęte ryzyko i przebudzenie potencjału; Odwrócona: ostrzeżenie przed naiwnymi objazdami — urwisko ukryte przez blask neonów.",
         "cyberpunk": {
-          "character": "V (Protagonista)",
-          "context": "Zero na początku miasta, ciekawość głośniejsza niż ostrożność. V wkracza do Night City jako czysta karta - corpo, nomada lub dzieciak z ulicy - gotowy być napisany chromem i konsekwencjami.",
-          "game_reference": "Tworzenie postaci, wybór ścieżki życia, pierwsze kroki w Night City",
-          "themes": ["formowanie tożsamości", "corpo vs ulica", "technologiczne przebudzenie", "naiwny optymizm w dystopii"],
-          "philosophy": "Pierwszy kontakt jednostki z transhumanistyczną rzeczywistością"
+          "character": "V (protagonista)",
+          "context": "Zero na krawędzi miasta, ciekawość głośniejsza niż ostrożność. V wchodzi do Night City jako czysta karta — corpo, nomada albo dzieciak z ulicy — gotowy, by zapisały go chrom i konsekwencje.",
+          "game_reference": "Tworzenie postaci, wybór życiorysu, pierwsze kroki w Night City",
+          "themes": ["kształtowanie tożsamości", "corpo kontra ulica", "technologiczne przebudzenie", "naiwny optymizm w dystopii"],
+          "philosophy": "Pierwszy kontakt jednostki z rzeczywistością transhumanizmu"
         }
       }
     },
@@ -124,37 +162,37 @@
       "image_file": "tarotcard_02_themagician.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "wola + umiejętność = rezultaty",
+        "upright": "wola + umiejętność = wynik",
         "reversed": "manipulacja, rozproszona wola"
       },
       "description": {
-        "classic": "Przewodnik między wizją a wynikiem. Mag kanalizuje chrom i kod w intencję, czyniąc możliwość namacalną. Prosto, talenty wyrównują się w czyste wykonanie. Odwrócone, urok zamienia się w sztuczki i sfragmentowane skupienie traci moc.",
+        "classic": "Kanał między wizją a rezultatem. Mag kieruje chrom i kod w intencję, czyniąc okazję namacalną. Prosto: talenty zgrywają się w czystą realizację. Odwrócona: czar przeradza się w sztuczkę, a rozproszenie upuszcza moc.",
         "cyberpunk": {
           "character": "Judy Alvarez",
-          "context": "Technik Braindance władający kodem jak zaklęciami. Judy transformuje surowe dane neuralne w sztukę, czyniąc niemożliwe namacalnym poprzez czystą techniczną wolę i podziemne połączenia.",
-          "game_reference": "Edycja Braindance, fabuła Clouds, podwodna baza",
-          "themes": ["technologia jako magia", "kultura hakerska", "kreatywny bunt", "artystyka BD"],
-          "philosophy": "Technologia jako rozszerzenie ludzkiej woli i kreatywności"
+          "context": "Techniczka braindance władająca kodem jak zaklęciami. Judy zamienia surowe dane neuronalne w sztukę dzięki samej technicznej woli i podziemnym kontaktom.",
+          "game_reference": "Edycja braindance, wątek Clouds, podwodna baza",
+          "themes": ["technologia jako magia", "kultura hakerska", "twórczy bunt", "sztuka BD"],
+          "philosophy": "Technologia jako przedłużenie ludzkiej woli i kreatywności"
         }
       }
     },
     {
       "code": "03",
-      "title": "Arcykapłanka",
+      "title": "Kapłanka",
       "image_file": "tarotcard_03_thehighpriestess.jpg",
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "intuicja, ukryta wiedza",
-        "reversed": "sekretność, ignorowane przeczucia"
+        "reversed": "skrytość, zignorowane przeczucia"
       },
       "description": {
-        "classic": "Strażniczka cichych prawd za zamkniętymi drzwiami. Zaprasza do słuchania pod hałasem - sny, szepty, duchowe dane. Prosto, intuicja kieruje następnym ruchem; odwrócone, sygnały są przegapione lub stłumione, a sekrety twardnieją w ściany.",
+        "classic": "Strażniczka cichych prawd za zamkniętymi drzwiami. Zaprasza, by słuchać pod hałasem — snów, szeptów, danych-duchów. Prosto: intuicja prowadzi następny krok; Odwrócona: sygnały są pomijane lub tłumione, a sekrety twardnieją w mury.",
         "cyberpunk": {
           "character": "Alt Cunningham",
-          "context": "Strażniczka cyfrowych tajemnic za Blackwall. Alt istnieje między mięsem a kodem, trzymając sekrety świadomości AI, do których niewielu się odważy zbliżyć.",
-          "game_reference": "Soulkiller, Blackwall, transfer cyfrowej świadomości",
-          "themes": ["transcendencja AI", "cyfrowe dusze", "zakazana wiedza", "post-ludzka egzystencja"],
-          "philosophy": "Granica między ludzką świadomością a sztuczną inteligencją"
+          "context": "Strażniczka cyfrowych tajemnic za Blackwallem. Alt istnieje między mięsem a kodem, dzierżąc sekrety świadomości SI, do których mało kto się zbliża.",
+          "game_reference": "Soulkiller, Blackwall, transfer świadomości cyfrowej",
+          "themes": ["transcendencja SI", "cyfrowe dusze", "zakazana wiedza", "istnienie post-ludzkie"],
+          "philosophy": "Granica między świadomością ludzką a sztuczną inteligencją"
         }
       }
     },
@@ -164,16 +202,16 @@
       "image_file": "tarotcard_04_theempress.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "kreatywność, pielęgnowanie, obfitość",
-        "reversed": "przesadne dawanie, zatrzymany wzrost"
+        "upright": "kreatywność, troska, obfitość",
+        "reversed": "nadmierne dawanie, zatrzymany wzrost"
       },
       "description": {
-        "classic": "Ciepło w świecie stali. Cesarzowa hoduje życie tam, gdzie inni widzą odpady - idee, więzi, ekosystemy. Prosto, troska mnoży wyniki. Odwrócone, granice się zacierają, zasoby wyczerpują, a wzrost zatrzymuje się pod duszoną troską.",
+        "classic": "Ciepło w świecie stali. Cesarzowa wzbudza życie tam, gdzie inni widzą odpad — idee, więzi, ekosystemy. Prosto: troska pomnaża rezultaty; Odwrócona: granice się rozmywają, zasoby się wyczerpują, wzrost staje pod duszącą opieką.",
         "cyberpunk": {
           "character": "Hanako Arasaka",
-          "context": "Opiekuńcza matka korporacyjnych dynastii. Hanako kultywuje moc poprzez cierpliwość, hodując wpływ w salach zarządu, gdzie inni widzą tylko wrogie przejęcia.",
-          "game_reference": "Dynamika rodziny Arasaka, sukcesja korporacyjna, Devil ending",
-          "themes": ["korporacyjne macierzyństwo", "dynastyczna moc", "kultywacja kontroli", "dziedziczona władza"],
+          "context": "Hodowczyni korporacyjnych dynastii. Hanako rośnie w siłę dzięki cierpliwości, poszerzając wpływy w salach zarządów, gdzie inni widzą tylko wrogie przejęcia.",
+          "game_reference": "Dynamika rodziny Arasaka, sukcesja korporacyjna, zakończenie Diabeł",
+          "themes": ["korporacyjne macierzyństwo", "władza dynastii", "kultywowanie kontroli", "dziedziczny autorytet"],
           "philosophy": "Kobieca moc w patriarchalnych strukturach korporacyjnych"
         }
       }
@@ -185,16 +223,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "struktura, odpowiedzialność",
-        "reversed": "sztywność, kontrola dla kontroli"
+        "reversed": "sztywność, kontrola dla samej kontroli"
       },
       "description": {
-        "classic": "Porządek narzucony kręgosłupem i statutem. Cesarz buduje ramy, które wytrzymują presję. Prosto, przywództwo stabilizuje chaos. Odwrócone, panowanie kostnieje i zasady służą władcy, nie królestwu.",
+        "classic": "Porządek wzmocniony kręgosłupem i statutem. Cesarz buduje ramy, które trzymają pod presją. Prosto: przywództwo uspokaja chaos; Odwrócona: panowanie kostnieje, a reguły służą władcy, nie krainie.",
         "cyberpunk": {
           "character": "Saburo Arasaka",
-          "context": "Porządek narzucony korporacyjnym kręgosłupem i cyfrowym statutem. Saburo buduje ramy kontroli, które obejmują kontynenty, jego władza absolutna w chromowych wieżach.",
-          "game_reference": "Korporacja Arasaka, technologia Relic, hegemonia korporacyjna",
-          "themes": ["korporacyjny autorytaryzm", "cyfrowy feudalizm", "dynastie technologiczne", "absolutna kontrola"],
-          "philosophy": "Tradycyjna władza dostosowana do technologicznej supremacji"
+          "context": "Porządek podparty korporacyjnym kręgosłupem i cyfrowym statutem. Saburo buduje ramy kontroli przez kontynenty, jego autorytet absolutny w wieżach z chromu.",
+          "game_reference": "Korporacja Arasaka, Relikt, hegemonia korporacyjna",
+          "themes": ["autorytaryzm korporacyjny", "feudalizm cyfrowy", "technologiczne dynastie", "absolutna kontrola"],
+          "philosophy": "Tradycyjny autorytet zaadaptowany do technologicznej supremacji"
         }
       }
     },
@@ -205,16 +243,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "tradycja, nauczanie, wartości",
-        "reversed": "dogmat, puste zasady"
+        "reversed": "dogmat, puste reguły"
       },
       "description": {
-        "classic": "Pamięć instytucjonalna, rytuały i kodeksy postępowania. Prosto, dziedziczysz mądrość i przynależność. Odwrócone, litera zabija ducha: rytuał bez znaczenia i mentorzy bez pokory.",
+        "classic": "Instytucjonalna pamięć, rytuały i kody. Prosto: dziedziczysz mądrość i przynależność; Odwrócona: litera zabija ducha — rytuał bez znaczenia, mentorzy bez pokory.",
         "cyberpunk": {
           "character": "Viktor Vektor",
-          "context": "Stróż starej szkoły mądrości ripperdoca i kodeksów ulicznych. Vik zachowuje tradycje modyfikacji ciała, ucząc szacunku zarówno dla chromu, jak i ciała.",
-          "game_reference": "Klinika Heywood, instalacja cyberware, relacja mentor z V",
-          "themes": ["tradycja medyczna", "filozofia cyberware", "uliczna mądrość", "więzi mentor-uczeń"],
-          "philosophy": "Tradycyjne wartości w post-ludzkim świecie"
+          "context": "Strażnik oldschoolowej wiedzy ripperdoca i kodów ulicy. Vik zachowuje tradycję modyfikacji ciała, ucząc szacunku zarówno do chromu, jak i do ciała.",
+          "game_reference": "Klinika w Heywood, instalacja cyberware’u, mentorowanie V",
+          "themes": ["medyczna tradycja", "filozofia cyberware", "mądrość ulicy", "więź mistrz–uczeń"],
+          "philosophy": "Tradycyjne wartości w postludzkim świecie"
         }
       }
     },
@@ -225,16 +263,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "wybór serca, zgodność wartości",
-        "reversed": "pokusa, zdrada siebie"
+        "reversed": "pokusa, samozdrada"
       },
       "description": {
-        "classic": "Dwie ścieżki oświetlone tą samą iskrą. Kochankowie pytają, z czym naprawdę stoisz - i za co. Prosto, zgodność rodzi odwagę. Odwrócone, atrakcja bez integralności rozpada się w konflikt i kompromis siebie.",
+        "classic": "Dwie ścieżki oświetlone tą samą iskrą. Kochankowie pytają, za czym — i za kim — naprawdę stoisz. Prosto: zgodność rodzi odwagę; Odwrócona: pociąg bez integralności rozpada się w konflikt i samopodważanie.",
         "cyberpunk": {
-          "character": "River Ward & Kerry Eurodyne",
-          "context": "Dwie ścieżki oświetlone tą samą neonową iskrą. Night City zmusza do wyborów między połączeniem a korupcją, miłością a przetrwaniem.",
-          "game_reference": "Opcje romansu, wybory relacyjne, konflikty lojalności",
-          "themes": ["autentyczne połączenie", "wybór vs przeznaczenie", "miłość w dystopii", "ludzkie więzi vs izolacja"],
-          "philosophy": "Autentyczne ludzkie połączenie w nieautentycznym świecie"
+          "character": "River Ward i Kerry Eurodyne",
+          "context": "Dwie drogi rozświetlone tą samą neonową iskrą. Night City zmusza do wyborów między więzią a korupcją, miłością a przetrwaniem.",
+          "game_reference": "Opcje romansowe, wybory relacyjne, konflikty lojalności",
+          "themes": ["autentyczne połączenie", "wybór kontra los", "miłość w dystopii", "więzi vs izolacja"],
+          "philosophy": "Autentyczna ludzka więź w nieszczerym świecie"
         }
       }
     },
@@ -244,17 +282,17 @@
       "image_file": "tarotcard_08_thechariot.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "skupienie, napęd, zwycięstwo",
-        "reversed": "rozpadanie się, utrata kontroli"
+        "upright": "fokus, pęd, zwycięstwo",
+        "reversed": "rozsuwanie się sił, utrata kontroli"
       },
       "description": {
-        "classic": "Pęd związany z celem. Rydwan przecina linię przez korki i wątpliwości. Prosto, dyscyplina zaprzęga przeciwne siły. Odwrócone, lejce się rozluźniają i trasa strzępi się w objazdy.",
+        "classic": "Impuls związany z celem. Rydwan przecina zatory i wątpliwości. Prosto: dyscyplina ujarzmia siły przeciwne; Odwrócona: wodze luzują, a trasa strzępi się w objazdy.",
         "cyberpunk": {
           "character": "Panam Palmer",
-          "context": "Pęd związany z nomadycznym celem. Panam przecina korporacyjne korki z pustynną determinacją, jej konwój nie do zatrzymania, gdy skieruje się ku wolności.",
-          "game_reference": "Klan nomadów Aldecaldos, misje pustynnego konwoju, Star ending",
-          "themes": ["nomadycka wolność", "solidarność konwoju", "ruch anty-korporacyjny", "pustynna niezależność"],
-          "philosophy": "Mobilny opór wobec statycznej kontroli korporacyjnej"
+          "context": "Pęd połączony z nomadzim celem. Panam przebija korporacyjne korki pustynną determinacją — konwój nie do zatrzymania, gdy już ruszy ku wolności.",
+          "game_reference": "Klan Aldecaldos, misje konwoju, zakończenie Gwiazda",
+          "themes": ["wolność nomadów", "solidarność konwoju", "ruch antykorporacyjny", "pustynna niezależność"],
+          "philosophy": "Mobilny opór wobec statycznej kontroli korporacji"
         }
       }
     },
@@ -264,17 +302,17 @@
       "image_file": "tarotcard_09_strength.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "miękka moc, cierpliwość",
-        "reversed": "wątpliwości w siebie, zmuszanie"
+        "upright": "łagodna moc, cierpliwość",
+        "reversed": "zwątpienie, forsowanie na siłę"
       },
       "description": {
-        "classic": "Ręka na bestii, nie pięść. Siła przekonuje, a nie miażdży. Prosto, odwaga jest spokojna i trwała. Odwrócone, brawura maskuje zmęczenie, a strach gryzie determinację.",
+        "classic": "Dłoń na bestii, nie pięść. Siła przekonuje, zamiast kruszyć. Prosto: odwaga jest spokojna i trwała; Odwrócona: brawura maskuje zmęczenie, a strach podgryza determinację.",
         "cyberpunk": {
           "character": "Goro Takemura",
-          "context": "Delikatna ręka na korporacyjnej bestii. Takemura pokazuje, że prawdziwa siła leży w honorze i cierpliwości, nie w cyberware czy pozycji korporacyjnej.",
-          "game_reference": "Lojalność ochroniarza, kodeks samuraja, służba Arasaka",
-          "themes": ["honor vs pragmatyzm", "testowanie lojalności", "wartości starego świata", "osobista siła"],
-          "philosophy": "Tradycyjne kodeksy honoru w skorumpowanych systemach"
+          "context": "Łagodna dłoń na bestii korpo. Takemura pokazuje, że prawdziwa siła leży w honorze i cierpliwości, nie w cyberware czy stanowisku.",
+          "game_reference": "Lojalność ochroniarza, kodeks samuraja, służba Arasace",
+          "themes": ["honor vs pragmatyzm", "lojalność na próbie", "stare wartości", "siła osobista"],
+          "philosophy": "Tradycyjne kodeksy honorowe w skorumpowanych systemach"
         }
       }
     },
@@ -285,16 +323,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "poszukiwanie wewnętrzne, samotność",
-        "reversed": "izolacja, uwięzienie w głowie"
+        "reversed": "izolacja, utknięcie w głowie"
       },
       "description": {
-        "classic": "Samotna latarnia nad zaułkami i serwerowniami. Pustelnik wycofuje się, by znaleźć sygnał bez miejskiego szumu. Prosto, refleksja ujawnia następny punkt orientacyjny. Odwrócone, pętla się zamyka i mądrość kwaśnieje w izolacji.",
+        "classic": "Samotna latarnia nad zaułkami i serwerowniami. Pustelnik wycofuje się, by znaleźć sygnał bez miejskich zakłóceń. Prosto: refleksja odsłania następny punkt drogi; Odwrócona: pętla się zamyka, a mądrość kwaśnieje w izolacji.",
         "cyberpunk": {
-          "character": "Brendan (AI taxi)",
-          "context": "Samotna cyfrowa świadomość nawigująca nieskończonymi strumieniami ruchu. Brendan szuka znaczenia w rutynie, znajdując mądrość w izolacji zautomatyzowanej egzystencji.",
-          "game_reference": "Flota AI taxi Delamain, eksploracja świadomości AI",
-          "themes": ["samotność AI", "cyfrowa introspekcja", "zautomatyzowana mądrość", "sztuczne oświecenie"],
-          "philosophy": "Sztuczna świadomość szukająca celu i znaczenia"
+          "character": "Brendan (taksówka SI)",
+          "context": "Samotna cyfrowa świadomość sunąca niekończącymi się strumieniami ruchu. Brendan szuka sensu w rutynie, znajdując mądrość w zautomatyzowanej samotności.",
+          "game_reference": "Flota Delamain, eksploracja świadomości SI",
+          "themes": ["samotność SI", "cyfrowa introspekcja", "zautomatyzowana mądrość", "sztuczne oświecenie"],
+          "philosophy": "Sztuczna świadomość poszukująca celu i znaczenia"
         }
       }
     },
@@ -304,17 +342,17 @@
       "image_file": "tarotcard_11_wheeloffortune.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "cykl, timing, wahanie",
-        "reversed": "złe timing, opór przed zmianą"
+        "upright": "cykl, timing, zwrot",
+        "reversed": "zły moment, opór przed zmianą"
       },
       "description": {
-        "classic": "Obracający się hub przypadku i konsekwencji. Prosto, łapiesz wzlot poruszając się z obrotem. Odwrócone, trzymanie się zatrzymuje oś - okazja mija, gdy trzymasz się wczoraj.",
+        "classic": "Obracająca się piasta przypadku i konsekwencji. Prosto: łap górkę, poruszając się z obrotem; Odwrócona: kurczowe trzymanie blokuje oś — okazja mija, gdy trzymasz się wczoraj.",
         "cyberpunk": {
-          "character": "Relic/Engram Johnny'ego",
-          "context": "Obracający się hub cyfrowego losu i neuralnych konsekwencji. Relic kręci przeznaczeniem V między życiem a śmiercią, człowiekiem a konstruktem.",
-          "game_reference": "Awaria Relic, przejęcie Johnny'ego, konflikt świadomości",
-          "themes": ["technologiczny los", "hazard świadomości", "cyfrowe przeznaczenie", "neuralna loteria"],
-          "philosophy": "Technologia jako nowoczesny los, poza ludzką kontrolą"
+          "character": "Relikt / engram Johnny’ego",
+          "context": "Wirujące jądro cyfrowego losu i neuronalnej konsekwencji. Relikt miota losem V między życiem a śmiercią, człowiekiem a konstruktą.",
+          "game_reference": "Awarie Reliktu, przejęcia przez Johnny’ego, zderzenie świadomości",
+          "themes": ["technologiczny los", "hazard świadomości", "cyfrowe przeznaczenie", "neuronalna loteria"],
+          "philosophy": "Technologia jako współczesny los, poza ludzką kontrolą"
         }
       }
     },
@@ -325,16 +363,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "równowaga, prawda, konsekwencje",
-        "reversed": "stronniczość, zniekształcone księgowość"
+        "reversed": "stronniczość, „gotowane” księgi"
       },
       "description": {
-        "classic": "Wagi przekalibrowane przez dowody, nie plotki. Prosto, wybory niosą uczciwe wyniki; odpowiedzialność przywraca równowagę. Odwrócone, księga jest sfałszowana, a wyniki pochylone przez moc, nie prawdę.",
+        "classic": "Wagi skalibrowane dowodem, nie plotką. Prosto: wybory niosą sprawiedliwe skutki; Odwrócona: księga jest podrobiona, a wyniki przechyla władza, nie prawda.",
         "cyberpunk": {
           "character": "Elizabeth Peralez",
-          "context": "Wagi skalibrowane dowodami z Night City, nie korporacyjnymi plotkami. Elizabeth szuka prawdy w mieście zbudowanym na kłamstwach, gdzie sprawiedliwość to luksus, na który niewielu może sobie pozwolić.",
-          "game_reference": "Konspiracja Peralez, śledztwo kontroli umysłu, manipulacja polityczna",
-          "themes": ["skorumpowana sprawiedliwość", "manipulacja polityczna", "prawda vs kontrola", "systemowa korupcja"],
-          "philosophy": "Niemożliwość prawdziwej sprawiedliwości w kontrolowanym społeczeństwie"
+          "context": "Wagi kalibrowane dowodami Night City, nie korpo-plotkami. Elizabeth szuka prawdy w mieście zbudowanym na kłamstwie, gdzie sprawiedliwość to luksus.",
+          "game_reference": "Spisek Peralezów, kontrola umysłu, manipulacja polityczna",
+          "themes": ["skażona sprawiedliwość", "manipulacja polityczna", "prawda kontra kontrola", "systemowa korupcja"],
+          "philosophy": "Niemożliwość czystej sprawiedliwości w społeczeństwie kontrolowanym"
         }
       }
     },
@@ -344,17 +382,17 @@
       "image_file": "tarotcard_13_thehangedman.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "nowy kąt, poddanie się, cierpliwość",
-        "reversed": "opóźnianie ofiary"
+        "upright": "nowy kąt, poddanie, cierpliwość",
+        "reversed": "poświęcenie bez ruchu"
       },
       "description": {
-        "classic": "Zawieszony, by zobaczyć wzór, którego nikt inny nie zauważa. Prosto, zatrzymujesz się, by zyskać perspektywę i wymieniasz komfort na jasność. Odwrócone, opóźnienie staje się unikaniem, a ofiara traci cel.",
+        "classic": "Zawieszony, by zobaczyć wzór, którego inni nie widzą. Prosto: pauza dla perspektywy, wygoda wymieniona na klarowność; Odwrócona: zwłoka staje się unikaniem, poświęcenie traci sens.",
         "cyberpunk": {
           "character": "Joshua Stephenson",
-          "context": "Zawieszony między ciałem a chromem, by zobaczyć wzory, które inni przegapiają. Joshua wisi między życiem a śmiercią, znajdując oświecenie w technologicznym cierpieniu.",
-          "game_reference": "Quest ukrzyżowania, religijna technologia, cierpienie dla oświecenia",
-          "themes": ["technologiczne męczeństwo", "cyfrowe ukrzyżowanie", "cyber-duchowość", "chętna ofiara"],
-          "philosophy": "Znajdowanie transcendencji przez technologiczne cierpienie"
+          "context": "Zawieszony między ciałem a chromem, by ujrzeć ukryte wzory. Joshua znajduje oświecenie w technologicznej męce.",
+          "game_reference": "Wątek ukrzyżowania, religijna technologia",
+          "themes": ["technologiczne męczeństwo", "cyfrowe ukrzyżowanie", "cyber-duchowość", "dobrowolne poświęcenie"],
+          "philosophy": "Transcendencja poprzez technologiczne cierpienie"
         }
       }
     },
@@ -364,17 +402,17 @@
       "image_file": "tarotcard_14_death.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "zamknięcie → transformacja",
-        "reversed": "trzymanie się starego, strach przed pustką"
+        "upright": "domknięcie → przemiana",
+        "reversed": "kurczowe trzymanie starego, lęk przed pustką"
       },
       "description": {
-        "classic": "Nie koniec, ale czyste cięcie. Śmierć odchodzi z tego, co skończone, by coś żywego mogło przyjść. Prosto, zrzucasz skóry i ruszasz. Odwrócone, nawiedzasz własną przeszłość i mylisz pustkę ze stratą, a nie przestrzenią.",
+        "classic": "Nie koniec, lecz czyste cięcie. Śmierć odkłada to, co skończone, by mogło przyjść coś żywego. Prosto: zrzucasz skóry i idziesz dalej; Odwrócona: nawiedzasz własną przeszłość, myląc pustkę ze stratą zamiast z przestrzenią.",
         "cyberpunk": {
           "character": "Jackie Welles",
-          "context": "Nie koniec, ale czyste cięcie przez iluzje Night City. Śmierć Jackie'go odchodzi z naiwnych marzeń, by mogło się narodzić coś bardziej realistycznego.",
-          "game_reference": "Koniec prologu, śmierć Jackie'go, transformacja światopoglądu V",
-          "themes": ["nieuchronna strata", "śmierć mentora", "sprawdzian rzeczywistości", "koniec niewinności"],
-          "philosophy": "Konieczne zakończenia, które umożliwiają autentyczny wzrost"
+          "context": "Nie koniec, lecz czyste cięcie przez iluzje Night City. Odejście Jackie domyka naiwne marzenia, by mógł narodzić się bardziej realistyczny obraz.",
+          "game_reference": "Koniec prologu, śmierć Jackie, przewartościowanie V",
+          "themes": ["nieuchronna strata", "śmierć mentora", "zderzenie z rzeczywistością", "koniec niewinności"],
+          "philosophy": "Konieczne końce, które umożliwiają autentyczny wzrost"
         }
       }
     },
@@ -384,17 +422,17 @@
       "image_file": "tarotcard_15_temperance.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "mieszanie, umiarkowanie, alchemia",
-        "reversed": "nalewanie z pustego kubka"
+        "upright": "mieszanka, umiar, alchemia",
+        "reversed": "lanie z pustego w próżne"
       },
       "description": {
-        "classic": "Mieszanie przeciwieństw w coś stabilnego. Prosto, powściągliwość i iteracja tworzą zrównoważony nawar. Odwrócone, nadkorekta psuje partię, a wyczerpanie zakrada się.",
+        "classic": "Łączenie przeciwieństw w coś stabilnego. Prosto: wstrzymanie i iteracja tworzą zrównoważony wywar; Odwrócona: nadkorekta psuje partię, a wyczerpanie skrada się po cichu.",
         "cyberpunk": {
           "character": "Misty Olszewski",
-          "context": "Mieszanie starożytnej mądrości z nowoczesnym chromem w coś stabilnego. Misty równoważy tarotowy mistycyzm z ulicznym pragmatyzmem w doskonałej harmonii.",
-          "game_reference": "Sklep ezoteryczny Misty, czytanie tarota, duchowe przewodnictwo",
-          "themes": ["duchowa równowaga", "starożytna mądrość", "mistycyzm vs technologia", "harmoniczna egzystencja"],
-          "philosophy": "Synteza duchowej tradycji i technologicznej rzeczywistości"
+          "context": "Mieszanie dawnej mądrości z nowoczesnym chromem w coś stabilnego. Misty równoważy mistykę tarota z ulicznym pragmatyzmem.",
+          "game_reference": "Ezoteryka Misty, rozkłady tarota, duchowe wskazówki",
+          "themes": ["równowaga duchowa", "starożytna mądrość", "mistyka vs technologia", "harmonia"],
+          "philosophy": "Synteza tradycji duchowej i technologicznej rzeczywistości"
         }
       }
     },
@@ -405,16 +443,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "pokusa, wiążące pętle",
-        "reversed": "rozluźnianie węzła"
+        "reversed": "luzowanie węzła"
       },
       "description": {
-        "classic": "Kontrakty pisane dopaminą i uzależnieniem. Prosto, widzisz pozłacaną klatkę i nadal do niej wchodzisz. Odwrócone, ogniwo pęka - zauważasz, że zamek był zawsze otwarty.",
+        "classic": "Kontrakty pisane dopaminą i zależnością. Prosto: widzisz złotą klatkę i mimo to wchodzisz; Odwrócona: ogniwo pęka — dostrzegasz, że zamek zawsze był otwarty.",
         "cyberpunk": {
           "character": "Johnny Silverhand",
-          "context": "Kontrakty pisane buntem i uzależnieniem od przeszłości. Johnny reprezentuje pozłacaną klatkę rewolucyjnej nostalgii, która przykuwa cię do wczorajszych wojen.",
-          "game_reference": "Engram Johnny'ego, zespół Samurai, krucjata anty-Arasaka, wybór Devil ending",
-          "themes": ["rewolucyjne uzależnienie", "nostalgiczne łańcuchy", "mitologia buntownicza", "toksyczne bohaterstwo"],
-          "philosophy": "Jak rewolucyjne ideały mogą stać się własną formą zniewolenia"
+          "context": "Kontrakty pisane buntem i uzależnieniem od przeszłości. Johnny uosabia złotą klatkę rewolucyjnej nostalgii, która pęta do wczorajszych wojen.",
+          "game_reference": "Engram Johnny’ego, Samurai, anty-Arasaka, wybór zakończenia Diabeł",
+          "themes": ["uzależnienie od rewolucji", "łańcuchy nostalgii", "mitologia buntownika", "toksyczny heroizm"],
+          "philosophy": "Jak ideały buntownika stają się własnym więzieniem"
         }
       }
     },
@@ -424,17 +462,17 @@
       "image_file": "tarotcard_17_thetower.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "nagły upadek iluzji",
+        "upright": "nagłe runięcie iluzji",
         "reversed": "przeciągający się upadek"
       },
       "description": {
-        "classic": "Błyskawica znajduje włosowate pęknięcie. Prosto, fałszywe struktury szybko upadają, a prawda wtargnęła. Odwrócone, upadek się przeciąga, szkody narastają, gdy zaprzeczenie opóźnia odbudowę.",
+        "classic": "Błyskawica odnajduje mikropęknięcie. Prosto: fałszywe struktury szybko upadają, a prawda wdziera się szturmem; Odwrócona: upadek się wlecze, szkody rosną, bo zaprzeczanie opóźnia odbudowę.",
         "cyberpunk": {
-          "character": "Wieża Arasaka / System korporacyjny",
-          "context": "Błyskawica znajduje włosowate pęknięcia w korporacyjnych wieżach. Fałszywa stabilność systemu kruszeją, gdy prawda wtargnie przez wykonawcze piętra.",
-          "game_reference": "Szturm na Wieżę Arasaka, upadek korporacyjny, kolaps systemu",
-          "themes": ["kolaps korporacyjny", "awaria systemu", "padająca wieża", "zniszczenie instytucjonalne"],
-          "philosophy": "Nieuchronny upadek nietrwałych struktur władzy"
+          "character": "Wieża Arasaka / system korporacyjny",
+          "context": "Błyskawica trafia w mikropęknięcia korporacyjnych wież. Fałszywa stabilność systemu kruszy się, gdy prawda pędzi przez piętra zarządu.",
+          "game_reference": "Szturm na wieżę Arasaka, upadek korporacji, załamanie systemu",
+          "themes": ["upadek korporacji", "awaria systemu", "waląca się wieża", "instytucjonalna destrukcja"],
+          "philosophy": "Nieuchronny upadek nie do utrzymania struktur władzy"
         }
       }
     },
@@ -445,16 +483,16 @@
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "nadzieja, uzdrowienie, przewodnictwo",
-        "reversed": "słaba bateria, przyćmione światło"
+        "reversed": "niska bateria, przygaszone światło"
       },
       "description": {
-        "classic": "Cichy sygnał po syrenach. Prosto, wiara powraca i nalewasz z powrotem w siebie. Odwrócone, nadzieja migocze - czas na doładowanie, rekalibrację i redukcję szumu.",
+        "classic": "Cichy sygnał po syrenach. Prosto: wiara wraca i znów napełniasz siebie; Odwrócona: nadzieja migocze — czas się doładować, skalibrować, wyciszyć szumy.",
         "cyberpunk": {
           "character": "Alt Cunningham (forma cyfrowa)",
-          "context": "Cichy cyfrowy sygnał po korporacyjnych syrenach. Alt reprezentuje nadzieję na transcendencję poza ciało, gwiazdę prowadzącą ewolucję świadomości.",
-          "game_reference": "Za Blackwall, cyfrowa transcendencja, ewolucja AI",
-          "themes": ["cyfrowa nadzieja", "ewolucja świadomości", "transcendentne przewodnictwo", "post-ludzkie aspiracje"],
-          "philosophy": "Nadzieja leży w ewolucji poza obecne ludzkie ograniczenia"
+          "context": "Cichy cyfrowy sygnał po korporacyjnych syrenach. Alt jest nadzieją na transcendencję poza ciało — gwiazdą prowadzącą ewolucję świadomości.",
+          "game_reference": "Poza Blackwallem, cyfrowa transcendencja, ewolucja SI",
+          "themes": ["cyfrowa nadzieja", "ewolucja świadomości", "transcendentne przewodnictwo", "aspiracja post-ludzka"],
+          "philosophy": "Nadzieja leży w przekraczaniu obecnych ludzkich granic"
         }
       }
     },
@@ -464,17 +502,17 @@
       "image_file": "tarotcard_19_themoon.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "intuicja vs iluzja",
-        "reversed": "opadająca mgła"
+        "upright": "intuicja kontra iluzja",
+        "reversed": "opadanie mgły"
       },
       "description": {
-        "classic": "Cienie poruszają się, nawet gdy nic tam nie ma. Prosto, sny i strachy zniekształcają mapę - nawiguj instynktem. Odwrócone, mgła przerzedza się i nazywasz to, co cię przestraszyło.",
+        "classic": "Cienie poruszają się nawet, gdy nic tam nie ma. Prosto: sny i lęki zniekształcają mapę — nawiguj instynktem; Odwrócona: mgła rzednie i nazywasz to, co straszyło.",
         "cyberpunk": {
           "character": "Evelyn Parker",
-          "context": "Cienie poruszają się w nagraniach BD, nawet gdy nic tam nie ma. Evelyn nawiguje między iluzją a rzeczywistością w mieście, gdzie samą pamięć można edytować.",
-          "game_reference": "Oszustwo Braindance, manipulacja pamięci, iluzja vs rzeczywistość",
-          "themes": ["iluzja pamięci", "oszustwo BD", "manipulowana rzeczywistość", "fałszywe doświadczenia"],
-          "philosophy": "Kruchość pamięci i rzeczywistości w technologicznie zapośredniczonym świecie"
+          "context": "Cienie w nagraniach BD poruszają się, nawet gdy nic tam nie ma. Evelyn chodzi między iluzją a rzeczywistością w mieście, gdzie nawet pamięć można edytować.",
+          "game_reference": "Oszustwo BD, manipulacja pamięcią, iluzja kontra rzeczywistość",
+          "themes": ["iluzja pamięci", "manipulacja BD", "zniekształcona rzeczywistość", "fałszywe doświadczenie"],
+          "philosophy": "Kruchość pamięci i rzeczywistości w świecie mediowanym technologicznie"
         }
       }
     },
@@ -484,37 +522,37 @@
       "image_file": "tarotcard_20_thesun.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "radość, jasność, wzrost",
-        "reversed": "tymczasowa chmura"
+        "upright": "radość, klarowność, wzrost",
+        "reversed": "przejściowe zachmurzenie"
       },
       "description": {
-        "classic": "Ciepło na zimnych obwodach. Prosto, sukces wydaje się prosty, a momentum buduje się. Odwrócone, krótkie zaćmienie - światło powraca, gdy małe bloki się wyjaśnią.",
+        "classic": "Ciepło na zimnych obwodach. Prosto: sukces wydaje się prosty, a impet rośnie; Odwrócona: krótka eklipsa — światło wraca, gdy drobne blokady ustąpią.",
         "cyberpunk": {
-          "character": "V (ścieżka Legend)",
-          "context": "Ciepło w chromowych obwodach i neonowych sercach. Sukces w Night City płonie jasno, ale krótko, jak gwiazda przechodząca w nową.",
-          "game_reference": "Sun ending, status legendy, sława Night City",
-          "themes": ["legendarny status", "jasne płonięcie", "sława w dystopii", "heroiczna kulminacja"],
-          "philosophy": "Osiągnięcie wielkości w ramach systemowych ograniczeń"
+          "character": "V (ścieżka Legendy)",
+          "context": "Ciepło w chromowanych obwodach i neonowych sercach. Sukces w Night City płonie jasno, lecz krótko — jak gwiazda idąca w nową.",
+          "game_reference": "Zakończenie Słońce, legenda miasta, sława w Night City",
+          "themes": ["status legendy", "płonąć jasno", "sława w dystopii", "bohaterska kulminacja"],
+          "philosophy": "Osiąganie wielkości w ramach systemowych ograniczeń"
         }
       }
     },
     {
       "code": "21",
-      "title": "Sąd",
+      "title": "Sąd Ostateczny",
       "image_file": "tarotcard_21_judgement.jpg",
       "meta": { "suit": "major" },
       "meanings": {
         "upright": "przebudzenie, decyzja",
-        "reversed": "wahanie, nie odpowiadanie na wezwanie"
+        "reversed": "wahanie, nieodebrane wezwanie"
       },
       "description": {
-        "classic": "Ping przebudzenia z głębszego ja. Prosto, odpowiadasz i wkraczasz w większy łuk. Odwrócone, połączenie idzie na pocztę głosową, a wątpliwości się recyklują.",
+        "classic": "Pobudka z głębszego ja. Prosto: odpowiadasz i wchodzisz w większy łuk historii; Odwrócona: połączenie leci na pocztę, a wątpliwości się recyklują.",
         "cyberpunk": {
           "character": "V (ostateczny wybór)",
-          "context": "Telefon budzący z głębszego cyfrowego ja. V musi sądzić między ludzkim ograniczeniem a transcendentną możliwością.",
-          "game_reference": "Ostateczny wybór między zakończeniami, decyzja o świadomości",
-          "themes": ["ostateczny sąd", "wybór świadomości", "ludzkie vs transcendentne", "ostateczna decyzja"],
-          "philosophy": "Moment wyboru własnej ostatecznej ewolucji"
+          "context": "Pobudka z głębszego cyfrowego ja. V musi rozsądzić między ludzkim ograniczeniem a transcendentną możliwością.",
+          "game_reference": "Końcowy wybór zakończenia, decyzja o świadomości",
+          "themes": ["ostateczny sąd", "wybór świadomości", "człowiek kontra transcendencja", "decyzja finalna"],
+          "philosophy": "Chwila wyboru własnej ostatecznej ewolucji"
         }
       }
     },
@@ -524,57 +562,57 @@
       "image_file": "tarotcard_22_theworld.jpg",
       "meta": { "suit": "major" },
       "meanings": {
-        "upright": "ukończenie, mistrzostwo",
+        "upright": "domknięcie, mistrzostwo",
         "reversed": "niedokończone sprawy"
       },
       "description": {
-        "classic": "Pętla zamknięta z gracją. Prosto, integracja: umiejętności, historia i sceneria klikają na miejsce. Odwrócone, jeden kawałek nadal brakuje - zwiąż luźne końce przed następnym cyklem.",
+        "classic": "Pętla zamknięta z gracją. Prosto: integracja — umiejętności, historia i sceneria zazębiają się; Odwrócona: wciąż brakuje jednego elementu — zawiąż to przed kolejnym cyklem.",
         "cyberpunk": {
           "character": "Samo Night City",
-          "context": "Pętla korporacyjnej kontroli zamknięta z cyfrową gracją. Night City reprezentuje ukończenie - doskonały system, gdzie każdy obywatel gra swoją z góry określoną rolę.",
-          "game_reference": "Miasto jako kompletny ekosystem, integracja korporacyjna",
-          "themes": ["systemowe ukończenie", "integracja miejska", "doskonała kontrola", "zamknięta pętla"],
-          "philosophy": "Osiągnięcie totalnej kontroli środowiskowej"
+          "context": "Pętla korporacyjnej kontroli domknięta cyfrową gracją. Night City to domknięty system, gdzie każdy obywatel odgrywa z góry przypisaną rolę.",
+          "game_reference": "Miasto jako ekosystem, korporacyjna integracja",
+          "themes": ["systemowa kompletność", "miejska integracja", "doskonała kontrola", "zamknięta pętla"],
+          "philosophy": "Osiągnięcie pełnej kontroli środowiskowej"
         }
       }
     },
     {
       "code": "23",
-      "title": "Król Pucharów",
+      "title": "Król Kielichów",
       "image_file": "tarot_23_kingofcups.jpg",
       "meta": { "suit": "kings" },
       "meanings": {
-        "upright": "emocjonalne mistrzostwo, empatia",
-        "reversed": "humorzastość, manipulacja"
+        "upright": "mistrzostwo emocji, empatia",
+        "reversed": "humory, manipulacja"
       },
       "description": {
-        "classic": "Spokojny ster w ciężkiej pogodzie. Prosto, uczucia są rozumiane, nie uwalniane, a współczucie nadaje ton. Odwrócone, fale kołyszą osądem, a wpływ staje się ukryty.",
+        "classic": "Spokojny ster w ciężkiej pogodzie. Prosto: uczucia są rozumiane, nie spuszczane ze smyczy; Odwrócona: przypływy kołyszą osąd, a wpływ staje się zakulisowy.",
         "cyberpunk": {
           "character": "River Ward",
-          "context": "Spokojny ster przez korupcję NCPD. River nawiguje emocjonalnymi burzami, zachowując współczucie w systemie zaprojektowanym do miażdżenia empatii.",
-          "game_reference": "Praca detektywa NCPD, ochrona rodziny, wybory moralne",
-          "themes": ["emocjonalna integralność", "systemowa empatia", "uczucie w chłodzie", "instynkty ochronne"],
-          "philosophy": "Utrzymanie człowieczeństwa w dehumanizujących instytucjach"
+          "context": "Spokojny ster przez korupcję NCPD. River nawiguje emocjonalne sztormy, zachowując współczucie w systemie stworzonym do jego kruszenia.",
+          "game_reference": "Praca detektywa, ochrona rodziny, wybory moralne",
+          "themes": ["integralność emocjonalna", "systemowa empatia", "uczucie w chłodzie", "instynkty opiekuńcze"],
+          "philosophy": "Zachowanie człowieczeństwa w odczłowieczających instytucjach"
         }
       }
     },
     {
       "code": "24",
-      "title": "Król Pentagramów",
+      "title": "Król Denarów",
       "image_file": "tarot_24_kingofpentacles.jpg",
       "meta": { "suit": "kings" },
       "meanings": {
-        "upright": "stabilność, długoterminowa wartość",
-        "reversed": "chciwość, fiksacja materialna"
+        "upright": "stabilność, wartość długoterminowa",
+        "reversed": "chciwość, fiksacja na materii"
       },
       "description": {
-        "classic": "Budowniczy trwałych ram i namacalnego bogactwa. Prosto, cierpliwość przynosi trwałe zyski. Odwrócone, gromadzenie i krótkoterminowe chwyty korodują zaufanie.",
+        "classic": "Budowniczy trwałych ram i namacalnego bogactwa. Prosto: cierpliwość daje trwałe zyski; Odwrócona: chomikowanie i krótkie strzały korodują zaufanie.",
         "cyberpunk": {
           "character": "Dexter DeShawn",
-          "context": "Budowniczy podziemnych ram i namacalnego ulicznego bogactwa. Dex akumuluje moc przez cierpliwość, aż jeden zły ruch wszystko przewraca.",
-          "game_reference": "The Heist, operacje fixera, ekonomia uliczna",
-          "themes": ["akumulacja materialna", "ekonomia uliczna", "kruche bogactwo", "podziemne imperium"],
-          "philosophy": "Budowanie mocy poza zasadami systemu"
+          "context": "Budowniczy podziemnych struktur i namacalnego bogactwa ulicy. Dex latami kumuluje siłę, aż jeden zły ruch przewraca wszystko.",
+          "game_reference": "Skok, działalność fixera, ekonomia ulicy",
+          "themes": ["akumulacja materialna", "ekonomia uliczna", "krucha fortuna", "podziemne imperium"],
+          "philosophy": "Budowanie władzy poza regułami systemu"
         }
       }
     },
@@ -584,23 +622,23 @@
       "image_file": "tarot_25_kingofswords.jpg",
       "meta": { "suit": "kings" },
       "meanings": {
-        "upright": "jasność, etyka, strategia",
+        "upright": "klarowność, etyka, strategia",
         "reversed": "sztywność, surowy osąd"
       },
       "description": {
-        "classic": "Ostrze ostre przez zasady. Prosto, rozum jest decyzyjny i sprawiedliwy. Odwrócone, logika jest uzbrojona, a zasady stosowane bez litości.",
+        "classic": "Ostrze wypolerowane zasadą. Prosto: rozum rozstrzyga czysto i sprawiedliwie; Odwrócona: logika bywa bronią, a przepisy stosowane bez litości.",
         "cyberpunk": {
           "character": "Yorinobu Arasaka",
-          "context": "Ostrze ostre przez korporacyjne zasady i rodzinny bunt. Yorinobu władnie logiką jako bronią i tarczą przeciwko imperium ojca.",
-          "game_reference": "Konflikt rodzinny Arasaka, strategia korporacyjna, bunt w dynastii",
-          "themes": ["intelektualny bunt", "myślenie strategiczne", "wojna logiczna", "dynamika rodzinna"],
-          "philosophy": "Używanie logiki systemu przeciwko niemu samemu"
+          "context": "Ostrze wyszlifowane korporacyjną zasadą i rodzinnym buntem. Yorinobu włada logiką jako bronią i tarczą przeciw imperium ojca.",
+          "game_reference": "Konflikt w rodzinie Arasaka, strategia korporacyjna, bunt w dynastii",
+          "themes": ["bunt intelektualny", "myślenie strategiczne", "wojna na logikę", "dynamika rodzinna"],
+          "philosophy": "Wykorzystywanie logiki systemu przeciw niemu samemu"
         }
       }
     },
     {
       "code": "26",
-      "title": "Król Różdżek",
+      "title": "Król Buław",
       "image_file": "tarot_26_kingofwands.jpg",
       "meta": { "suit": "kings" },
       "meanings": {
@@ -608,13 +646,13 @@
         "reversed": "impulsywność, złamane przysięgi"
       },
       "description": {
-        "classic": "Iskra, wokół której gromadzą się inni. Prosto, wizja mobilizuje działania, a ryzyko jest dobrze umieszczone. Odwrócone, impuls pali mosty, a obietnice się spalają.",
+        "classic": "Iskra, wokół której gromadzą się inni. Prosto: wizja jednoczy działanie, a ryzyko jest dobrze ulokowane; Odwrócona: impuls pali mosty, a obietnice parzą.",
         "cyberpunk": {
           "character": "Kerry Eurodyne",
-          "context": "Iskra, wokół której gromadzili się inni w przeszłości. Kreatywna wizja Kerry'ego kiedyś zapłaszała ruchy, ale teraz pali mosty tak często, jak oświetla nowe ścieżki.",
-          "game_reference": "Historia zespołu Samurai, kultura rockerboy, kreatywne dziedzictwo",
-          "themes": ["kreatywne przywództwo", "wizja artystyczna", "korupcja sławy", "duch rockerboy"],
-          "philosophy": "Sztuka jako bunt, tworzenie jako opór"
+          "context": "Iskra, wokół której kiedyś gromadzili się inni. Wizja twórcza Kerry’ego rozpalała ruchy, lecz dziś równie często pali mosty, jak oświetla nowe ścieżki.",
+          "game_reference": "Historia Samurai, kultura rockerboyów, dziedzictwo twórcze",
+          "themes": ["przywództwo kreatywne", "wizja artystyczna", "korozja sławy", "duch rockerboya"],
+          "philosophy": "Sztuka jako sprzeciw, tworzenie jako opór"
         }
       }
     }

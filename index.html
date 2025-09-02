@@ -108,14 +108,26 @@ input[type="text"]{ min-width:90px; cursor:text; outline:none }
 }
 
 .grid{
-  display:grid; gap:var(--gap);
-  grid-template-columns:repeat(auto-fill, var(--card-w)); /* auto-fill namiesto auto-fit */
-  justify-content:center; align-content:start;
-  overflow:hidden; 
+  display:grid;
+  gap:var(--gap);
+
+  /* stabilné aj vo FF */
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-w), var(--card-w)));
+
+  /* všetky riadky majú presne výšku karty (7:12) – žiadne skákanie */
+  grid-auto-rows: calc(var(--card-w) * 12 / 7);
+
+  /* ako flex-dieťa nech sa môže zmenšiť a berie plnú šírku */
+  width:100%;
+  min-width:0;
+
+  justify-content:center;
+  align-content:start;
+  overflow:hidden;
   height:calc(100% - var(--lore-height) - 8px);
   flex-shrink:0;
-  max-width:calc(12 * (var(--card-w) + var(--gap)) - var(--gap)); /* PRIDANÉ */
-  margin:0 auto; /* PRIDANÉ */
+  max-width:calc(12 * (var(--card-w) + var(--gap)) - var(--gap));
+  margin:0 auto;
 }
 
 .lore-panel{
@@ -130,14 +142,8 @@ input[type="text"]{ min-width:90px; cursor:text; outline:none }
   flex-shrink:0;
 }
 
-.lore-panel.hidden{
-  opacity:0.4;
-}
-
-.lore-panel h4{
-  margin:0 0 10px 0; font-size:14px; color:#ffffff; font-weight:700;
-  flex-shrink:0;
-}
+.lore-panel.hidden{ opacity:0.4; }
+.lore-panel h4{ margin:0 0 10px 0; font-size:14px; color:#ffffff; font-weight:700; flex-shrink:0; }
 
 .lore-content{
   font-size:14px; line-height:1.5; 
@@ -145,34 +151,13 @@ input[type="text"]{ min-width:90px; cursor:text; outline:none }
   overflow-y:auto; overflow-x:hidden;
 }
 
-.lore-compact{
-  margin:0 0 10px 0;
-}
-
-.lore-line{
-  margin:0 0 5px 0; display:flex; flex-wrap:wrap; gap:8px;
-}
-
-.lore-label{
-  font-weight:700; color:#ffd400; font-size:14px;
-  flex-shrink:0;
-}
-
-.lore-value{
-  color:#ffffff; font-weight:600; font-size:14px;
-}
-
-.lore-value.context{
-  color:#cccccc; font-style:italic;
-}
-
-.lore-value.game{
-  color:#888888;
-}
-
-.lore-value.themes{
-  color:#ffd400;
-}
+.lore-compact{ margin:0 0 10px 0; }
+.lore-line{ margin:0 0 5px 0; display:flex; flex-wrap:wrap; gap:8px; }
+.lore-label{ font-weight:700; color:#ffd400; font-size:14px; flex-shrink:0; }
+.lore-value{ color:#ffffff; font-weight:600; font-size:14px; }
+.lore-value.context{ color:#cccccc; font-style:italic; }
+.lore-value.game{ color:#888888; }
+.lore-value.themes{ color:#ffd400; }
 
 .philosophy{
   color:#cccccc; font-style:italic; margin-top:14px; padding:6px 8px;
@@ -211,7 +196,14 @@ input[type="text"]{ min-width:90px; cursor:text; outline:none }
 }
 .hr{ height:1px; background:#161616; border:0; margin:4px 0; flex-shrink:0; }
 
-.card{ width:var(--card-w); aspect-ratio:7/12; perspective:1000px; border:0; background:none; padding:0; position:relative }
+.card{
+  display:block;                 /* dôležité pre FF */
+  width:var(--card-w);
+  height:calc(var(--card-w) * 12 / 7);
+  aspect-ratio:auto;             /* už sa nespoliehame na aspect-ratio */
+  perspective:1000px;
+  border:0; background:none; padding:0; position:relative;
+}
 .card-inner{ position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform var(--flip) ease; border-radius:var(--radius) }
 .card.flipped .card-inner{ transform:rotateY(180deg) }
 
@@ -463,9 +455,60 @@ let spread = null;
 let prestartFlipped = [];
 let tipShown = true;
 
-// Easter egg state - funguje aj pri prestart
-let easterEggSequence = [];
-const EASTER_EGG_CODES = ["07", "14"]; // Lovers, Death
+// === EASTER EGGS (data-driven, order-sensitive, consecutive adjacent pair) ===
+let EASTER_EGGS = [];
+let lastClickCode = null; // pamätáme si posledný klik (kód karty)
+
+function resetEggBuffer(){ lastClickCode = null; }
+
+// Spracuje klik a vráti egg, ak dvojica (posledný klik -> aktuálny klik) zodpovedá pair z JSONu
+function processEggClick(code){
+  code = String(code);
+  let found = null;
+
+  if (lastClickCode) {
+    for (const egg of (EASTER_EGGS || [])) {
+      const a = String(egg?.pair?.[0] || "");
+      const b = String(egg?.pair?.[1] || "");
+      if (a === lastClickCode && b === code) {
+        found = egg;
+        break;
+      }
+    }
+  }
+
+  // posuň okno na aktuálny klik
+  lastClickCode = code;
+
+  // ak sme trafili egg, buffer resetni, nech sa to nespúšťa reťazovo
+  if (found) lastClickCode = null;
+
+  return found;
+}
+
+function showEasterEggDynamic(egg) {
+  const preview = document.getElementById("preview");
+  const pImg = document.getElementById("previewImg");
+  const pTitle = document.getElementById("previewTitle");
+  const pMeaning = document.getElementById("previewMeaning");
+
+  const name = egg?.name || "Secret";
+  const badge = egg?.badge || "✨";
+  const titleFmt = egg?.title_fmt || "[EE] {name}";
+  const caption = egg?.caption || "";
+  const title = titleFmt.replace("{name}", name);
+
+  pImg.src = egg?.image || "ee.jpg";
+  pImg.alt = "Easter Egg";
+  pImg.style.display = "block";
+  preview.classList.remove("empty");
+
+  pTitle.innerHTML = `<span class="badge-pos">${badge}</span> ${title}`;
+  pMeaning.innerHTML = `<span class="meaningline">${caption}</span>`;
+
+  // skry lore panel pre EE
+  document.getElementById('lorePanel').classList.add('hidden');
+}
 
 // === UTILITY FUNCTIONS ===
 function xmur3(str) { 
@@ -498,52 +541,6 @@ function esc(s="") {
 
 function pick(arr) { 
   return arr[Math.floor(Math.random()*arr.length)] 
-}
-
-// === EASTER EGG FUNCTIONS ===
-function checkEasterEgg(cardCode) {
-  // Reset if wrong card
-  if (easterEggSequence.length === 0 && cardCode !== EASTER_EGG_CODES[0]) {
-    return false;
-  }
-  if (easterEggSequence.length === 1 && cardCode !== EASTER_EGG_CODES[1]) {
-    easterEggSequence = [];
-    return false;
-  }
-  
-  // Add to sequence
-  easterEggSequence.push(cardCode);
-  
-  // Check if complete
-  if (easterEggSequence.length === 2 && 
-      easterEggSequence[0] === EASTER_EGG_CODES[0] && 
-      easterEggSequence[1] === EASTER_EGG_CODES[1]) {
-    return true;
-  }
-  
-  return false;
-}
-
-function resetEasterEgg() {
-  easterEggSequence = [];
-}
-
-function showEasterEgg() {
-  const preview = document.getElementById("preview");
-  const pImg = document.getElementById("previewImg");
-  const pTitle = document.getElementById("previewTitle");
-  const pMeaning = document.getElementById("previewMeaning");
-  
-  pImg.src = "ee.jpg";
-  pImg.alt = "Easter Egg";
-  pImg.style.display = "block";
-  preview.classList.remove("empty");
-  
-  pTitle.innerHTML = `<span class="badge-pos">💀💕</span> [EE] Secret Discovered`;
-  pMeaning.innerHTML = `<span class="meaningline" style="color:#ff6b6b;">Love and Death - the eternal cycle of NC</span>`;
-  
-  // Hide lore panel for easter egg
-  document.getElementById('lorePanel').classList.add('hidden');
 }
 
 // === HTTP & LOADING ===
@@ -604,7 +601,6 @@ function updateLorePanel(meta) {
   const U = cur.data.ui;
   
   if (!meta || !meta.description?.cyberpunk || !U.lore) {
-    // NESKRÝVAME panel, len ho dimujeme
     panel.classList.add('hidden');
     content.innerHTML = `<div style="color:#cccccc; font-style:italic; text-align:center; padding-top:40px;">
       Click on a card with cyberpunk lore to view details...
@@ -614,63 +610,50 @@ function updateLorePanel(meta) {
   }
   
   const cyber = meta.description.cyberpunk;
-  
   title.textContent = `${meta.title} - Cyberpunk Lore`;
   
   let html = '<div class="lore-compact">';
-  
-  // Zhustený formát - všetko na menej riadkov
   if (cyber.character) {
     html += `<div class="lore-line">
       <span class="lore-label">${esc(U.lore.character_label)}</span>
       <span class="lore-value">${esc(cyber.character)}</span>
     </div>`;
   }
-  
   if (cyber.context) {
     html += `<div class="lore-line">
       <span class="lore-label">${esc(U.lore.context_label)}</span>
       <span class="lore-value context">${esc(cyber.context)}</span>
     </div>`;
   }
-  
   if (cyber.game_reference) {
     html += `<div class="lore-line">
       <span class="lore-label">${esc(U.lore.reference_label)}</span>
       <span class="lore-value game">${esc(cyber.game_reference)}</span>
     </div>`;
   }
-  
   if (cyber.themes && cyber.themes.length) {
     html += `<div class="lore-line">
       <span class="lore-label">${esc(U.lore.themes_label)}</span>
       <span class="lore-value themes">${cyber.themes.map(t => esc(t)).join(', ')}</span>
     </div>`;
   }
-  
   html += '</div>';
-  
   if (cyber.philosophy) {
     html += `<div class="philosophy">${esc(cyber.philosophy)}</div>`;
   }
-  
   content.innerHTML = html;
   panel.classList.remove('hidden');
 }
 
 // === PREVIEW FUNCTIONS ===
 function setPreview(meta, posTitle, isReversed, posIndex){
-  // Check easter egg first - funguje aj pri prestart
-  if (checkEasterEgg(meta.code)) {
-    showEasterEgg();
+  // EE: order-sensitive, consecutive, berie sa z JSONu
+  const egg = processEggClick(meta.code);
+  if (egg) {
+    showEasterEggDynamic(egg);
     return;
   }
-  
-  // Reset easter egg if different card clicked
-  if (!EASTER_EGG_CODES.includes(meta.code)) {
-    resetEasterEgg();
-  }
-  
+
   const U = cur.data.ui;
   const preview = document.getElementById("preview");
   const pImg = document.getElementById("previewImg");
@@ -690,17 +673,12 @@ function setPreview(meta, posTitle, isReversed, posIndex){
 
   const meaning = isReversed ? meta.meanings.reversed : meta.meanings.upright;
   let meaningHtml = `<span class="meaningline">${esc(meaning)}</span>`;
-  
-  // Classic description
   if (typeof meta.description === 'object' && meta.description.classic) {
     meaningHtml += `<span class="lore">${esc(meta.description.classic)}</span>`;
   } else if (meta.description && typeof meta.description === 'string') {
     meaningHtml += `<span class="lore">${esc(meta.description)}</span>`;
   }
-  
   pMeaning.innerHTML = meaningHtml;
-  
-  // Automatically update lore panel
   updateLorePanel(meta);
 }
 
@@ -716,11 +694,8 @@ function clearPreview(){
   pTitle.textContent=""; 
   pMeaning.textContent="";
   
-  // Reset lore panel to default state
   updateLorePanel(null);
-  
-  // Reset easter egg
-  resetEasterEgg();
+  resetEggBuffer(); // resetni sledovanie páru
 }
 
 // === CARD ELEMENT CREATION ===
@@ -780,7 +755,7 @@ function cardEl(meta){
 
   btn.addEventListener("click", async () => {
     if (!state) {
-      // Pre-start flipping - EASTER EGG FUNGUJE AJ TU
+      // Pre-start flipping (EE funguje aj tu cez setPreview -> processEggClick)
       btn.classList.toggle("flipped");
       btn.setAttribute('aria-pressed', btn.classList.contains('flipped') ? 'true' : 'false');
       hideTipOnce();
@@ -789,7 +764,7 @@ function cardEl(meta){
       if (btn.classList.contains("flipped")) {
         if (i === -1) prestartFlipped.push(code);
         await waitFlipEnd(btn);
-        setPreview(meta, "", false, 0); // Easter egg sa checkuje tu
+        setPreview(meta, "", false, 0);
       } else {
         if (i !== -1) prestartFlipped.splice(i,1);
         await waitFlipEnd(btn);
@@ -804,7 +779,7 @@ function cardEl(meta){
       return;
     }
     
-    // During reading - easter egg funguje aj tu
+    // Počas výkladu: odhaľovanie (EE funguje cez setPreview -> processEggClick)
     if (state && btn.dataset.revealed === "0" && state.nextIndex < spread.positions.length) {
       revealCard(btn);
     }
@@ -824,8 +799,6 @@ function renderGrid(cardsArr=cards){
 
 function padGridToFullRows(){
   const grid = document.getElementById("grid");
-  
-  // Nepotrebujeme padding - auto-fit sa postará o layout
   grid.querySelectorAll('.card.filler').forEach(n => n.remove());
 }
 
@@ -863,18 +836,10 @@ function toneFor(cards){
   const dom = suitDominance(cards);
   
   let lines = [];
-  
-  // Basic tone
   lines.push(majors/total >= 0.5 ? T.fateful : T.pragmatic);
-  
-  // Suit modifiers
   if(dom.suit === "kings") lines.push(T.authority);
-  
-  // Enhanced card combinations
   if(hasCodes(cards,["13","17"])) lines.push(T.transformHope);
   if(hasCodes(cards,["16","15"])) lines.push(T.collapseToxic);
-  
-  // Additional tone options if available
   if(T.spiritual && dom.suit === "major" && majors >= 3) lines.push(T.spiritual);
   if(T.material && hasCodes(cards,["24","25"])) lines.push(T.material);
   if(T.emotional && hasCodes(cards,["23","03"])) lines.push(T.emotional);
@@ -892,8 +857,6 @@ function shortHint(card, reversed=false){
 function buildNarrative(S, spread){
   const U = cur.data.ui;
   const N = U.narratives;
-  
-  // Fallback if no narratives defined
   if(!N || !N.intro) {
     return "Reading complete.";
   }
@@ -911,13 +874,10 @@ function buildNarrative(S, spread){
   const intro = pick(N.intro || ["Energy centers around {focus}."]).replace("{focus}", focus);
   const trend = pick(N.trend || ["Flow: {past} → {present} → {future}."]).replace("{past}", past).replace("{present}", present).replace("{future}", future);
   const tline = pick(N.tone || ["Overall: {tone}."]).replace("{tone}", tone);
-  
-  // Optional context modifier
   let modifier = "";
   if(N.context_modifiers && Math.random() < 0.3) {
     modifier = " " + pick(N.context_modifiers);
   }
-  
   return `${intro} ${trend} ${tline}${modifier}`;
 }
 
@@ -988,6 +948,7 @@ function resetReadingState(full=true){
   document.getElementById("next").disabled = true; 
   prestartFlipped = [];
   clearPreview();
+  resetEggBuffer();
   
   if(full){ 
     renderGrid(cards); 
@@ -1060,7 +1021,7 @@ function setLanguage(code){
   if(!cur){ alert("No language loaded."); return; }
   const U = cur.data.ui;
 
-  // OPRAVA: Správne nastavenie textov pre spread buttony
+  // Správne labely tlačidiel rozložení
   const oneCardBtn = document.querySelector('button.spread[data-spread="one_card"]');
   const threePathBtn = document.querySelector('button.spread[data-spread="three_path"]');
   const celticCrossBtn = document.querySelector('button.spread[data-spread="celtic_cross"]');
@@ -1093,20 +1054,22 @@ function setLanguage(code){
   document.getElementById("lang").value = code;
   localStorage.setItem('ct_lang', code);
   
-  // Reset lore panel po zmene jazyka
   updateLorePanel(null);
 
-  // === FIX: po zmene jazyka previaž aktuálny spread z nového JSONu,
-  // aby <h3>${esc(spread.title)}</h3> používal preložený title ===
+  // Načítaj EE z jazyka a resetni buffer
+  EASTER_EGGS = Array.isArray(cur?.data?.easter_eggs) ? cur.data.easter_eggs : [];
+  resetEggBuffer();
+
+  // Fix pre aktuálne rozloženie
   const currentSpreadId =
     (spread && spread.id) ||
     localStorage.getItem('ct_spread') ||
     (cur.data.spreads && cur.data.spreads[0] && cur.data.spreads[0].id);
 
   if (currentSpreadId) {
-    setSpread(currentSpreadId); // znovu načíta spread z cur.data.spreads a prerenderuje header
+    setSpread(currentSpreadId);
   } else {
-    renderReading();            // bezpečný fallback
+    renderReading();
   }
 }
 
@@ -1217,6 +1180,7 @@ function setupEvents() {
       if(pb) pb.remove();
     });
     prestartFlipped = [];
+    resetEggBuffer(); // čistý buffer pred ťahom
 
     const seedInput = document.getElementById("seed");
     const revProb = document.getElementById("revProb");
