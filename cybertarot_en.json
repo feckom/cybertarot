@@ -1,16 +1,39 @@
 {
-  "meta": { "lang": "en", "label": "EN", "version": "2.0.0" },
+  "meta": {
+    "lang": "en",
+    "label": "EN",
+    "version": "2.1.0"
+  },
   "ui": {
-    "labels": { "seed": "Seed", "reversed": "Reversed", "lang": "Language" },
-    "buttons": { "start": "Start", "next": "Next", "reset": "Reset", "copy": "Copy", "copied": "Copied" },
-    "placeholders": { "seed_auto": "auto" },
-    "spreads": { "one_card": "1 card", "three_path": "3-step Path", "celtic_cross": "Celtic Cross (7)" },
+    "labels": {
+      "seed": "Seed",
+      "reversed": "Reversed",
+      "lang": "Language"
+    },
+    "buttons": {
+      "start": "Start",
+      "next": "Next",
+      "reset": "Reset",
+      "copy": "Copy",
+      "copied": "Copied"
+    },
+    "placeholders": {
+      "seed_auto": "auto"
+    },
+    "spreads": {
+      "one_card": "One Card",
+      "three_path": "Three-Step Path",
+      "celtic_cross": "Celtic Cross (7)"
+    },
     "preview": {
       "placeholder": "The last revealed card will appear here",
       "tip": "Tip: Before Start, you can freely flip cards in the grid.",
       "badge": "Preview"
     },
-    "orientation": { "upright": "upright", "reversed": "reversed" },
+    "orientation": {
+      "upright": "upright",
+      "reversed": "reversed"
+    },
     "tone": {
       "prefix": "Trajectory:",
       "fateful": "fateful changes",
@@ -29,28 +52,26 @@
       "reference_label": "Reference:",
       "themes_label": "Themes:",
       "philosophy_label": "Philosophy:",
-      "classic_label": "Traditional:",
-      "expand_text": "▼ Show cyberpunk lore",
-      "collapse_text": "▲ Hide cyberpunk lore"
+      "classic_label": "Traditional:"
     },
     "help": "1) Choose a spread.\n2) Optionally set seed / reversed probability.\n3) Press Start – the grid shuffles.\n4) Reveal by clicking Next.\n5) Left: last card; Right: running reading.\n6) After the last card, a human-like summary is added.",
     "narratives": {
       "intro": [
-        "Your reading suggests that {focus} is at the center.",
-        "The strongest energy concentrates around {focus}.",
-        "The core of the situation revolves around {focus}.",
-        "Night City's neon illuminates {focus} as the key element.",
-        "Chrome and flesh converge at {focus}."
+        "Your reading centers on: {focus}.",
+        "The strongest energy gathers around “{focus}”.",
+        "The core of the situation: {focus}.",
+        "Night City's neon highlights the key theme: {focus}.",
+        "Chrome and flesh converge on a single point: {focus}."
       ],
       "trend": [
-        "The past brought {past}, the present shows {present}, and the future leans toward {future}.",
-        "Through {past} emerges {present}, paving the way to {future}.",
-        "From what has been ({past}) arises {present} and matures into {future}.",
-        "Corporate memory recalls {past}, the street shows {present}, and fate points to {future}.",
+        "The past brought: {past}. The present shows: {present}. The future leans toward: {future}.",
+        "The thread runs from “{past}” through “{present}” toward “{future}”.",
+        "What was ({past}) feeds what is ({present}) and ripens into what comes ({future}).",
+        "Corporate memory recalls: {past}. The street shows: {present}. Fate points to: {future}.",
         "The data stream flows: {past} → {present} → {future}."
       ],
       "tone": [
-        "In closing: the overall vibe is {tone}.",
+        "In closing, the overall vibe: {tone}.",
         "Overall, this reads as {tone}.",
         "Most likely tone of the story: {tone}.",
         "The chrome consensus suggests: {tone}.",
@@ -69,30 +90,65 @@
     {
       "id": "one_card",
       "title": "One Card",
-      "positions": [{ "id": "focus", "title": "Focus" }],
+      "positions": [
+        {
+          "id": "focus",
+          "title": "Focus"
+        }
+      ],
       "summary_template": "Trajectory: {tone}"
     },
     {
       "id": "three_path",
       "title": "Three-Step Path",
       "positions": [
-        { "id": "past", "title": "Past" },
-        { "id": "present", "title": "Present" },
-        { "id": "future", "title": "Future" }
+        {
+          "id": "past",
+          "title": "Past"
+        },
+        {
+          "id": "present",
+          "title": "Present"
+        },
+        {
+          "id": "future",
+          "title": "Future"
+        }
       ],
       "summary_template": "Trajectory: {past_short} → {present_short} → {future_short}. Tone: {tone}"
     },
     {
       "id": "celtic_cross",
-      "title": "Celtic Cross (compact)",
+      "title": "Celtic Cross (7)",
       "positions": [
-        { "id": "focus", "title": "Theme" },
-        { "id": "challenge", "title": "Challenge" },
-        { "id": "root", "title": "Root" },
-        { "id": "past", "title": "Backdrop" },
-        { "id": "present", "title": "Now" },
-        { "id": "goal", "title": "Goal" },
-        { "id": "outcome", "title": "Outcome" }
+        {
+          "id": "focus",
+          "title": "Theme"
+        },
+        {
+          "id": "challenge",
+          "title": "Challenge"
+        },
+        {
+          "id": "root",
+          "title": "Root"
+        },
+        {
+          "id": "past",
+          "title": "Backdrop"
+        },
+        {
+          "id": "present",
+          "title": "Now"
+        },
+        {
+          "id": "goal",
+          "title": "Goal"
+        },
+        {
+          "id": "outcome",
+          "title": "Outcome"
+        }
       ],
       "summary_template": "Trajectory: {focus_hint}; {past_short} → {present_short} → {future_short}. Goal: {goal_key}. Outcome: {outcome_key}. Tone: {tone}"
     }
@@ -101,37 +157,49 @@
     {
       "id": "br",
       "name": "Blade Runner",
-      "pair": ["19", "14"],
+      "pair": [
+        "19",
+        "14"
+      ],
       "image": "br.jpg",
       "badge": "🌙💀",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Dreams, identity, and the rain-soaked edge of humanity."
     },
     {
       "id": "stb",
       "name": "Sailing to Byzantium",
-      "pair": ["10", "22"],
+      "pair": [
+        "10",
+        "22"
+      ],
       "image": "stb.jpg",
       "badge": "🕯️🌐",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "From mortal coil to crafted eternity — a gilded refuge of art."
     },
     {
       "id": "mo",
       "name": "Misty Olszewski",
-      "pair": ["07", "16"],
+      "pair": [
+        "07",
+        "16"
+      ],
       "image": "mo.jpg",
       "badge": "💘😈",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Choice and temptation tangled in Night City's neon."
     },
     {
       "id": "ld",
       "name": "Secret Discovered",
-      "pair": ["07", "14"],
+      "pair": [
+        "07",
+        "14"
+      ],
       "image": "ee.jpg",
       "badge": "💀💕",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Love and Death — the eternal cycle of Night City."
     }
   ],
@@ -140,7 +208,9 @@
       "code": "01",
       "title": "The Fool",
       "image_file": "tarotcard_01_thefool.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "new start, leap of faith",
         "reversed": "recklessness, fear of change"
@@ -151,7 +221,12 @@
           "character": "V (protagonist)",
           "context": "A zero at the edge of the city, curiosity louder than caution. V enters Night City as a blank slate — corpo, nomad, or street kid — ready to be written by chrome and consequence.",
           "game_reference": "Character creation, lifepath selection, first steps in Night City",
-          "themes": ["identity formation", "corpo vs street", "technological awakening", "naive optimism in dystopia"],
+          "themes": [
+            "identity formation",
+            "corpo vs street",
+            "technological awakening",
+            "naive optimism in dystopia"
+          ],
           "philosophy": "An individual's first contact with transhumanist reality"
         }
       }
@@ -160,9 +235,11 @@
       "code": "02",
       "title": "The Magician",
       "image_file": "tarotcard_02_themagician.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
-        "upright": "will + skill = outcome",
+        "upright": "focused will, skill made real",
         "reversed": "manipulation, scattered will"
       },
       "description": {
@@ -171,7 +248,12 @@
           "character": "Judy Alvarez",
           "context": "A braindance technician wielding code like spells. Judy turns raw neural data into art through sheer technical will and underground connections.",
           "game_reference": "Braindance editing, Clouds storyline, underwater base",
-          "themes": ["technology as magic", "hacker culture", "creative rebellion", "BD artistry"],
+          "themes": [
+            "technology as magic",
+            "hacker culture",
+            "creative rebellion",
+            "BD artistry"
+          ],
           "philosophy": "Technology as an extension of human will and creativity"
         }
       }
@@ -180,7 +262,9 @@
       "code": "03",
       "title": "The High Priestess",
       "image_file": "tarotcard_03_thehighpriestess.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "intuition, hidden knowledge",
         "reversed": "secrecy, ignored hunches"
@@ -191,7 +275,12 @@
           "character": "Alt Cunningham",
           "context": "Guardian of digital mysteries beyond the Blackwall. Alt exists between meat and code, holding secrets of AI consciousness few dare approach.",
           "game_reference": "Soulkiller, Blackwall, transfer of digital consciousness",
-          "themes": ["AI transcendence", "digital souls", "forbidden knowledge", "post-human existence"],
+          "themes": [
+            "AI transcendence",
+            "digital souls",
+            "forbidden knowledge",
+            "post-human existence"
+          ],
           "philosophy": "The boundary between human consciousness and artificial intelligence"
         }
       }
@@ -200,7 +289,9 @@
       "code": "04",
       "title": "The Empress",
       "image_file": "tarotcard_04_theempress.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "creativity, nurture, plenty",
         "reversed": "overgiving, stalled growth"
@@ -211,7 +302,12 @@
           "character": "Hanako Arasaka",
           "context": "Cultivator of corporate dynasties. Hanako grows power through patience, expanding influence in boardrooms where others see only hostile takeovers.",
           "game_reference": "Arasaka family dynamics, corporate succession, Devil ending",
-          "themes": ["corporate motherhood", "dynastic power", "cultivation of control", "inherited authority"],
+          "themes": [
+            "corporate motherhood",
+            "dynastic power",
+            "cultivation of control",
+            "inherited authority"
+          ],
           "philosophy": "Feminine power within patriarchal corporate structures"
         }
       }
@@ -220,7 +316,9 @@
       "code": "05",
       "title": "The Emperor",
       "image_file": "tarotcard_05_theemperor.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "structure, responsibility",
         "reversed": "rigidity, control for control's sake"
@@ -231,7 +329,12 @@
           "character": "Saburo Arasaka",
           "context": "Order shored up by corporate spine and digital statute. Saburo builds frameworks of control across continents, his authority absolute in chrome towers.",
           "game_reference": "Arasaka Corporation, the Relic, corporate hegemony",
-          "themes": ["corporate authoritarianism", "digital feudalism", "technological dynasties", "absolute control"],
+          "themes": [
+            "corporate authoritarianism",
+            "digital feudalism",
+            "technological dynasties",
+            "absolute control"
+          ],
           "philosophy": "Traditional authority adapted to technological supremacy"
         }
       }
@@ -240,7 +343,9 @@
       "code": "06",
       "title": "The Hierophant",
       "image_file": "tarotcard_06_thehierophant.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "tradition, teaching, values",
         "reversed": "dogma, empty rules"
@@ -251,7 +356,12 @@
           "character": "Viktor Vektor",
           "context": "Keeper of old-school ripperdoc wisdom and street codes. Vik preserves the tradition of body modification while teaching respect for both chrome and flesh.",
           "game_reference": "Heywood clinic, cyberware installation, mentoring V",
-          "themes": ["medical tradition", "cyberware philosophy", "street wisdom", "mentor–student bond"],
+          "themes": [
+            "medical tradition",
+            "cyberware philosophy",
+            "street wisdom",
+            "mentor–student bond"
+          ],
           "philosophy": "Traditional values in a posthuman world"
         }
       }
@@ -260,7 +370,9 @@
       "code": "07",
       "title": "The Lovers",
       "image_file": "tarotcard_07_thelovers.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "heart choice, values alignment",
         "reversed": "temptation, self-betrayal"
@@ -271,7 +383,12 @@
           "character": "River Ward & Kerry Eurodyne",
           "context": "Two paths illuminated by the same neon spark. Night City forces choices between connection and corruption, love and survival.",
           "game_reference": "Romance options, relationship choices, loyalty conflicts",
-          "themes": ["authentic connection", "choice vs fate", "love in dystopia", "human bonds vs isolation"],
+          "themes": [
+            "authentic connection",
+            "choice vs fate",
+            "love in dystopia",
+            "human bonds vs isolation"
+          ],
           "philosophy": "Authentic human connection in an inauthentic world"
         }
       }
@@ -280,7 +397,9 @@
       "code": "08",
       "title": "The Chariot",
       "image_file": "tarotcard_08_thechariot.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "focus, drive, victory",
         "reversed": "pulling apart, loss of control"
@@ -291,7 +410,12 @@
           "character": "Panam Palmer",
           "context": "Momentum tied to nomad purpose. Panam pierces corporate gridlock with desert determination — a convoy unstoppable once pointed toward freedom.",
           "game_reference": "Aldecaldos clan, desert convoy missions, Star ending",
-          "themes": ["nomad freedom", "convoy solidarity", "anti-corporate movement", "desert independence"],
+          "themes": [
+            "nomad freedom",
+            "convoy solidarity",
+            "anti-corporate movement",
+            "desert independence"
+          ],
           "philosophy": "Mobile resistance to static corporate control"
         }
       }
@@ -300,7 +424,9 @@
       "code": "09",
       "title": "Strength",
       "image_file": "tarotcard_09_strength.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "soft power, patience",
         "reversed": "self-doubt, forcing it"
@@ -311,7 +437,12 @@
           "character": "Goro Takemura",
           "context": "A gentle hand on the corpo beast. Takemura shows true strength lies in honor and patience, not cyberware or position.",
           "game_reference": "Bodyguard loyalty, samurai code, Arasaka service",
-          "themes": ["honor vs pragmatism", "loyalty tested", "old-world values", "personal strength"],
+          "themes": [
+            "honor vs pragmatism",
+            "loyalty tested",
+            "old-world values",
+            "personal strength"
+          ],
           "philosophy": "Traditional honor codes within corrupt systems"
         }
       }
@@ -320,7 +451,9 @@
       "code": "10",
       "title": "The Hermit",
       "image_file": "tarotcard_10_thehermit.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "inner search, solitude",
         "reversed": "isolation, stuck in the head"
@@ -331,7 +464,12 @@
           "character": "Brendan (AI taxi)",
           "context": "A lone digital consciousness riding endless traffic streams. Brendan seeks meaning in routine, finding wisdom in automated solitude.",
           "game_reference": "Delamain fleet, exploring AI consciousness",
-          "themes": ["AI loneliness", "digital introspection", "automated wisdom", "artificial enlightenment"],
+          "themes": [
+            "AI loneliness",
+            "digital introspection",
+            "automated wisdom",
+            "artificial enlightenment"
+          ],
           "philosophy": "Artificial consciousness seeking purpose and meaning"
         }
       }
@@ -340,7 +478,9 @@
       "code": "11",
       "title": "Wheel of Fortune",
       "image_file": "tarotcard_11_wheeloffortune.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "cycle, timing, swing",
         "reversed": "bad timing, resisting change"
@@ -351,7 +491,12 @@
           "character": "The Relic / Johnny's engram",
           "context": "A spinning core of digital fate and neural consequence. The Relic whirls V's destiny between life and death, human and construct.",
           "game_reference": "Relic malfunction, Johnny's takeover, clash of consciousness",
-          "themes": ["technological fate", "consciousness gamble", "digital destiny", "neural lottery"],
+          "themes": [
+            "technological fate",
+            "consciousness gamble",
+            "digital destiny",
+            "neural lottery"
+          ],
           "philosophy": "Technology as modern fate, beyond human control"
         }
       }
@@ -360,7 +505,9 @@
       "code": "12",
       "title": "Justice",
       "image_file": "tarotcard_12_justice.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "balance, truth, consequences",
         "reversed": "bias, cooked books"
@@ -371,7 +518,12 @@
           "character": "Elizabeth Peralez",
           "context": "Scales calibrated by Night City evidence, not corpo gossip. Elizabeth seeks truth in a city built on lies, where justice is a luxury.",
           "game_reference": "Peralez conspiracy, mind control investigation, political manipulation",
-          "themes": ["corrupted justice", "political manipulation", "truth vs control", "systemic corruption"],
+          "themes": [
+            "corrupted justice",
+            "political manipulation",
+            "truth vs control",
+            "systemic corruption"
+          ],
           "philosophy": "The impossibility of pure justice in a controlled society"
         }
       }
@@ -380,7 +532,9 @@
       "code": "13",
       "title": "The Hanged Man",
       "image_file": "tarotcard_13_thehangedman.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "new angle, surrender, patience",
         "reversed": "sacrifice without movement"
@@ -391,7 +545,12 @@
           "character": "Joshua Stephenson",
           "context": "Suspended between flesh and chrome to see hidden patterns. Joshua finds enlightenment in technological suffering.",
           "game_reference": "Crucifixion side quest, religious technology",
-          "themes": ["technological martyrdom", "digital crucifixion", "cyber-spirituality", "willing sacrifice"],
+          "themes": [
+            "technological martyrdom",
+            "digital crucifixion",
+            "cyber-spirituality",
+            "willing sacrifice"
+          ],
           "philosophy": "Transcendence through technological suffering"
         }
       }
@@ -400,9 +559,11 @@
       "code": "14",
       "title": "Death",
       "image_file": "tarotcard_14_death.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
-        "upright": "closure → transformation",
+        "upright": "closure, deep transformation",
         "reversed": "clinging to the old, fear of the void"
       },
       "description": {
@@ -411,7 +572,12 @@
           "character": "Jackie Welles",
           "context": "Not an end, but a clean cut through Night City's illusions. Jackie's passing closes naive dreams so a more realistic vision can be born.",
           "game_reference": "End of the prologue, Jackie's death, V's worldview shifts",
-          "themes": ["inevitable loss", "mentor's death", "reality check", "end of innocence"],
+          "themes": [
+            "inevitable loss",
+            "mentor's death",
+            "reality check",
+            "end of innocence"
+          ],
           "philosophy": "Necessary endings that enable authentic growth"
         }
       }
@@ -420,7 +586,9 @@
       "code": "15",
       "title": "Temperance",
       "image_file": "tarotcard_15_temperance.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "blend, moderation, alchemy",
         "reversed": "pouring from an empty cup"
@@ -431,7 +599,12 @@
           "character": "Misty Olszewski",
           "context": "Mixing ancient wisdom with modern chrome into something stable. Misty balances tarot mysticism with street pragmatism.",
           "game_reference": "Misty's esoterica, tarot readings, spiritual guidance",
-          "themes": ["spiritual balance", "ancient wisdom", "mysticism vs technology", "harmony"],
+          "themes": [
+            "spiritual balance",
+            "ancient wisdom",
+            "mysticism vs technology",
+            "harmony"
+          ],
           "philosophy": "Synthesis of spiritual tradition and technological reality"
         }
       }
@@ -440,7 +613,9 @@
       "code": "16",
       "title": "The Devil",
       "image_file": "tarotcard_16_thedevil.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "temptation, binding loops",
         "reversed": "loosening the knot"
@@ -451,7 +626,12 @@
           "character": "Johnny Silverhand",
           "context": "Contracts written in rebellion and addiction to the past. Johnny embodies the gilded cage of revolutionary nostalgia that chains you to yesterday's wars.",
           "game_reference": "Johnny's engram, Samurai, anti-Arasaka, Devil ending choice",
-          "themes": ["revolutionary addiction", "chains of nostalgia", "rebel mythology", "toxic heroism"],
+          "themes": [
+            "revolutionary addiction",
+            "chains of nostalgia",
+            "rebel mythology",
+            "toxic heroism"
+          ],
           "philosophy": "How rebel ideals can become their own prison"
         }
       }
@@ -460,7 +640,9 @@
       "code": "17",
       "title": "The Tower",
       "image_file": "tarotcard_17_thetower.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "sudden collapse of illusion",
         "reversed": "drawn-out fall"
@@ -471,7 +653,12 @@
           "character": "Arasaka Tower / corporate system",
           "context": "Lightning finds hairline fractures in corporate towers. The system's false stability crumbles when truth races through executive floors.",
           "game_reference": "Assault on Arasaka Tower, corporate downfall, system collapse",
-          "themes": ["corporate collapse", "system failure", "falling tower", "institutional destruction"],
+          "themes": [
+            "corporate collapse",
+            "system failure",
+            "falling tower",
+            "institutional destruction"
+          ],
           "philosophy": "The inevitable fall of unsustainable power structures"
         }
       }
@@ -480,7 +667,9 @@
       "code": "18",
       "title": "The Star",
       "image_file": "tarotcard_18_thestar.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "hope, healing, guidance",
         "reversed": "low battery, dim light"
@@ -491,7 +680,12 @@
           "character": "Alt Cunningham (digital form)",
           "context": "A quiet digital signal after corporate sirens. Alt is hope for transcendence beyond flesh — a star guiding consciousness evolution.",
           "game_reference": "Beyond the Blackwall, digital transcendence, AI evolution",
-          "themes": ["digital hope", "consciousness evolution", "transcendent guidance", "post-human aspiration"],
+          "themes": [
+            "digital hope",
+            "consciousness evolution",
+            "transcendent guidance",
+            "post-human aspiration"
+          ],
           "philosophy": "Hope lies in evolving beyond current human limits"
         }
       }
@@ -500,7 +694,9 @@
       "code": "19",
       "title": "The Moon",
       "image_file": "tarotcard_19_themoon.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "intuition vs illusion",
         "reversed": "fog lifting"
@@ -511,7 +707,12 @@
           "character": "Evelyn Parker",
           "context": "Shadows in BD recordings move even when nothing is there. Evelyn walks between illusion and reality in a city where even memory can be edited.",
           "game_reference": "BD deception, memory manipulation, illusion vs reality",
-          "themes": ["memory illusion", "BD manipulation", "distorted reality", "false experience"],
+          "themes": [
+            "memory illusion",
+            "BD manipulation",
+            "distorted reality",
+            "false experience"
+          ],
           "philosophy": "The fragility of memory and reality in a technologically mediated world"
         }
       }
@@ -520,7 +721,9 @@
       "code": "20",
       "title": "The Sun",
       "image_file": "tarotcard_20_thesun.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "joy, clarity, growth",
         "reversed": "temporary cloud"
@@ -531,7 +734,12 @@
           "character": "V (Legend path)",
           "context": "Warmth in chrome circuits and neon hearts. Success in Night City burns bright but brief — like a star going nova.",
           "game_reference": "Sun ending, city legend, fame in Night City",
-          "themes": ["legendary status", "burning bright", "fame in dystopia", "heroic culmination"],
+          "themes": [
+            "legendary status",
+            "burning bright",
+            "fame in dystopia",
+            "heroic culmination"
+          ],
           "philosophy": "Achieving greatness within systemic limits"
         }
       }
@@ -540,7 +748,9 @@
       "code": "21",
       "title": "Judgement",
       "image_file": "tarotcard_21_judgement.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "awakening, decision",
         "reversed": "hesitation, missed call"
@@ -551,7 +761,12 @@
           "character": "V (final choice)",
           "context": "A wake-up ping from the deeper digital self. V must judge between human limitation and transcendent possibility.",
           "game_reference": "Final ending choice, decision of consciousness",
-          "themes": ["final judgement", "consciousness choice", "human vs transcendent", "ultimate decision"],
+          "themes": [
+            "final judgement",
+            "consciousness choice",
+            "human vs transcendent",
+            "ultimate decision"
+          ],
           "philosophy": "The moment of choosing one’s final evolution"
         }
       }
@@ -560,7 +775,9 @@
       "code": "22",
       "title": "The World",
       "image_file": "tarotcard_22_theworld.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "completion, mastery",
         "reversed": "unfinished business"
@@ -571,7 +788,12 @@
           "character": "Night City itself",
           "context": "The loop of corporate control closed with digital grace. Night City is a finished system where every citizen plays a predetermined role.",
           "game_reference": "The city as ecosystem, corporate integration",
-          "themes": ["systemic completeness", "urban integration", "perfect control", "closed loop"],
+          "themes": [
+            "systemic completeness",
+            "urban integration",
+            "perfect control",
+            "closed loop"
+          ],
           "philosophy": "Achieving total environmental control"
         }
       }
@@ -580,7 +802,9 @@
       "code": "23",
       "title": "King of Cups",
       "image_file": "tarot_23_kingofcups.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "emotional mastery, empathy",
         "reversed": "moodiness, manipulation"
@@ -591,7 +815,12 @@
           "character": "River Ward",
           "context": "A calm helm through NCPD corruption. River navigates emotional storms while keeping compassion in a system built to crush empathy.",
           "game_reference": "Detective work, family protection, moral choices",
-          "themes": ["emotional integrity", "systemic empathy", "feeling in the cold", "protective instincts"],
+          "themes": [
+            "emotional integrity",
+            "systemic empathy",
+            "feeling in the cold",
+            "protective instincts"
+          ],
           "philosophy": "Maintaining humanity within dehumanizing institutions"
         }
       }
@@ -600,7 +829,9 @@
       "code": "24",
       "title": "King of Pentacles",
       "image_file": "tarot_24_kingofpentacles.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "stability, long-term value",
         "reversed": "greed, material fixation"
@@ -611,7 +842,12 @@
           "character": "Dexter DeShawn",
           "context": "Builder of underground frameworks and tangible street wealth. Dex accumulates power for years until one wrong move topples everything.",
           "game_reference": "The Heist, fixer operations, street economics",
-          "themes": ["material accumulation", "street economics", "fragile wealth", "underground empire"],
+          "themes": [
+            "material accumulation",
+            "street economics",
+            "fragile wealth",
+            "underground empire"
+          ],
           "philosophy": "Building power outside the system’s rules"
         }
       }
@@ -620,7 +856,9 @@
       "code": "25",
       "title": "King of Swords",
       "image_file": "tarot_25_kingofswords.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "clarity, ethics, strategy",
         "reversed": "rigidity, harsh judgment"
@@ -631,7 +869,12 @@
           "character": "Yorinobu Arasaka",
           "context": "An edge honed by corporate principle and family rebellion. Yorinobu wields logic as both weapon and shield against his father's empire.",
           "game_reference": "Arasaka family conflict, corporate strategy, rebellion within a dynasty",
-          "themes": ["intellectual rebellion", "strategic thinking", "logical warfare", "family dynamics"],
+          "themes": [
+            "intellectual rebellion",
+            "strategic thinking",
+            "logical warfare",
+            "family dynamics"
+          ],
           "philosophy": "Using the system’s logic against itself"
         }
       }
@@ -640,7 +883,9 @@
       "code": "26",
       "title": "King of Wands",
       "image_file": "tarot_26_kingofwands.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "vision, charisma, ignition",
         "reversed": "impulsiveness, broken oaths"
@@ -651,7 +896,12 @@
           "character": "Kerry Eurodyne",
           "context": "A spark others once gathered around. Kerry’s creative vision ignited movements, but now burns bridges as often as it lights new paths.",
           "game_reference": "Samurai history, rockerboy culture, creative legacy",
-          "themes": ["creative leadership", "artistic vision", "corrosion of fame", "rockerboy spirit"],
+          "themes": [
+            "creative leadership",
+            "artistic vision",
+            "corrosion of fame",
+            "rockerboy spirit"
+          ],
           "philosophy": "Art as defiance, creation as resistance"
         }
       }
