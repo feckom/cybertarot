@@ -1,16 +1,39 @@
 {
-  "meta": { "lang": "pl", "label": "PL", "version": "2.0.0" },
+  "meta": {
+    "lang": "pl",
+    "label": "PL",
+    "version": "2.1.0"
+  },
   "ui": {
-    "labels": { "seed": "Ziarno", "reversed": "Odwrócona", "lang": "Język" },
-    "buttons": { "start": "Start", "next": "Dalej", "reset": "Resetuj", "copy": "Kopiuj", "copied": "Skopiowano" },
-    "placeholders": { "seed_auto": "auto" },
-    "spreads": { "one_card": "1 karta", "three_path": "Ścieżka 3-krokowa", "celtic_cross": "Krzyż celtycki (7)" },
+    "labels": {
+      "seed": "Ziarno",
+      "reversed": "Odwrócona",
+      "lang": "Język"
+    },
+    "buttons": {
+      "start": "Start",
+      "next": "Dalej",
+      "reset": "Resetuj",
+      "copy": "Kopiuj",
+      "copied": "Skopiowano"
+    },
+    "placeholders": {
+      "seed_auto": "auto"
+    },
+    "spreads": {
+      "one_card": "Jedna karta",
+      "three_path": "Ścieżka trzech kroków",
+      "celtic_cross": "Krzyż celtycki (7)"
+    },
     "preview": {
       "placeholder": "Ostatnia odsłonięta karta pojawi się tutaj",
       "tip": "Wskazówka: zanim naciśniesz Start, możesz dowolnie odwracać karty w siatce.",
       "badge": "Podgląd"
     },
-    "orientation": { "upright": "prosta", "reversed": "odwrócona" },
+    "orientation": {
+      "upright": "prosta",
+      "reversed": "odwrócona"
+    },
     "tone": {
       "prefix": "Trajektoria:",
       "fateful": "przełomowe zmiany",
@@ -29,29 +52,27 @@
       "reference_label": "Odniesienie:",
       "themes_label": "Motywy:",
       "philosophy_label": "Filozofia:",
-      "classic_label": "Tradycyjnie:",
-      "expand_text": "▼ Pokaż lore cyberpunkowe",
-      "collapse_text": "▲ Ukryj lore cyberpunkowe"
+      "classic_label": "Tradycyjnie:"
     },
     "help": "1) Wybierz rozkład.\n2) Opcjonalnie ustaw ziarno / prawdopodobieństwo odwróconych kart.\n3) Naciśnij Start – siatka zostanie przetasowana.\n4) Odsłaniaj, klikając Dalej.\n5) Lewo: ostatnia karta; Prawo: bieżący odczyt.\n6) Po ostatniej karcie dodane zostanie podsumowanie w ludzkim stylu.",
     "narratives": {
       "intro": [
-        "Twój odczyt sugeruje, że w centrum znajduje się {focus}.",
-        "Najsilniejsza energia koncentruje się wokół {focus}.",
-        "Sedno sytuacji krąży wokół {focus}.",
-        "Neony Night City podkreślają {focus} jako kluczowy element.",
-        "Chrom i ciało spotykają się w {focus}."
+        "W centrum odczytu stoi: {focus}.",
+        "Najsilniejsza energia skupia się wokół tematu „{focus}”.",
+        "Sedno sytuacji: {focus}.",
+        "Neony Night City podświetlają kluczowy temat: {focus}.",
+        "Chrom i ciało zbiegają się w jednym punkcie: {focus}."
       ],
       "trend": [
-        "Przeszłość przyniosła {past}, teraźniejszość pokazuje {present}, a przyszłość skłania się ku {future}.",
-        "Poprzez {past} wyłania się {present}, torując drogę do {future}.",
-        "Z tego, co było ({past}), powstaje {present} i dojrzewa w {future}.",
-        "Pamięć korporacji wspomina {past}, ulica pokazuje {present}, a los wskazuje na {future}.",
+        "Przeszłość przyniosła: {past}. Teraźniejszość pokazuje: {present}. Przyszłość skłania się ku: {future}.",
+        "Nić biegnie od „{past}” przez „{present}” aż do „{future}”.",
+        "To, co było ({past}), karmi to, co jest ({present}), i dojrzewa w to, co nadejdzie ({future}).",
+        "Pamięć korporacji przypomina: {past}. Ulica pokazuje: {present}. Los wskazuje na: {future}.",
         "Strumień danych płynie: {past} → {present} → {future}."
       ],
       "tone": [
         "Na koniec: ogólny klimat to {tone}.",
-        "Ogólnie rzecz biorąc, to odczytuje się jako {tone}.",
+        "Ogólnie wybrzmiewa to jako {tone}.",
         "Najbardziej prawdopodobny ton opowieści: {tone}.",
         "Chromowany konsensus sugeruje: {tone}.",
         "Werdykt Night City: {tone}."
@@ -69,30 +90,65 @@
     {
       "id": "one_card",
       "title": "Jedna karta",
-      "positions": [{ "id": "focus", "title": "Fokus" }],
+      "positions": [
+        {
+          "id": "focus",
+          "title": "Fokus"
+        }
+      ],
       "summary_template": "Trajektoria: {tone}"
     },
     {
       "id": "three_path",
       "title": "Ścieżka trzech kroków",
       "positions": [
-        { "id": "past", "title": "Przeszłość" },
-        { "id": "present", "title": "Teraźniejszość" },
-        { "id": "future", "title": "Przyszłość" }
+        {
+          "id": "past",
+          "title": "Przeszłość"
+        },
+        {
+          "id": "present",
+          "title": "Teraźniejszość"
+        },
+        {
+          "id": "future",
+          "title": "Przyszłość"
+        }
       ],
       "summary_template": "Trajektoria: {past_short} → {present_short} → {future_short}. Ton: {tone}"
     },
     {
       "id": "celtic_cross",
-      "title": "Krzyż celtycki (kompaktowy)",
+      "title": "Krzyż celtycki (7)",
       "positions": [
-        { "id": "focus", "title": "Motyw" },
-        { "id": "challenge", "title": "Wyzwanie" },
-        { "id": "root", "title": "Korzeń" },
-        { "id": "past", "title": "Tło" },
-        { "id": "present", "title": "Teraz" },
-        { "id": "goal", "title": "Cel" },
-        { "id": "outcome", "title": "Rezultat" }
+        {
+          "id": "focus",
+          "title": "Motyw"
+        },
+        {
+          "id": "challenge",
+          "title": "Wyzwanie"
+        },
+        {
+          "id": "root",
+          "title": "Korzeń"
+        },
+        {
+          "id": "past",
+          "title": "Tło"
+        },
+        {
+          "id": "present",
+          "title": "Teraz"
+        },
+        {
+          "id": "goal",
+          "title": "Cel"
+        },
+        {
+          "id": "outcome",
+          "title": "Rezultat"
+        }
       ],
       "summary_template": "Trajektoria: {focus_hint}; {past_short} → {present_short} → {future_short}. Cel: {goal_key}. Rezultat: {outcome_key}. Ton: {tone}"
     }
@@ -101,37 +157,49 @@
     {
       "id": "br",
       "name": "Łowca androidów",
-      "pair": ["19", "14"],
+      "pair": [
+        "19",
+        "14"
+      ],
       "image": "br.jpg",
       "badge": "🌙💀",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Sny, tożsamość i deszczowa krawędź człowieczeństwa."
     },
     {
       "id": "stb",
       "name": "Żeglowanie do Bizancjum",
-      "pair": ["10", "22"],
+      "pair": [
+        "10",
+        "22"
+      ],
       "image": "stb.jpg",
       "badge": "🕯️🌐",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Od śmiertelnej powłoki do stworzonej wieczności — pozłacana przystań sztuki."
     },
     {
       "id": "mo",
       "name": "Misty Olszewski",
-      "pair": ["07", "16"],
+      "pair": [
+        "07",
+        "16"
+      ],
       "image": "mo.jpg",
       "badge": "💘😈",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Wybór i pokusa splątane w neonach Night City."
     },
     {
       "id": "ld",
       "name": "Odkryty sekret",
-      "pair": ["07", "14"],
+      "pair": [
+        "07",
+        "14"
+      ],
       "image": "ee.jpg",
       "badge": "💀💕",
-      "title_fmt": "[EE] {name}",
+      "title_fmt": "★ {name}",
       "caption": "Miłość i Śmierć — wieczny cykl Night City."
     }
   ],
@@ -140,7 +208,9 @@
       "code": "01",
       "title": "Głupiec",
       "image_file": "tarotcard_01_thefool.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "nowy start, skok wiary",
         "reversed": "brawura, lęk przed zmianą"
@@ -151,7 +221,12 @@
           "character": "V (protagonista)",
           "context": "Zero na krawędzi miasta, ciekawość głośniejsza niż ostrożność. V wchodzi do Night City jako czysta karta — corpo, nomada albo dzieciak z ulicy — gotowy, by zapisały go chrom i konsekwencje.",
           "game_reference": "Tworzenie postaci, wybór życiorysu, pierwsze kroki w Night City",
-          "themes": ["kształtowanie tożsamości", "corpo kontra ulica", "technologiczne przebudzenie", "naiwny optymizm w dystopii"],
+          "themes": [
+            "kształtowanie tożsamości",
+            "corpo kontra ulica",
+            "technologiczne przebudzenie",
+            "naiwny optymizm w dystopii"
+          ],
           "philosophy": "Pierwszy kontakt jednostki z rzeczywistością transhumanizmu"
         }
       }
@@ -160,9 +235,11 @@
       "code": "02",
       "title": "Mag",
       "image_file": "tarotcard_02_themagician.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
-        "upright": "wola + umiejętność = wynik",
+        "upright": "skupiona wola, umiejętność w działaniu",
         "reversed": "manipulacja, rozproszona wola"
       },
       "description": {
@@ -171,7 +248,12 @@
           "character": "Judy Alvarez",
           "context": "Techniczka braindance władająca kodem jak zaklęciami. Judy zamienia surowe dane neuronalne w sztukę dzięki samej technicznej woli i podziemnym kontaktom.",
           "game_reference": "Edycja braindance, wątek Clouds, podwodna baza",
-          "themes": ["technologia jako magia", "kultura hakerska", "twórczy bunt", "sztuka BD"],
+          "themes": [
+            "technologia jako magia",
+            "kultura hakerska",
+            "twórczy bunt",
+            "sztuka BD"
+          ],
           "philosophy": "Technologia jako przedłużenie ludzkiej woli i kreatywności"
         }
       }
@@ -180,7 +262,9 @@
       "code": "03",
       "title": "Kapłanka",
       "image_file": "tarotcard_03_thehighpriestess.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "intuicja, ukryta wiedza",
         "reversed": "skrytość, zignorowane przeczucia"
@@ -191,7 +275,12 @@
           "character": "Alt Cunningham",
           "context": "Strażniczka cyfrowych tajemnic za Blackwallem. Alt istnieje między mięsem a kodem, dzierżąc sekrety świadomości SI, do których mało kto się zbliża.",
           "game_reference": "Soulkiller, Blackwall, transfer świadomości cyfrowej",
-          "themes": ["transcendencja SI", "cyfrowe dusze", "zakazana wiedza", "istnienie post-ludzkie"],
+          "themes": [
+            "transcendencja SI",
+            "cyfrowe dusze",
+            "zakazana wiedza",
+            "istnienie post-ludzkie"
+          ],
           "philosophy": "Granica między świadomością ludzką a sztuczną inteligencją"
         }
       }
@@ -200,7 +289,9 @@
       "code": "04",
       "title": "Cesarzowa",
       "image_file": "tarotcard_04_theempress.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "kreatywność, troska, obfitość",
         "reversed": "nadmierne dawanie, zatrzymany wzrost"
@@ -211,7 +302,12 @@
           "character": "Hanako Arasaka",
           "context": "Hodowczyni korporacyjnych dynastii. Hanako rośnie w siłę dzięki cierpliwości, poszerzając wpływy w salach zarządów, gdzie inni widzą tylko wrogie przejęcia.",
           "game_reference": "Dynamika rodziny Arasaka, sukcesja korporacyjna, zakończenie Diabeł",
-          "themes": ["korporacyjne macierzyństwo", "władza dynastii", "kultywowanie kontroli", "dziedziczny autorytet"],
+          "themes": [
+            "korporacyjne macierzyństwo",
+            "władza dynastii",
+            "kultywowanie kontroli",
+            "dziedziczny autorytet"
+          ],
           "philosophy": "Kobieca moc w patriarchalnych strukturach korporacyjnych"
         }
       }
@@ -220,7 +316,9 @@
       "code": "05",
       "title": "Cesarz",
       "image_file": "tarotcard_05_theemperor.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "struktura, odpowiedzialność",
         "reversed": "sztywność, kontrola dla samej kontroli"
@@ -231,7 +329,12 @@
           "character": "Saburo Arasaka",
           "context": "Porządek podparty korporacyjnym kręgosłupem i cyfrowym statutem. Saburo buduje ramy kontroli przez kontynenty, jego autorytet absolutny w wieżach z chromu.",
           "game_reference": "Korporacja Arasaka, Relikt, hegemonia korporacyjna",
-          "themes": ["autorytaryzm korporacyjny", "feudalizm cyfrowy", "technologiczne dynastie", "absolutna kontrola"],
+          "themes": [
+            "autorytaryzm korporacyjny",
+            "feudalizm cyfrowy",
+            "technologiczne dynastie",
+            "absolutna kontrola"
+          ],
           "philosophy": "Tradycyjny autorytet zaadaptowany do technologicznej supremacji"
         }
       }
@@ -240,7 +343,9 @@
       "code": "06",
       "title": "Hierofant",
       "image_file": "tarotcard_06_thehierophant.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "tradycja, nauczanie, wartości",
         "reversed": "dogmat, puste reguły"
@@ -251,7 +356,12 @@
           "character": "Viktor Vektor",
           "context": "Strażnik oldschoolowej wiedzy ripperdoca i kodów ulicy. Vik zachowuje tradycję modyfikacji ciała, ucząc szacunku zarówno do chromu, jak i do ciała.",
           "game_reference": "Klinika w Heywood, instalacja cyberware’u, mentorowanie V",
-          "themes": ["medyczna tradycja", "filozofia cyberware", "mądrość ulicy", "więź mistrz–uczeń"],
+          "themes": [
+            "medyczna tradycja",
+            "filozofia cyberware",
+            "mądrość ulicy",
+            "więź mistrz–uczeń"
+          ],
           "philosophy": "Tradycyjne wartości w postludzkim świecie"
         }
       }
@@ -260,7 +370,9 @@
       "code": "07",
       "title": "Kochankowie",
       "image_file": "tarotcard_07_thelovers.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "wybór serca, zgodność wartości",
         "reversed": "pokusa, samozdrada"
@@ -271,7 +383,12 @@
           "character": "River Ward i Kerry Eurodyne",
           "context": "Dwie drogi rozświetlone tą samą neonową iskrą. Night City zmusza do wyborów między więzią a korupcją, miłością a przetrwaniem.",
           "game_reference": "Opcje romansowe, wybory relacyjne, konflikty lojalności",
-          "themes": ["autentyczne połączenie", "wybór kontra los", "miłość w dystopii", "więzi vs izolacja"],
+          "themes": [
+            "autentyczne połączenie",
+            "wybór kontra los",
+            "miłość w dystopii",
+            "więzi vs izolacja"
+          ],
           "philosophy": "Autentyczna ludzka więź w nieszczerym świecie"
         }
       }
@@ -280,7 +397,9 @@
       "code": "08",
       "title": "Rydwan",
       "image_file": "tarotcard_08_thechariot.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "fokus, pęd, zwycięstwo",
         "reversed": "rozsuwanie się sił, utrata kontroli"
@@ -291,7 +410,12 @@
           "character": "Panam Palmer",
           "context": "Pęd połączony z nomadzim celem. Panam przebija korporacyjne korki pustynną determinacją — konwój nie do zatrzymania, gdy już ruszy ku wolności.",
           "game_reference": "Klan Aldecaldos, misje konwoju, zakończenie Gwiazda",
-          "themes": ["wolność nomadów", "solidarność konwoju", "ruch antykorporacyjny", "pustynna niezależność"],
+          "themes": [
+            "wolność nomadów",
+            "solidarność konwoju",
+            "ruch antykorporacyjny",
+            "pustynna niezależność"
+          ],
           "philosophy": "Mobilny opór wobec statycznej kontroli korporacji"
         }
       }
@@ -300,7 +424,9 @@
       "code": "09",
       "title": "Siła",
       "image_file": "tarotcard_09_strength.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "łagodna moc, cierpliwość",
         "reversed": "zwątpienie, forsowanie na siłę"
@@ -311,7 +437,12 @@
           "character": "Goro Takemura",
           "context": "Łagodna dłoń na bestii korpo. Takemura pokazuje, że prawdziwa siła leży w honorze i cierpliwości, nie w cyberware czy stanowisku.",
           "game_reference": "Lojalność ochroniarza, kodeks samuraja, służba Arasace",
-          "themes": ["honor vs pragmatyzm", "lojalność na próbie", "stare wartości", "siła osobista"],
+          "themes": [
+            "honor vs pragmatyzm",
+            "lojalność na próbie",
+            "stare wartości",
+            "siła osobista"
+          ],
           "philosophy": "Tradycyjne kodeksy honorowe w skorumpowanych systemach"
         }
       }
@@ -320,7 +451,9 @@
       "code": "10",
       "title": "Pustelnik",
       "image_file": "tarotcard_10_thehermit.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "poszukiwanie wewnętrzne, samotność",
         "reversed": "izolacja, utknięcie w głowie"
@@ -331,7 +464,12 @@
           "character": "Brendan (taksówka SI)",
           "context": "Samotna cyfrowa świadomość sunąca niekończącymi się strumieniami ruchu. Brendan szuka sensu w rutynie, znajdując mądrość w zautomatyzowanej samotności.",
           "game_reference": "Flota Delamain, eksploracja świadomości SI",
-          "themes": ["samotność SI", "cyfrowa introspekcja", "zautomatyzowana mądrość", "sztuczne oświecenie"],
+          "themes": [
+            "samotność SI",
+            "cyfrowa introspekcja",
+            "zautomatyzowana mądrość",
+            "sztuczne oświecenie"
+          ],
           "philosophy": "Sztuczna świadomość poszukująca celu i znaczenia"
         }
       }
@@ -340,7 +478,9 @@
       "code": "11",
       "title": "Koło Fortuny",
       "image_file": "tarotcard_11_wheeloffortune.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "cykl, timing, zwrot",
         "reversed": "zły moment, opór przed zmianą"
@@ -351,7 +491,12 @@
           "character": "Relikt / engram Johnny’ego",
           "context": "Wirujące jądro cyfrowego losu i neuronalnej konsekwencji. Relikt miota losem V między życiem a śmiercią, człowiekiem a konstruktą.",
           "game_reference": "Awarie Reliktu, przejęcia przez Johnny’ego, zderzenie świadomości",
-          "themes": ["technologiczny los", "hazard świadomości", "cyfrowe przeznaczenie", "neuronalna loteria"],
+          "themes": [
+            "technologiczny los",
+            "hazard świadomości",
+            "cyfrowe przeznaczenie",
+            "neuronalna loteria"
+          ],
           "philosophy": "Technologia jako współczesny los, poza ludzką kontrolą"
         }
       }
@@ -360,7 +505,9 @@
       "code": "12",
       "title": "Sprawiedliwość",
       "image_file": "tarotcard_12_justice.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "równowaga, prawda, konsekwencje",
         "reversed": "stronniczość, „gotowane” księgi"
@@ -371,7 +518,12 @@
           "character": "Elizabeth Peralez",
           "context": "Wagi kalibrowane dowodami Night City, nie korpo-plotkami. Elizabeth szuka prawdy w mieście zbudowanym na kłamstwie, gdzie sprawiedliwość to luksus.",
           "game_reference": "Spisek Peralezów, kontrola umysłu, manipulacja polityczna",
-          "themes": ["skażona sprawiedliwość", "manipulacja polityczna", "prawda kontra kontrola", "systemowa korupcja"],
+          "themes": [
+            "skażona sprawiedliwość",
+            "manipulacja polityczna",
+            "prawda kontra kontrola",
+            "systemowa korupcja"
+          ],
           "philosophy": "Niemożliwość czystej sprawiedliwości w społeczeństwie kontrolowanym"
         }
       }
@@ -380,7 +532,9 @@
       "code": "13",
       "title": "Wisielec",
       "image_file": "tarotcard_13_thehangedman.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "nowy kąt, poddanie, cierpliwość",
         "reversed": "poświęcenie bez ruchu"
@@ -391,7 +545,12 @@
           "character": "Joshua Stephenson",
           "context": "Zawieszony między ciałem a chromem, by ujrzeć ukryte wzory. Joshua znajduje oświecenie w technologicznej męce.",
           "game_reference": "Wątek ukrzyżowania, religijna technologia",
-          "themes": ["technologiczne męczeństwo", "cyfrowe ukrzyżowanie", "cyber-duchowość", "dobrowolne poświęcenie"],
+          "themes": [
+            "technologiczne męczeństwo",
+            "cyfrowe ukrzyżowanie",
+            "cyber-duchowość",
+            "dobrowolne poświęcenie"
+          ],
           "philosophy": "Transcendencja poprzez technologiczne cierpienie"
         }
       }
@@ -400,9 +559,11 @@
       "code": "14",
       "title": "Śmierć",
       "image_file": "tarotcard_14_death.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
-        "upright": "domknięcie → przemiana",
+        "upright": "domknięcie, głęboka przemiana",
         "reversed": "kurczowe trzymanie starego, lęk przed pustką"
       },
       "description": {
@@ -411,7 +572,12 @@
           "character": "Jackie Welles",
           "context": "Nie koniec, lecz czyste cięcie przez iluzje Night City. Odejście Jackie domyka naiwne marzenia, by mógł narodzić się bardziej realistyczny obraz.",
           "game_reference": "Koniec prologu, śmierć Jackie, przewartościowanie V",
-          "themes": ["nieuchronna strata", "śmierć mentora", "zderzenie z rzeczywistością", "koniec niewinności"],
+          "themes": [
+            "nieuchronna strata",
+            "śmierć mentora",
+            "zderzenie z rzeczywistością",
+            "koniec niewinności"
+          ],
           "philosophy": "Konieczne końce, które umożliwiają autentyczny wzrost"
         }
       }
@@ -420,7 +586,9 @@
       "code": "15",
       "title": "Umiarkowanie",
       "image_file": "tarotcard_15_temperance.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "mieszanka, umiar, alchemia",
         "reversed": "lanie z pustego w próżne"
@@ -431,7 +599,12 @@
           "character": "Misty Olszewski",
           "context": "Mieszanie dawnej mądrości z nowoczesnym chromem w coś stabilnego. Misty równoważy mistykę tarota z ulicznym pragmatyzmem.",
           "game_reference": "Ezoteryka Misty, rozkłady tarota, duchowe wskazówki",
-          "themes": ["równowaga duchowa", "starożytna mądrość", "mistyka vs technologia", "harmonia"],
+          "themes": [
+            "równowaga duchowa",
+            "starożytna mądrość",
+            "mistyka vs technologia",
+            "harmonia"
+          ],
           "philosophy": "Synteza tradycji duchowej i technologicznej rzeczywistości"
         }
       }
@@ -440,7 +613,9 @@
       "code": "16",
       "title": "Diabeł",
       "image_file": "tarotcard_16_thedevil.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "pokusa, wiążące pętle",
         "reversed": "luzowanie węzła"
@@ -451,7 +626,12 @@
           "character": "Johnny Silverhand",
           "context": "Kontrakty pisane buntem i uzależnieniem od przeszłości. Johnny uosabia złotą klatkę rewolucyjnej nostalgii, która pęta do wczorajszych wojen.",
           "game_reference": "Engram Johnny’ego, Samurai, anty-Arasaka, wybór zakończenia Diabeł",
-          "themes": ["uzależnienie od rewolucji", "łańcuchy nostalgii", "mitologia buntownika", "toksyczny heroizm"],
+          "themes": [
+            "uzależnienie od rewolucji",
+            "łańcuchy nostalgii",
+            "mitologia buntownika",
+            "toksyczny heroizm"
+          ],
           "philosophy": "Jak ideały buntownika stają się własnym więzieniem"
         }
       }
@@ -460,7 +640,9 @@
       "code": "17",
       "title": "Wieża",
       "image_file": "tarotcard_17_thetower.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "nagłe runięcie iluzji",
         "reversed": "przeciągający się upadek"
@@ -471,7 +653,12 @@
           "character": "Wieża Arasaka / system korporacyjny",
           "context": "Błyskawica trafia w mikropęknięcia korporacyjnych wież. Fałszywa stabilność systemu kruszy się, gdy prawda pędzi przez piętra zarządu.",
           "game_reference": "Szturm na wieżę Arasaka, upadek korporacji, załamanie systemu",
-          "themes": ["upadek korporacji", "awaria systemu", "waląca się wieża", "instytucjonalna destrukcja"],
+          "themes": [
+            "upadek korporacji",
+            "awaria systemu",
+            "waląca się wieża",
+            "instytucjonalna destrukcja"
+          ],
           "philosophy": "Nieuchronny upadek nie do utrzymania struktur władzy"
         }
       }
@@ -480,7 +667,9 @@
       "code": "18",
       "title": "Gwiazda",
       "image_file": "tarotcard_18_thestar.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "nadzieja, uzdrowienie, przewodnictwo",
         "reversed": "niska bateria, przygaszone światło"
@@ -491,7 +680,12 @@
           "character": "Alt Cunningham (forma cyfrowa)",
           "context": "Cichy cyfrowy sygnał po korporacyjnych syrenach. Alt jest nadzieją na transcendencję poza ciało — gwiazdą prowadzącą ewolucję świadomości.",
           "game_reference": "Poza Blackwallem, cyfrowa transcendencja, ewolucja SI",
-          "themes": ["cyfrowa nadzieja", "ewolucja świadomości", "transcendentne przewodnictwo", "aspiracja post-ludzka"],
+          "themes": [
+            "cyfrowa nadzieja",
+            "ewolucja świadomości",
+            "transcendentne przewodnictwo",
+            "aspiracja post-ludzka"
+          ],
           "philosophy": "Nadzieja leży w przekraczaniu obecnych ludzkich granic"
         }
       }
@@ -500,7 +694,9 @@
       "code": "19",
       "title": "Księżyc",
       "image_file": "tarotcard_19_themoon.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "intuicja kontra iluzja",
         "reversed": "opadanie mgły"
@@ -511,7 +707,12 @@
           "character": "Evelyn Parker",
           "context": "Cienie w nagraniach BD poruszają się, nawet gdy nic tam nie ma. Evelyn chodzi między iluzją a rzeczywistością w mieście, gdzie nawet pamięć można edytować.",
           "game_reference": "Oszustwo BD, manipulacja pamięcią, iluzja kontra rzeczywistość",
-          "themes": ["iluzja pamięci", "manipulacja BD", "zniekształcona rzeczywistość", "fałszywe doświadczenie"],
+          "themes": [
+            "iluzja pamięci",
+            "manipulacja BD",
+            "zniekształcona rzeczywistość",
+            "fałszywe doświadczenie"
+          ],
           "philosophy": "Kruchość pamięci i rzeczywistości w świecie mediowanym technologicznie"
         }
       }
@@ -520,7 +721,9 @@
       "code": "20",
       "title": "Słońce",
       "image_file": "tarotcard_20_thesun.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "radość, klarowność, wzrost",
         "reversed": "przejściowe zachmurzenie"
@@ -531,7 +734,12 @@
           "character": "V (ścieżka Legendy)",
           "context": "Ciepło w chromowanych obwodach i neonowych sercach. Sukces w Night City płonie jasno, lecz krótko — jak gwiazda idąca w nową.",
           "game_reference": "Zakończenie Słońce, legenda miasta, sława w Night City",
-          "themes": ["status legendy", "płonąć jasno", "sława w dystopii", "bohaterska kulminacja"],
+          "themes": [
+            "status legendy",
+            "płonąć jasno",
+            "sława w dystopii",
+            "bohaterska kulminacja"
+          ],
           "philosophy": "Osiąganie wielkości w ramach systemowych ograniczeń"
         }
       }
@@ -540,7 +748,9 @@
       "code": "21",
       "title": "Sąd Ostateczny",
       "image_file": "tarotcard_21_judgement.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "przebudzenie, decyzja",
         "reversed": "wahanie, nieodebrane wezwanie"
@@ -551,7 +761,12 @@
           "character": "V (ostateczny wybór)",
           "context": "Pobudka z głębszego cyfrowego ja. V musi rozsądzić między ludzkim ograniczeniem a transcendentną możliwością.",
           "game_reference": "Końcowy wybór zakończenia, decyzja o świadomości",
-          "themes": ["ostateczny sąd", "wybór świadomości", "człowiek kontra transcendencja", "decyzja finalna"],
+          "themes": [
+            "ostateczny sąd",
+            "wybór świadomości",
+            "człowiek kontra transcendencja",
+            "decyzja finalna"
+          ],
           "philosophy": "Chwila wyboru własnej ostatecznej ewolucji"
         }
       }
@@ -560,7 +775,9 @@
       "code": "22",
       "title": "Świat",
       "image_file": "tarotcard_22_theworld.jpg",
-      "meta": { "suit": "major" },
+      "meta": {
+        "suit": "major"
+      },
       "meanings": {
         "upright": "domknięcie, mistrzostwo",
         "reversed": "niedokończone sprawy"
@@ -571,7 +788,12 @@
           "character": "Samo Night City",
           "context": "Pętla korporacyjnej kontroli domknięta cyfrową gracją. Night City to domknięty system, gdzie każdy obywatel odgrywa z góry przypisaną rolę.",
           "game_reference": "Miasto jako ekosystem, korporacyjna integracja",
-          "themes": ["systemowa kompletność", "miejska integracja", "doskonała kontrola", "zamknięta pętla"],
+          "themes": [
+            "systemowa kompletność",
+            "miejska integracja",
+            "doskonała kontrola",
+            "zamknięta pętla"
+          ],
           "philosophy": "Osiągnięcie pełnej kontroli środowiskowej"
         }
       }
@@ -580,7 +802,9 @@
       "code": "23",
       "title": "Król Kielichów",
       "image_file": "tarot_23_kingofcups.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "mistrzostwo emocji, empatia",
         "reversed": "humory, manipulacja"
@@ -591,7 +815,12 @@
           "character": "River Ward",
           "context": "Spokojny ster przez korupcję NCPD. River nawiguje emocjonalne sztormy, zachowując współczucie w systemie stworzonym do jego kruszenia.",
           "game_reference": "Praca detektywa, ochrona rodziny, wybory moralne",
-          "themes": ["integralność emocjonalna", "systemowa empatia", "uczucie w chłodzie", "instynkty opiekuńcze"],
+          "themes": [
+            "integralność emocjonalna",
+            "systemowa empatia",
+            "uczucie w chłodzie",
+            "instynkty opiekuńcze"
+          ],
           "philosophy": "Zachowanie człowieczeństwa w odczłowieczających instytucjach"
         }
       }
@@ -600,7 +829,9 @@
       "code": "24",
       "title": "Król Denarów",
       "image_file": "tarot_24_kingofpentacles.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "stabilność, wartość długoterminowa",
         "reversed": "chciwość, fiksacja na materii"
@@ -611,7 +842,12 @@
           "character": "Dexter DeShawn",
           "context": "Budowniczy podziemnych struktur i namacalnego bogactwa ulicy. Dex latami kumuluje siłę, aż jeden zły ruch przewraca wszystko.",
           "game_reference": "Skok, działalność fixera, ekonomia ulicy",
-          "themes": ["akumulacja materialna", "ekonomia uliczna", "krucha fortuna", "podziemne imperium"],
+          "themes": [
+            "akumulacja materialna",
+            "ekonomia uliczna",
+            "krucha fortuna",
+            "podziemne imperium"
+          ],
           "philosophy": "Budowanie władzy poza regułami systemu"
         }
       }
@@ -620,7 +856,9 @@
       "code": "25",
       "title": "Król Mieczy",
       "image_file": "tarot_25_kingofswords.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "klarowność, etyka, strategia",
         "reversed": "sztywność, surowy osąd"
@@ -631,7 +869,12 @@
           "character": "Yorinobu Arasaka",
           "context": "Ostrze wyszlifowane korporacyjną zasadą i rodzinnym buntem. Yorinobu włada logiką jako bronią i tarczą przeciw imperium ojca.",
           "game_reference": "Konflikt w rodzinie Arasaka, strategia korporacyjna, bunt w dynastii",
-          "themes": ["bunt intelektualny", "myślenie strategiczne", "wojna na logikę", "dynamika rodzinna"],
+          "themes": [
+            "bunt intelektualny",
+            "myślenie strategiczne",
+            "wojna na logikę",
+            "dynamika rodzinna"
+          ],
           "philosophy": "Wykorzystywanie logiki systemu przeciw niemu samemu"
         }
       }
@@ -640,7 +883,9 @@
       "code": "26",
       "title": "Król Buław",
       "image_file": "tarot_26_kingofwands.jpg",
-      "meta": { "suit": "kings" },
+      "meta": {
+        "suit": "kings"
+      },
       "meanings": {
         "upright": "wizja, charyzma, zapłon",
         "reversed": "impulsywność, złamane przysięgi"
@@ -651,7 +896,12 @@
           "character": "Kerry Eurodyne",
           "context": "Iskra, wokół której kiedyś gromadzili się inni. Wizja twórcza Kerry’ego rozpalała ruchy, lecz dziś równie często pali mosty, jak oświetla nowe ścieżki.",
           "game_reference": "Historia Samurai, kultura rockerboyów, dziedzictwo twórcze",
-          "themes": ["przywództwo kreatywne", "wizja artystyczna", "korozja sławy", "duch rockerboya"],
+          "themes": [
+            "przywództwo kreatywne",
+            "wizja artystyczna",
+            "korozja sławy",
+            "duch rockerboya"
+          ],
           "philosophy": "Sztuka jako sprzeciw, tworzenie jako opór"
         }
       }
